@@ -1,9 +1,9 @@
 namespace HabitInterfaces {
-    public interface HabitRecord {
+    public interface IHabitRecord {
         int habitId { get; }   
     }
 
-    public interface HabitProperties {
+    public interface IHabitProperties {
         string habitName { get; set; }
         string habitDesc { get; set; }
     }

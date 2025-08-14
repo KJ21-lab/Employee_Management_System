@@ -1,7 +1,7 @@
 using HabitInterfaces;
 
 namespace HabitClass {
-    public class Habit : HabitRecord {
+    public class Habit : IHabitRecord {
         public Habit() { }
 
         public Habit(int id, string Name, string desc) {

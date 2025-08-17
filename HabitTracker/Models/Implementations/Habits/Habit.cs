@@ -14,4 +14,10 @@ namespace HabitClass {
         public string habitName { get; set; }
         public string habitDesc { get; set; }
     }
+
+    public class HabitRecord_DbModel {
+        public int HABIT_ID { get; set; }
+        public string HABIT_NAME { get; set; }
+        public string HABIT_DESC { get; set; }
+    }
 }

@@ -7,7 +7,7 @@ namespace Factory{
     }
 
     public class Habitreader() {
-        public IEnumerable<Habit> Read() => Program.habits;
+        public IEnumerable<Habit> Read() => new Habit[0];
 
     }
 }

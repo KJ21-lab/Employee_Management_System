@@ -5,17 +5,17 @@ namespace HabitBusinessRulesInterfaces {
         public HabitEntityWriter Writer();
     }
 
-    public interface HabitRecordEntity : HabitPropertiesEntity  {
+    public interface IHabitEntity : IHabitPropertiesEntity  {
         int habitId { get; }   
     }
 
-    public interface HabitPropertiesEntity {
+    public interface IHabitPropertiesEntity {
         string habitName { get; set; }
         string habitDesc { get; set; }
     }
 
     public interface HabitEntityReader {
-        public HabitRecordEntity Reader();
+        public IHabitEntity Reader();
     }
 
     public interface HabitEntityWriter {

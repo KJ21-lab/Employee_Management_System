@@ -1,10 +1,10 @@
 using HabitBusinessRulesInterfaces;
 
 namespace HabitModels {
-    public class IMPHabitRecordEntity :  HabitRecordEntity {
-        public IMPHabitRecordEntity() { }
+    public class HabitEntity : IHabitEntity {
+        public HabitEntity() { }
 
-        public IMPHabitRecordEntity(int id, string Name, string desc) {
+        public HabitEntity(int id, string Name, string desc) {
             habitId = id;
             habitName = Name;
             habitDesc = desc;

@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "habitController",
+    "Method": "GetHabits",
+    "RelativePath": "api/Habit/GetHabits",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

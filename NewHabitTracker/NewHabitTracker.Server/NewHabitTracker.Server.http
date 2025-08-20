@@ -1,0 +1,6 @@
+@NewHabitTracker.Server_HostAddress = http://localhost:5243
+
+GET {{NewHabitTracker.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

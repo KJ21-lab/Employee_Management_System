@@ -4,7 +4,7 @@ import type { Habit } from './types'; // Imports the TypeScript Habit interface 
 // Define a service using a base URL and expected endpoints
 export const habitApi = createApi({
   reducerPath: 'habitApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://localhost:7173/api/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://localhost:7107/api/' }),
 
    tagTypes: ['Habits'],
   endpoints: (build) => ({

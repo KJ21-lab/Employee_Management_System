@@ -1,4 +1,6 @@
-﻿namespace NewHabitTracker.Server.Models.Interfaces {
+﻿using NewHabitTracker.Server.Miscellaneous.Interfaces;
+
+namespace NewHabitTracker.Server.Models.Interfaces {
     public interface IHabitFactory {
 
         Task<IHabitRecord?> ReadHabit(Guid habitID) =>
@@ -11,11 +13,11 @@
 
     }
 
-    public interface IHabitRecord {
+    public interface IHabitRecord : IHabitRecordProperties {
         Guid habitId { get; }
     }
 
-    public interface IHabitProperties {
+    public interface IHabitRecordProperties {
         string habitName { get; set; }
         string habitDesc { get; set; }
     }

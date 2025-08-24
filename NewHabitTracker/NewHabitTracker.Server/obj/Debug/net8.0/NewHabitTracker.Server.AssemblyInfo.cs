@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewHabitTracker.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e57f1be188c2f42499eed625e132b52868820a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a31e6ea01c5d5dd9b5a8c3fe2c0b8a897c6b37e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewHabitTracker.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewHabitTracker.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

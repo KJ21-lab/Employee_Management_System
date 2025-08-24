@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HabitTracker\DataAccessor\DataAccess.csproj" />
     <ProjectReference Include="..\newhabittracker.client\newhabittracker.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

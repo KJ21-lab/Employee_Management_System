@@ -11,7 +11,7 @@ public class habitController : ControllerBase {
         try {
             HabitFactory factory = new();
 
-            IEnumerable<Habit> habits =
+            IEnumerable<HabitRecord> habits =
                 factory
                 .Reader()
                 .Read()

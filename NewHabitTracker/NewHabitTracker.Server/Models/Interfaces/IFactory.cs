@@ -3,6 +3,7 @@
 namespace NewHabitTracker.Server.Models.Interfaces {
     public interface IHabitFactory {
 
+        Task<IEnumerable<IHabitRecord>> ReadHabits();
         Task<IHabitRecord?> ReadHabit(Guid habitID) =>
             Task.Run(() => ReadHabits([habitID]).Result.FirstOrDefault());
 
@@ -14,7 +15,7 @@ namespace NewHabitTracker.Server.Models.Interfaces {
     }
 
     public interface IHabitRecord : IHabitRecordProperties {
-        Guid habitId { get; }
+        int habitId { get; }
     }
 
     public interface IHabitRecordProperties {

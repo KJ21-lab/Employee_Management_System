@@ -1,5 +1,6 @@
 ﻿namespace DataAccess.Interfaces {
     using System.Data;
+    using System.Data.Common;
 
     public interface IDataAccessor {
         IInternalStorageCaller InternalStorageCaller();
@@ -7,14 +8,17 @@
 
     public interface IInternalStorageCaller {
         IDbConnectionProvider DbConnectionProvider();
-        IStoredProcedureExecutor SPExecuter();
+        IQueryExecutor QueryExecutor();
     }
 
     public interface IDbConnectionProvider {
         IDbConnection DbConnection();
     }
 
-    public interface IStoredProcedureExecutor {
-        IEnumerable<DatabaseField> QueryProcedure<DatabaseField>();
+    public interface IQueryExecutor {
+        IEnumerable<DatabaseField> QueryProcedure<DatabaseField>(
+            string sqlQuery,
+            IDbConnection connection,
+            string consoleOutput = "");
     }
 }

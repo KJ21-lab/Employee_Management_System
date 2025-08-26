@@ -1,29 +1,39 @@
-using HabitClass;
-using NewHabitTracker.Server.Miscellaneous.Implementations;
-using NewHabitTracker.Server.Miscellaneous.Interfaces;
-using NewHabitTracker.Server.Models.Interfaces;
 using DataAccess.Interfaces;
 
+using HabitClass;
+
+using NewHabitTracker.Server.Miscellaneous.Interfaces;
+using NewHabitTracker.Server.Models.Interfaces;
+
 namespace Factory {
-    public class HabitFactory : IHabitFactory {
-        public HabitFactory(IDataAccessor dataAccessor) { }
+    public class HabitFactory(IDataAccessor dataAccessor) : IHabitFactory {
+
 
         public IHabitRecord Build(
          Action<IHabitRecordProperties> configure) {
             IHabitRecord record = new HabitRecord();
-
             configure(record);
-
             return record;
         }
 
-        public IEnumerable<IHabitRecord> ReadHabits(IEnumerable<Guid> habitIds) {
+        public Task<IEnumerable<IHabitRecord>> ReadHabits(IEnumerable<Guid> habitIds) =>
+           Task.Run(() => _read(sqlQuery: @"SELECT * FROM HabitRecord WHERE HABIT_ID IN(@HabitId)"));
 
-        }
+        public Task<IEnumerable<IHabitRecord>> ReadHabits() =>
+            Task.Run(() => _read(sqlQuery: @"SELECT * FROM HabitRecord"));
 
+        public Task<OperationResult> Upsert(Guid habitID) => throw new NotImplementedException();
+        public Task<OperationResult> Upsert(IEnumerable<Guid> habitIDs) => throw new NotImplementedException();
 
-        Task<OperationResult> Upsert(Guid habitID) => throw new NotImplementedException();
-        Task<OperationResult> Upsert(IEnumerable<Guid> habitIDs) =>  throw new NotImplementedException();
+        private IEnumerable<IHabitRecord> _read(
+            string sqlQuery) =>
+        dataAccessor
+        .InternalStorageCaller().QueryExecutor()
+        .QueryProcedure<HabitRecord_DbModel>(
+          sqlQuery: sqlQuery,
+          connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection())
+        .Select(model => new HabitRecord(dbModel: model))
+        .ToList();
 
         private void _execute() {
 
@@ -32,136 +42,116 @@ namespace Factory {
 }
 
 
-namespace PUMC.Implementations.Persistence.Driver {
+//namespace PUMC.Implementations.Persistence.Driver {
 
-    public class PumcDriverHeaderRecordsFactory(
+//    public class PumcDriverHeaderRecordsFactory(
 
-      IntegratedServiceCallers integratedServiceCallers) : DriverHeaderRecordsFactory {
+//      IntegratedServiceCallers integratedServiceCallers) : DriverHeaderRecordsFactory {
 
-        public DriverHeaderRecord Build(
+//        public DriverHeaderRecord Build(
 
-          EmployeeUID employeeUID,
+//          EmployeeUID employeeUID,
 
-          Action<DriverHeaderRecordProperties> configure) {
+//          Action<DriverHeaderRecordProperties> configure) {
 
-            DriverHeaderRecord record = new PumcDriverHeaderRecord(employeeUID);
+//            DriverHeaderRecord record = new PumcDriverHeaderRecord(employeeUID);
 
-            configure(record);
+//            configure(record);
 
-            return record;
+//            return record;
 
-        }
+//        }
 
 
 
-        public Task<IEnumerable<DriverHeaderRecord>> Read() =>
+//        public Task<IEnumerable<DriverHeaderRecord>> Read() =>
 
-          Task.Run(() =>
+//          Task.Run(() =>
 
-            _read(procedureName: "pumc_DriverHeaderRecords_Read"));
+//            _read(procedureName: "pumc_DriverHeaderRecords_Read"));
 
 
 
-        public Task<IEnumerable<DriverHeaderRecord>> Read(
+//        public Task<IEnumerable<DriverHeaderRecord>> Read(
 
-          IEnumerable<DriverUID> driverUIDs) =>
+//          IEnumerable<DriverUID> driverUIDs) =>
 
-          Task.Run(() =>
+//          Task.Run(() =>
 
-            _read(
+//            _read(
 
-              procedureName: "pumc_DriverHeaderRecords_ReadByUID",
+//              procedureName: "pumc_DriverHeaderRecords_ReadByUID",
 
-              parameters: new {
+//              parameters: new {
 
-                  UIDS = driverUIDs.Select(uid => new { UID = uid.Value }).ToDataTable()
+//                  UIDS = driverUIDs.Select(uid => new { UID = uid.Value }).ToDataTable()
 
-              }));
+//              }));
 
 
 
-        public Task<OperationResult> Upsert(
+//        public Task<OperationResult> Upsert(
 
-          IEnumerable<DriverHeaderRecord> records) =>
+//          IEnumerable<DriverHeaderRecord> records) =>
 
-          Task.Run<OperationResult>(() => {
+//          Task.Run<OperationResult>(() => {
 
-              try {
+//              try {
 
-                  _execute(
+//                  _execute(
 
-                procedureName: "pumc_DriverHeaderRecords_Upsert",
+//                procedureName: "pumc_DriverHeaderRecords_Upsert",
 
-                parameters: new {
+//                parameters: new {
 
-                    Records =
+//                    Records =
 
-                    records
+//                    records
 
-                    .DistinctBy(record => record.UID)
+//                    .DistinctBy(record => record.UID)
 
-                    .Select(record => new DriverHeaderRecord_DbModel(record))
+//                    .Select(record => new DriverHeaderRecord_DbModel(record))
 
-                    .ToDataTable()
+//                    .ToDataTable()
 
-                });
+//                });
 
-                  return new GlobalOperationResult();
+//                  return new GlobalOperationResult();
 
-              } catch (Exception ex) {
+//              } catch (Exception ex) {
 
-                  return new GlobalOperationResult(
+//                  return new GlobalOperationResult(
 
-                $"Failed to upsert Driver Header Records [ {ex.Message} ]");
+//                $"Failed to upsert Driver Header Records [ {ex.Message} ]");
 
-              }
+//              }
 
-          });
+//          });
 
 
 
-        private IEnumerable<DriverHeaderRecord> _read(
 
-          string procedureName,
 
-          object? parameters = null) =>
 
-          integratedServiceCallers
 
-          .InternalStorageCaller().SpExecutor()
+//        private void _execute(
 
-          .QueryProcedure<DriverHeaderRecord_DbModel>(
+//          string procedureName,
 
-            procedureName: procedureName,
+//          object? parameters = null) =>
 
-            parameters: parameters,
+//          integratedServiceCallers
 
-            connection: integratedServiceCallers.InternalStorageCaller().DbConnectionProvider().PumcDbConnection())
+//          .InternalStorageCaller().SpExecutor()
 
-          .Select(model => new PumcDriverHeaderRecord(dbModel: model))
+//          .NonQueryProcedure(
 
-          .ToList();
+//            procedureName: procedureName,
 
+//            connection: integratedServiceCallers.InternalStorageCaller().DbConnectionProvider().PumcDbConnection(),
 
+//            parameters: parameters);
 
-        private void _execute(
+//    }
 
-          string procedureName,
-
-          object? parameters = null) =>
-
-          integratedServiceCallers
-
-          .InternalStorageCaller().SpExecutor()
-
-          .NonQueryProcedure(
-
-            procedureName: procedureName,
-
-            connection: integratedServiceCallers.InternalStorageCaller().DbConnectionProvider().PumcDbConnection(),
-
-            parameters: parameters);
-
-    }
-
-}
+//}

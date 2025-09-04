@@ -17,6 +17,8 @@ builder.Services.AddSwaggerGen();
 // Register the SQLite provider factory once at startup.
 DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", SqliteFactory.Instance);
 
+builder.Services.AddSingleton<DataAcessConfigSettings>();
+
 // Register your main DataAccessor to its interface.
 builder.Services.AddSingleton<IDataAccessor, DataAccessor>();
 

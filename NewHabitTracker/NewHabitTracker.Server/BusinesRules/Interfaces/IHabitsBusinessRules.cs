@@ -1,12 +1,12 @@
 namespace HabitBusinessRulesInterfaces {
-    public interface HabitBusinessRules {
+    public interface IHabitBusinessRules {
 
-        public HabitEntityReader Reader();
-        public HabitEntityWriter Writer();
+        IHabitEntityReader Reader();
+        IHabitEntityWriter Writer();
     }
 
     public interface IHabitEntity : IHabitPropertiesEntity  {
-        int habitId { get; }   
+        Guid habitId { get; }   
     }
 
     public interface IHabitPropertiesEntity {
@@ -14,11 +14,11 @@ namespace HabitBusinessRulesInterfaces {
         string habitDesc { get; set; }
     }
 
-    public interface HabitEntityReader {
-        public IHabitEntity Reader();
+    public interface IHabitEntityReader {
+        Task<IEnumerable<IHabitEntity>> ReadAll();
     }
 
-    public interface HabitEntityWriter {
+    public interface IHabitEntityWriter {
 
 
     }

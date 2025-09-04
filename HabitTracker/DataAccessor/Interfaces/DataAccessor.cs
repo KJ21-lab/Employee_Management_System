@@ -19,6 +19,7 @@
         IEnumerable<DatabaseField> QueryProcedure<DatabaseField>(
             string sqlQuery,
             IDbConnection connection,
+            object? parameters = null,
             string consoleOutput = "");
     }
 }

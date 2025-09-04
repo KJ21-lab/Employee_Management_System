@@ -8,7 +8,6 @@ using NewHabitTracker.Server.Models.Interfaces;
 namespace Factory {
     public class HabitFactory(IDataAccessor dataAccessor) : IHabitFactory {
 
-
         public IHabitRecord Build(
          Action<IHabitRecordProperties> configure) {
             IHabitRecord record = new HabitRecord();
@@ -17,7 +16,8 @@ namespace Factory {
         }
 
         public Task<IEnumerable<IHabitRecord>> ReadHabits(IEnumerable<Guid> habitIds) =>
-           Task.Run(() => _read(sqlQuery: @"SELECT * FROM HabitRecord WHERE HABIT_ID IN(@HabitId)"));
+           Task.Run(() => _read(sqlQuery: @"SELECT * FROM HabitRecord WHERE TRIM(HABIT_ID) IN(@HabitIds)",
+                                parameters: new { HabitIds = habitIds}));
 
         public Task<IEnumerable<IHabitRecord>> ReadHabits() =>
             Task.Run(() => _read(sqlQuery: @"SELECT * FROM HabitRecord"));
@@ -26,11 +26,13 @@ namespace Factory {
         public Task<OperationResult> Upsert(IEnumerable<Guid> habitIDs) => throw new NotImplementedException();
 
         private IEnumerable<IHabitRecord> _read(
-            string sqlQuery) =>
+            string sqlQuery,
+            object? parameters = null) =>
         dataAccessor
         .InternalStorageCaller().QueryExecutor()
         .QueryProcedure<HabitRecord_DbModel>(
           sqlQuery: sqlQuery,
+          parameters: parameters,
           connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection())
         .Select(model => new HabitRecord(dbModel: model))
         .ToList();

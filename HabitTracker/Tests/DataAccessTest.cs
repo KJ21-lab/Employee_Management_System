@@ -10,13 +10,9 @@ using NewHabitTracker.Server.Models.Interfaces;
 
 using SQLitePCL;
 
-using System.IO;
-
-using Xunit; // Assuming you are using XUnit
-
 public class DataAccessTest {
     [Fact]
-    public async Task Test1() { // Use async Task for async methods
+    public async Task Test1() {
         Batteries.Init();
 
         var configuration = new ConfigurationBuilder()
@@ -42,9 +38,8 @@ public class DataAccessTest {
 
         IEnumerable<IHabitRecord> records =
           await factory
-          .ReadHabits();
-
-
+            //.ReadHabits();
+          .ReadHabits([Guid.Parse("6B29FC40-CA47-1067-B31D-00DD010662DA")]);
 
         Console.WriteLine(records);
     }

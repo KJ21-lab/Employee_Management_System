@@ -1,32 +1,36 @@
-//using DataAccess.Implementations;
-//using DataAccess.Interfaces;
+using DataAccess.Implementations;
+using DataAccess.Interfaces;
 
-//using Factory;
+using Factory;
 
-//using HabitClass;
+using HabitBusinessRulesInterfaces;
 
-//using Microsoft.AspNetCore.Mvc;
+using HabitClass;
 
-//using NewHabitTracker.Server.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-//[ApiController]
-//public class habitController : ControllerBase {
+using NewHabitTracker.Server.Models.Interfaces;
 
-//    [HttpGet]
-//    [Route("api/Habit/GetHabits")]
-//    public async Task<IActionResult> GetHabits() {
-//        try {
+[ApiController]
+public class habitController : ControllerBase {
 
-//            IEnumerable<IHabitRecord> habits =
-//                factory
-//                .ReadHabits()
-//                .Result
-//                .ToList();
+    [HttpGet]
+    [Route("api/Habit/GetHabits")]
+    public async Task<IActionResult> GetHabits() {
+        try {
 
-//            return Ok(habits);
-//        } catch (Exception ex) {
-//            return StatusCode(500, ex.Message);
-//        }
-//    }
+            IEnumerable<IHabitEntity> habits =
+                BusinessRulesinjector()
+                .HabitBusinessRules()
+                .Reader()
+                .ReadHabits()
+                .Result
+                .ToList();
 
-//}
+            return Ok(habits);
+        } catch (Exception ex) {
+            return StatusCode(500, ex.Message);
+        }
+    }
+
+}

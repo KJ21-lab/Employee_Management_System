@@ -15,7 +15,7 @@ namespace NewHabitTracker.Server.Models.Interfaces {
     }
 
     public interface IHabitRecord : IHabitRecordProperties {
-        int habitId { get; }
+        Guid habitId { get; }
     }
 
     public interface IHabitRecordProperties {

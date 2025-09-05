@@ -1,0 +1,12 @@
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\bin\Debug\net8.0\Miscellaneous.deps.json
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\bin\Debug\net8.0\Miscellaneous.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\bin\Debug\net8.0\Miscellaneous.pdb
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.AssemblyInfoInputs.cache
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.AssemblyInfo.cs
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.csproj.CoreCompileInputs.cache
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.sourcelink.json
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\refint\Miscellaneous.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\Miscellaneous.pdb
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\Miscellaneous\obj\Debug\net8.0\ref\Miscellaneous.dll

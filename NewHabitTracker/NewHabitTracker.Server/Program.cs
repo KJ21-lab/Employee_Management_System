@@ -1,9 +1,17 @@
 using DataAccess.Implementations;
 using DataAccess.Interfaces;
 
+using DependencyInjectors;
+using DependencyInjectors.BusinessRules;
+using DependencyInjectors.PersistenceInjector;
+
 using Microsoft.Data.Sqlite;
 
+using SQLitePCL;
+
 using System.Data.Common;
+
+Batteries.Init();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +27,25 @@ DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", SqliteFactory.Insta
 
 builder.Services.AddSingleton<DataAcessConfigSettings>();
 
+builder.Services.AddSingleton<IBusinessRulesInjector, BusinessRulesInjector>();
+
 // Register your main DataAccessor to its interface.
 builder.Services.AddSingleton<IDataAccessor, DataAccessor>();
 
+// Register the dependency that was missing.
+builder.Services.AddSingleton<IPersistenceFactoriesInjector, PersistenceFactoriesInjector>();
+
 // --- END: Corrected Service Registration ---
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder => {
+                          builder.WithOrigins("https://localhost:50571")
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+});
 
 var app = builder.Build();
 
@@ -38,6 +61,8 @@ if (app.Environment.IsDevelopment()) {
 
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

@@ -1,0 +1,6 @@
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.csproj.AssemblyReference.cache
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.AssemblyInfoInputs.cache
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.AssemblyInfo.cs
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.csproj.CoreCompileInputs.cache
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\HabitTracker\PersistenceInjector\obj\Debug\net8.0\DependencyInjectors.sourcelink.json

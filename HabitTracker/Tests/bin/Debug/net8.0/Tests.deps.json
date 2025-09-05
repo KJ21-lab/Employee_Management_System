@@ -1683,6 +1683,17 @@
         }
       },
       "xunit.runner.visualstudio/2.5.3": {},
+      "BusinessRules/1.0.0": {
+        "dependencies": {
+          "Persistence": "1.0.0"
+        },
+        "runtime": {
+          "BusinessRules.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "DataAccess/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.66",
@@ -1697,14 +1708,47 @@
           }
         }
       },
+      "DependencyInjector/1.0.0": {
+        "dependencies": {
+          "BusinessRules": "1.0.0"
+        },
+        "runtime": {
+          "DependencyInjector.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Miscellaneous/1.0.0": {
+        "runtime": {
+          "Miscellaneous.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "NewHabitTracker.Server/1.0.0": {
         "dependencies": {
+          "BusinessRules": "1.0.0",
           "DataAccess": "1.0.0",
+          "DependencyInjector": "1.0.0",
           "Microsoft.AspNetCore.SpaProxy": "8.0.19",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
           "NewHabitTracker.Server.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Persistence/1.0.0": {
+        "dependencies": {
+          "DataAccess": "1.0.0",
+          "Miscellaneous": "1.0.0"
+        },
+        "runtime": {
+          "Persistence.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -2670,12 +2714,32 @@
       "path": "xunit.runner.visualstudio/2.5.3",
       "hashPath": "xunit.runner.visualstudio.2.5.3.nupkg.sha512"
     },
+    "BusinessRules/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
+    "DependencyInjector/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Miscellaneous/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "NewHabitTracker.Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Persistence/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -9,7 +9,7 @@ const columns: GridColDef<(Habit[])[number]>[] = [
     {
         field: 'habitId',
         headerName: 'Habit id',
-        width: 150,
+        width: 300,
         editable: true,
         resizable: false
     },
@@ -31,7 +31,7 @@ const columns: GridColDef<(Habit[])[number]>[] = [
     },
 ];
 
-function App() {
+export const App = () => {
 
     const { data: habits } = useGetHabitsQuery();
 

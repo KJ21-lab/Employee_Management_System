@@ -13,11 +13,14 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
     </PackageReference>
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HabitTracker\BusinessRules\BusinessRules.csproj" />
     <ProjectReference Include="..\..\HabitTracker\DataAccessor\DataAccess.csproj" />
+    <ProjectReference Include="..\..\HabitTracker\DependencyInjector\DependencyInjectors.csproj" />
     <ProjectReference Include="..\newhabittracker.client\newhabittracker.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

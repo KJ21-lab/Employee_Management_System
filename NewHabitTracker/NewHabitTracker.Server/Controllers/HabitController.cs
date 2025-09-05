@@ -1,6 +1,8 @@
 using DataAccess.Implementations;
 using DataAccess.Interfaces;
 
+using DependencyInjectors;
+
 using Factory;
 
 using HabitBusinessRulesInterfaces;
@@ -12,7 +14,11 @@ using Microsoft.AspNetCore.Mvc;
 using NewHabitTracker.Server.Models.Interfaces;
 
 [ApiController]
-public class habitController : ControllerBase {
+public class HabitController : BaseApiController {
+
+    public HabitController(IBusinessRulesInjector businessRulesInjector)
+       : base(businessRulesInjector) {
+    }
 
     [HttpGet]
     [Route("api/Habit/GetHabits")]
@@ -20,12 +26,10 @@ public class habitController : ControllerBase {
         try {
 
             IEnumerable<IHabitEntity> habits =
-                BusinessRulesinjector()
+                await _businessRulesInjector
                 .HabitBusinessRules()
                 .Reader()
-                .ReadHabits()
-                .Result
-                .ToList();
+                .ReadAll();
 
             return Ok(habits);
         } catch (Exception ex) {

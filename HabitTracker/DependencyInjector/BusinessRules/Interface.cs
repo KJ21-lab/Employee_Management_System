@@ -1,8 +1,8 @@
-﻿using HabitBusinessRulesInterfaces;
+﻿using BusinessRules.BusinesRules.Employees.Interfaces;
 
 namespace DependencyInjectors {
     public interface IBusinessRulesInjector {
 
-        IHabitBusinessRules HabitBusinessRules();
+        IEmployeeBusinessRules EmployeeBusinessRules();
     }
 }

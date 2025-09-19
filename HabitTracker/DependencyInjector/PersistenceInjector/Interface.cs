@@ -3,7 +3,7 @@
 namespace DependencyInjectors.PersistenceInjector {
     public interface IPersistenceFactoriesInjector {
 
-        IHabitFactory HabitFactory();
+        IEmployeeFactory EmployeeFactory();
 
     }
 }

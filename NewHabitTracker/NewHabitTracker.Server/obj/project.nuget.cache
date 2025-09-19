@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "PybengZ+Zpw=",
+  "dgSpecHash": "4EmqX9qi0qs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj",
+  "projectFilePath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kevin\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
-    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.19\\microsoft.aspnetcore.spaproxy.8.0.19.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.20\\microsoft.aspnetcore.spaproxy.8.0.20.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.bcl.cryptography\\8.0.0\\microsoft.bcl.cryptography.8.0.0.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.data.sqlclient\\6.1.1\\microsoft.data.sqlclient.6.1.1.nupkg.sha512",

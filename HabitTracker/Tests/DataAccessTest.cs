@@ -1,12 +1,13 @@
 using DataAccess.Implementations;
 using DataAccess.Interfaces;
 
-using Factory;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using NewHabitTracker.Server.Models.Interfaces;
+
+using Persistence.Employees.Implementations;
 
 using SQLitePCL;
 
@@ -34,12 +35,12 @@ public class DataAccessTest {
 
         var dataAccessor = serviceProvider.GetRequiredService<IDataAccessor>();
 
-        var factory = new HabitFactory(dataAccessor);
+        var factory = new EmployeeFactory(dataAccessor);
 
-        IEnumerable<IHabitRecord> records =
+        IEnumerable<IEmployeeRecord> records =
           await factory
             //.ReadHabits();
-          .ReadHabits([Guid.Parse("6B29FC40-CA47-1067-B31D-00DD010662DA")]);
+          .ReadEmployeesByIds([Guid.Parse("6B29FC40-CA47-1067-B31D-00DD010662DA")]);
 
         Console.WriteLine(records);
     }

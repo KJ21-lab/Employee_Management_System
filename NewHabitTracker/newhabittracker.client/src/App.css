@@ -5,7 +5,11 @@
   text-align: center;
 }
 
+body {
+    background-color: #f0f2f5;
+}
+
 .data-grid {
   display: flex;
-  justify-content: 'center'
+  justify-content: center
 }

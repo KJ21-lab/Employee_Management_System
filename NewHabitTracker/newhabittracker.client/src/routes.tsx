@@ -1,20 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Habit } from './types'; // Imports the TypeScript Habit interface from the types.ts file.
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { Employee } from './types'; // Imports the TypeScript Habit interface from the types.ts file.
 
 // Define a service using a base URL and expected endpoints
-export const habitApi = createApi({
-  reducerPath: 'habitApi',
+export const employeeApi = createApi({
+    reducerPath: 'employeeApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://localhost:7107/api/' }),
 
-   tagTypes: ['Habits'],
-  endpoints: (build) => ({
-    getHabits: build.query<Habit[], void>({
-      query: () => `Habit/GetHabits`,
-      providesTags: ['Habits'],
+    tagTypes: ['Employees'],
+    endpoints: (build) => ({
+        getEmployees: build.query<Employee[], void>({
+            query: () => `Employee/GetEmployees`,
+            providesTags: ['Employees'],
+        }),
     }),
-  }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetHabitsQuery } = habitApi
+export const { useGetEmployeesQuery } = employeeApi

@@ -393,8 +393,8 @@
               "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\HabitTracker\\DataAccessor\\DataAccess.csproj": {
                 "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\HabitTracker\\DataAccessor\\DataAccess.csproj"
               },
-              "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj": {
-                "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj"
+              "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj": {
+                "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj"
               }
             }
           }
@@ -421,7 +421,7 @@
             },
             "SQLitePCLRaw.bundle_e_sqlite3": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[3.0.2, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -456,12 +456,12 @@
         }
       }
     },
-    "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj": {
+    "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj",
-        "projectName": "NewHabitTracker.Server",
-        "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj",
+        "projectUniqueName": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj",
+        "projectName": "EmployeeMangementSystem.Server",
+        "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj",
         "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\obj\\",
         "projectStyle": "PackageReference",

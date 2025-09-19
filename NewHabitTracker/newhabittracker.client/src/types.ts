@@ -1,5 +1,6 @@
-export interface Habit {
-  habitId: number;
-  habitName: string;
-  habitDesc: string;
+export interface Employee {
+    employeeID: string;
+    name: string;
+    jobTitle: string;
+    hireDate: string;
 }

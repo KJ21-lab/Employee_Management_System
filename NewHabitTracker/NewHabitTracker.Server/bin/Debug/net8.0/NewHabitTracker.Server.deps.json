@@ -10,7 +10,7 @@
         "dependencies": {
           "BusinessRules": "1.0.0",
           "DataAccess": "1.0.0",
-          "DependencyInjector": "1.0.0",
+          "DependencyInjectors": "1.0.0",
           "Microsoft.AspNetCore.SpaProxy": "8.0.19",
           "SQLitePCLRaw.bundle_e_sqlite3": "3.0.2",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -723,12 +723,12 @@
           }
         }
       },
-      "DependencyInjector/1.0.0": {
+      "DependencyInjectors/1.0.0": {
         "dependencies": {
           "BusinessRules": "1.0.0"
         },
         "runtime": {
-          "DependencyInjector.dll": {
+          "DependencyInjectors.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1108,7 +1108,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DependencyInjector/1.0.0": {
+    "DependencyInjectors/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

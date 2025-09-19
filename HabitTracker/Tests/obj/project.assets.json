@@ -58,7 +58,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.19": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.20": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -1082,7 +1082,7 @@
           }
         }
       },
-      "SourceGear.sqlite3/3.50.3": {
+      "SourceGear.sqlite3/3.50.4.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1158,6 +1158,10 @@
             "assetType": "native",
             "rid": "linux-musl-arm64"
           },
+          "runtimes/linux-musl-riscv64/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "linux-musl-riscv64"
+          },
           "runtimes/linux-musl-s390x/native/libe_sqlite3.so": {
             "assetType": "native",
             "rid": "linux-musl-s390x"
@@ -1169,6 +1173,10 @@
           "runtimes/linux-ppc64le/native/libe_sqlite3.so": {
             "assetType": "native",
             "rid": "linux-ppc64le"
+          },
+          "runtimes/linux-riscv64/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "linux-riscv64"
           },
           "runtimes/linux-s390x/native/libe_sqlite3.so": {
             "assetType": "native",
@@ -1212,17 +1220,17 @@
           }
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/3.0.1": {
+      "SQLitePCLRaw.bundle_e_sqlite3/3.0.2": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.config.e_sqlite3": "3.0.1",
-          "SourceGear.sqlite3": "3.50.3"
+          "SQLitePCLRaw.config.e_sqlite3": "3.0.2",
+          "SourceGear.sqlite3": "3.50.4.2"
         }
       },
-      "SQLitePCLRaw.config.e_sqlite3/3.0.1": {
+      "SQLitePCLRaw.config.e_sqlite3/3.0.2": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.provider.e_sqlite3": "3.0.1"
+          "SQLitePCLRaw.provider.e_sqlite3": "3.0.2"
         },
         "compile": {
           "lib/net8.0/SQLitePCLRaw.batteries_v2.dll": {}
@@ -1231,7 +1239,7 @@
           "lib/net8.0/SQLitePCLRaw.batteries_v2.dll": {}
         }
       },
-      "SQLitePCLRaw.core/3.0.1": {
+      "SQLitePCLRaw.core/3.0.2": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.6.3"
@@ -1243,10 +1251,10 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
-      "SQLitePCLRaw.provider.e_sqlite3/3.0.1": {
+      "SQLitePCLRaw.provider.e_sqlite3/3.0.2": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.core": "3.0.1"
+          "SQLitePCLRaw.core": "3.0.2"
         },
         "compile": {
           "lib/net8.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
@@ -2679,17 +2687,7 @@
           "bin/placeholder/DependencyInjectors.dll": {}
         }
       },
-      "Miscellaneous/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Miscellaneous.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Miscellaneous.dll": {}
-        }
-      },
-      "NewHabitTracker.Server/1.0.0": {
+      "EmployeeMangementSystem.Server/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -2701,14 +2699,24 @@
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "compile": {
-          "bin/placeholder/NewHabitTracker.Server.dll": {}
+          "bin/placeholder/EmployeeMangementSystem.Server.dll": {}
         },
         "runtime": {
-          "bin/placeholder/NewHabitTracker.Server.dll": {}
+          "bin/placeholder/EmployeeMangementSystem.Server.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Miscellaneous/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Miscellaneous.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Miscellaneous.dll": {}
+        }
       },
       "Persistence/1.0.0": {
         "type": "project",
@@ -2839,10 +2847,10 @@
         "readme.md"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.19": {
-      "sha512": "xWtCwORld+CYaee+QOVvjbhNf+mD04ZAafdBwd2YqdYolGsag2thKZLJRfmP2SkXAHNbJJ/9osZqsxnT/N3rMA==",
+    "Microsoft.AspNetCore.SpaProxy/8.0.20": {
+      "sha512": "TxWBxx2PiuaL1c5fpQdccNqnSe+Ck+R8EDd2GHG7jo6rlSVqFugceix/QckLmIn0wAQJhiWz//s+O5o/WcbBbQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.19",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.20",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2850,7 +2858,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.8.0.19.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.8.0.20.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -4368,13 +4376,17 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "SourceGear.sqlite3/3.50.3": {
-      "sha512": "0lBaPfthBC25PMZuVw2lb/a7A8N4voh82GKwXd3mrefaIqlXdeL7dV/xFOjqdyaf1Cjajzz/ZsvIJjhZzGZbiQ==",
+    "SourceGear.sqlite3/3.50.4.2": {
+      "sha512": "eV9HwQ88WyoU+reGVxJz1SwME9NbYnl9h2LOY15j0LGdXN4JkTJDk8JRRg/yNgt00O3Cn5/qnska10FEZNoU5g==",
       "type": "package",
-      "path": "sourcegear.sqlite3/3.50.3",
+      "path": "sourcegear.sqlite3/3.50.4.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
+        "build/net471/SourceGear.sqlite3.props",
+        "build/net471/SourceGear.sqlite3.targets",
+        "buildTransitive/net471/SourceGear.sqlite3.props",
         "buildTransitive/net471/SourceGear.sqlite3.targets",
         "buildTransitive/net8.0/SourceGear.sqlite3.targets",
         "buildTransitive/net9.0/SourceGear.sqlite3.targets",
@@ -4397,9 +4409,11 @@
         "runtimes/linux-mips64/native/libe_sqlite3.so",
         "runtimes/linux-musl-arm/native/libe_sqlite3.so",
         "runtimes/linux-musl-arm64/native/libe_sqlite3.so",
+        "runtimes/linux-musl-riscv64/native/libe_sqlite3.so",
         "runtimes/linux-musl-s390x/native/libe_sqlite3.so",
         "runtimes/linux-musl-x64/native/libe_sqlite3.so",
         "runtimes/linux-ppc64le/native/libe_sqlite3.so",
+        "runtimes/linux-riscv64/native/libe_sqlite3.so",
         "runtimes/linux-s390x/native/libe_sqlite3.so",
         "runtimes/linux-x64/native/libe_sqlite3.so",
         "runtimes/linux-x86/native/libe_sqlite3.so",
@@ -4410,26 +4424,26 @@
         "runtimes/win-arm64/native/e_sqlite3.dll",
         "runtimes/win-x64/native/e_sqlite3.dll",
         "runtimes/win-x86/native/e_sqlite3.dll",
-        "sourcegear.sqlite3.3.50.3.nupkg.sha512",
+        "sourcegear.sqlite3.3.50.4.2.nupkg.sha512",
         "sourcegear.sqlite3.nuspec"
       ]
     },
-    "SQLitePCLRaw.bundle_e_sqlite3/3.0.1": {
-      "sha512": "utasfk9y7uLs0rFsXsy0LIhZX/v4aMt5PZPLpLAm4hOKg03IGfv9cwr0YOvdfn/4fQVUp034e5NI6bzdW92S0g==",
+    "SQLitePCLRaw.bundle_e_sqlite3/3.0.2": {
+      "sha512": "nzPPFpELY9U1scLvQpA1k1GIgR9ror83DCPmirT2/i5NCPdTBfhTDA6MZqFZonGDayye5mUQRQLOVyEiJNYr0g==",
       "type": "package",
-      "path": "sqlitepclraw.bundle_e_sqlite3/3.0.1",
+      "path": "sqlitepclraw.bundle_e_sqlite3/3.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "sqlitepclraw.bundle_e_sqlite3.3.0.1.nupkg.sha512",
+        "sqlitepclraw.bundle_e_sqlite3.3.0.2.nupkg.sha512",
         "sqlitepclraw.bundle_e_sqlite3.nuspec"
       ]
     },
-    "SQLitePCLRaw.config.e_sqlite3/3.0.1": {
-      "sha512": "cKGz4mBsvq8i9jZ9QYxkjdKH+pewChRfGRAWh4gBb/oseDlMF7F/cHxhP7PIvx9G91127P0BP3A5cMa1GVj7Dw==",
+    "SQLitePCLRaw.config.e_sqlite3/3.0.2": {
+      "sha512": "QPHR1Axs8YCCapb0TnmT7PxY9DX3sg4I4T9HOSKeFBiT5l482mjrOIxuyt+xOCwEQ2Enq5h0tgDOXMnJi+i0sw==",
       "type": "package",
-      "path": "sqlitepclraw.config.e_sqlite3/3.0.1",
+      "path": "sqlitepclraw.config.e_sqlite3/3.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4440,27 +4454,27 @@
         "lib/net8.0-tvos18.0/SQLitePCLRaw.batteries_v2.dll",
         "lib/net8.0/SQLitePCLRaw.batteries_v2.dll",
         "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll",
-        "sqlitepclraw.config.e_sqlite3.3.0.1.nupkg.sha512",
+        "sqlitepclraw.config.e_sqlite3.3.0.2.nupkg.sha512",
         "sqlitepclraw.config.e_sqlite3.nuspec"
       ]
     },
-    "SQLitePCLRaw.core/3.0.1": {
-      "sha512": "PKRF/s7EQ6tE7sqQjsLFjKVD/W9HTo1ICW404VskPeI/hUwELFtY9C6L5lhcovCJdmf14CQyego9a9ILi+x69Q==",
+    "SQLitePCLRaw.core/3.0.2": {
+      "sha512": "tnbRf0muOOSJK1RLCfyYK13jynFScgL4xMj7yC3oy8lrrGKXTKmOoWjfdV+cFfBRdppm4qST31hvp8ihgIgvMQ==",
       "type": "package",
-      "path": "sqlitepclraw.core/3.0.1",
+      "path": "sqlitepclraw.core/3.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/netstandard2.0/SQLitePCLRaw.core.dll",
-        "sqlitepclraw.core.3.0.1.nupkg.sha512",
+        "sqlitepclraw.core.3.0.2.nupkg.sha512",
         "sqlitepclraw.core.nuspec"
       ]
     },
-    "SQLitePCLRaw.provider.e_sqlite3/3.0.1": {
-      "sha512": "E/WcekAecyGLsWK2uU6FfVNl8QvVhl9onWhlAHQnnRlM858bEjCmsq2BZlcpH3iQFPkPwketZXg8G1x7dG2jaQ==",
+    "SQLitePCLRaw.provider.e_sqlite3/3.0.2": {
+      "sha512": "RQIliDp47mQxGYNcBB6W+ezHbegkImrSZVTuWjQCSTTl3pQ37Q3rALkkkdTAMEmcIz71PEOCqNZMp7lXCnVqEQ==",
       "type": "package",
-      "path": "sqlitepclraw.provider.e_sqlite3/3.0.1",
+      "path": "sqlitepclraw.provider.e_sqlite3/3.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4468,7 +4482,7 @@
         "lib/net8.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll",
         "lib/net8.0/SQLitePCLRaw.provider.e_sqlite3.dll",
         "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "sqlitepclraw.provider.e_sqlite3.3.0.1.nupkg.sha512",
+        "sqlitepclraw.provider.e_sqlite3.3.0.2.nupkg.sha512",
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
     },
@@ -8053,15 +8067,15 @@
       "path": "../DependencyInjector/DependencyInjectors.csproj",
       "msbuildProject": "../DependencyInjector/DependencyInjectors.csproj"
     },
+    "EmployeeMangementSystem.Server/1.0.0": {
+      "type": "project",
+      "path": "../../NewHabitTracker/NewHabitTracker.Server/EmployeeMangementSystem.Server.csproj",
+      "msbuildProject": "../../NewHabitTracker/NewHabitTracker.Server/EmployeeMangementSystem.Server.csproj"
+    },
     "Miscellaneous/1.0.0": {
       "type": "project",
       "path": "../Miscellaneous/Miscellaneous.csproj",
       "msbuildProject": "../Miscellaneous/Miscellaneous.csproj"
-    },
-    "NewHabitTracker.Server/1.0.0": {
-      "type": "project",
-      "path": "../../NewHabitTracker/NewHabitTracker.Server/NewHabitTracker.Server.csproj",
-      "msbuildProject": "../../NewHabitTracker/NewHabitTracker.Server/NewHabitTracker.Server.csproj"
     },
     "Persistence/1.0.0": {
       "type": "project",
@@ -8072,9 +8086,9 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "DataAccess >= 1.0.0",
+      "EmployeeMangementSystem.Server >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
-      "NewHabitTracker.Server >= 1.0.0",
-      "SQLitePCLRaw.bundle_e_sqlite3 >= 3.0.1",
+      "SQLitePCLRaw.bundle_e_sqlite3 >= 3.0.2",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.5.3",
       "xunit.runner.visualstudio >= 2.5.3"
@@ -8115,8 +8129,8 @@
             "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\HabitTracker\\DataAccessor\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\HabitTracker\\DataAccessor\\DataAccess.csproj"
             },
-            "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj": {
-              "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\NewHabitTracker.Server.csproj"
+            "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj": {
+              "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\NewHabitTracker\\NewHabitTracker.Server\\EmployeeMangementSystem.Server.csproj"
             }
           }
         }
@@ -8143,7 +8157,7 @@
           },
           "SQLitePCLRaw.bundle_e_sqlite3": {
             "target": "Package",
-            "version": "[3.0.1, )"
+            "version": "[3.0.2, )"
           },
           "coverlet.collector": {
             "target": "Package",
@@ -8177,16 +8191,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: SQLitePCLRaw.bundle_e_sqlite3 from 3.0.2 to 3.0.1. Reference the package directly from the project to select a different version. \r\n Tests -> NewHabitTracker.Server -> SQLitePCLRaw.bundle_e_sqlite3 (>= 3.0.2) \r\n Tests -> SQLitePCLRaw.bundle_e_sqlite3 (>= 3.0.1)",
-      "libraryId": "SQLitePCLRaw.bundle_e_sqlite3",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

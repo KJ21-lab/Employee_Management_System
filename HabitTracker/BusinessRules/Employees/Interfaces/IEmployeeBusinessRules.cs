@@ -1,4 +1,4 @@
-namespace BusinessRules.BusinesRules.Employees.Interfaces {
+namespace BusinessRules.Employees.Interfaces {
     public interface IEmployeeBusinessRules {
 
         IEmployeeEntityReader Reader();

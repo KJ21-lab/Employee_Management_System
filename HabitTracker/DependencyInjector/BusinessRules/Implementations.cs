@@ -1,5 +1,5 @@
 ﻿using BusinessRules.BusinesRules.Employees.Implementations;
-using BusinessRules.BusinesRules.Employees.Interfaces;
+using BusinessRules.Employees.Interfaces;
 
 using DependencyInjectors.PersistenceInjector;
 

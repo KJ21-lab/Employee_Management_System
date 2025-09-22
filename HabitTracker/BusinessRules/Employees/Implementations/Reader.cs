@@ -1,8 +1,8 @@
-﻿using BusinessRules.BusinesRules.Employees.Interfaces;
+﻿using BusinessRules.Employees.Interfaces;
 
 using NewHabitTracker.Server.Models.Interfaces;
 
-namespace BusinessRules.BusinesRules.Employees.Implementations {
+namespace BusinessRules.Employees.Implementations {
     public class EmployeeReader(IEmployeeFactory employeeFactory) : IEmployeeEntityReader {
 
 

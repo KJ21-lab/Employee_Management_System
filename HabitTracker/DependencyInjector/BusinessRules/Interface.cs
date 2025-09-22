@@ -1,4 +1,4 @@
-﻿using BusinessRules.BusinesRules.Employees.Interfaces;
+﻿using BusinessRules.Employees.Interfaces;
 
 namespace DependencyInjectors {
     public interface IBusinessRulesInjector {

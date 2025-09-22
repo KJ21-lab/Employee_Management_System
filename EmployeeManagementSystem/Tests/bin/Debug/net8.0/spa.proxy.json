@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:50571",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystemProject\\EmployeeManagementSystem.Server\\..\\newhabittracker.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

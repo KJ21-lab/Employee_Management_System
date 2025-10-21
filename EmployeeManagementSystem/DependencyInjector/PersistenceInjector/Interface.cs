@@ -4,6 +4,7 @@ namespace DependencyInjectors.PersistenceInjector {
     public interface IPersistenceFactoriesInjector {
 
         IEmployeeFactory EmployeeFactory();
+        IAccountFactory AccountFactory();
 
     }
 }

@@ -1,10 +1,4 @@
-﻿using NewHabitTracker.Server.Miscellaneous.Interfaces;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Identity.Client;
 
 namespace BusinessRules.LoginPage {
     public interface ILoginPageBusinessRules {
@@ -14,7 +8,7 @@ namespace BusinessRules.LoginPage {
     }
 
     public interface ILoginPageReader {
-        Task<OperationResult> Verify();
+        Task<AuthenticationResult> Login(string userName, string password);
     }
 
     public interface ILoginPageWriter {

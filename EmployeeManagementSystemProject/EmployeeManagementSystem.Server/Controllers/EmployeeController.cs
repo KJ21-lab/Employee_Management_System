@@ -13,7 +13,7 @@ public class EmployeeController : BaseApiController {
 
     [HttpGet]
     [Route("api/Employee/GetEmployees")]
-    public async Task<IActionResult> GetHabits() {
+    public async Task<IActionResult> GetEmployees() {
         try {
 
             IEnumerable<IEmployeeEntity> habits =

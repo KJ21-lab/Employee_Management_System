@@ -1,9 +1,12 @@
 ﻿using BusinessRules.Employees.Interfaces;
 
 using DependencyInjectors;
+using DependencyInjectors.BusinessRules;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 using System.IdentityModel.Tokens.Jwt;
@@ -17,50 +20,41 @@ public class AuthController : BaseApiController {
        : base(businessRulesInjector) {
     }
 
-    //[HttpPost]
-    //[Route("api/Employee/login")]
-    //public async Task<IActionResult> Login(LoginRequest_Model request) {
-    //    var userManager = // Get UserManager from DI
-    //    var signInManager = // Get SignInManager from DI
+    [HttpPost("login")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
 
-    //    var result = await signInManager.PasswordSignInAsync(
-    //        request.Username,
-    //        request.Password,
-    //        isPersistent: false,
-    //        lockoutOnFailure: false);
+        var result = await _businessRulesInjector.LoginPageBusinessRules().Reader().Login(model.Username, model.Password);
+        if (!result.Succeeded || result.Account is null) return Unauthorized("Invalid credentials.");
 
-    //    if (result.Succeeded) {
-    //        var user = await userManager.FindByNameAsync(request.Username);
-    //        var token = GenerateJwtToken(user);
-    //        return Ok(new { Token = token });
-    //    }
+        var claims = new List<Claim> {
+            new Claim(JwtRegisteredClaimNames.Sub, result.Account.AccountID.ToString()),
+            new Claim(JwtRegisteredClaimNames.UniqueName, result.Account.Username),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            // add additional claims (roles, employee id) if you have them
+        };
 
-    //    return Unauthorized();
-    //}
+        var jwt = _configuration.GetSection("JwtSettings");
+        var secret = jwt["SecretKey"] ?? throw new InvalidOperationException("JwtSettings:SecretKey missing.");
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var expires = DateTime.UtcNow.AddHours(1);
 
-    //private string GenerateJwtToken(IEmployeeEntity user) {
-    //    var claims = new List<Claim> {
-    //    new Claim(JwtRegisteredClaimNames.Sub, user.EmployeeID),
-    //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-    //    new Claim(ClaimTypes.NameIdentifier, user.Id),
-    //    new Claim(ClaimTypes.Name, user.UserName),
-    //    // Add more claims as needed, like roles
-    //};
+        var token = new JwtSecurityToken(
+            issuer: jwt["ValidIssuer"],
+            audience: jwt["ValidAudience"],
+            claims: claims,
+            notBefore: DateTime.UtcNow,
+            expires: expires,
+            signingCredentials: creds
+        );
 
-    //    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_super_secret_key_that_is_at_least_32_characters_long")); // Store securely in app settings
-    //    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-    //    var expires = DateTime.Now.AddDays(7);
-
-    //    var token = new JwtSecurityToken(
-    //        issuer: "your_api_issuer",
-    //        audience: "your_api_audience",
-    //        claims: claims,
-    //        expires: expires,
-    //        signingCredentials: creds
-    //    );
-
-    //    return new JwtSecurityTokenHandler().WriteToken(token);
-    //}
+        return Ok(new {
+            token = new JwtSecurityTokenHandler().WriteToken(token),
+            expires
+        });
+    }
 
     public class LoginRequest_Model {
         public string Username { get; set; } = string.Empty;

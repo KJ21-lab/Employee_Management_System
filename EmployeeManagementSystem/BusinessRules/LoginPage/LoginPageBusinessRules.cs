@@ -1,6 +1,5 @@
 ﻿using EmployeeManagementSystem.Server.Models.Interfaces;
 
-using Microsoft.Identity.Client;
 
 using Persistence.UserAccount.Implementations;
 
@@ -18,8 +17,12 @@ namespace BusinessRules.LoginPage {
                     return new AuthenticationResult(false, null, "Invalid credentials.");
 
                 // TODO: add ReadAccountByUsername to IAccountFactory to avoid loading all accounts.
-                var accounts = accountFactory.ReadAccounts();
-                var account = accounts.FirstOrDefault(a => a.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
+                var accounts = 
+                 accountFactory 
+                 .ReadAccounts()
+                 .Result;
+                
+                 var account = accounts.FirstOrDefault(a => a.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
                 if (account == null) return new AuthenticationResult(false, null, "Invalid credentials.");
 
                 var verification = _passwordHasher.VerifyHashedPassword(account, account.PasswordHash, password);

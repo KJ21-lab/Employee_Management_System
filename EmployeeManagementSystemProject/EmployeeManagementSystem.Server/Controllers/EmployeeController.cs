@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class EmployeeController : BaseApiController {
 
-    public EmployeeController(IBusinessRulesInjector businessRulesInjector)
-       : base(businessRulesInjector) {
-    }
+   public EmployeeController(IBusinessRulesInjector businessRulesInjector, IConfiguration configuration)
+        : base(businessRulesInjector, configuration) {
+   }
 
-    [HttpGet]
+   [HttpGet]
     [Route("api/Employee/GetEmployees")]
     public async Task<IActionResult> GetEmployees() {
         try {

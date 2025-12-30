@@ -1,12 +1,7 @@
-﻿using BusinessRules.Employees.Interfaces;
-
-using DependencyInjectors;
-using DependencyInjectors.BusinessRules;
+﻿using DependencyInjectors;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 using System.IdentityModel.Tokens.Jwt;
@@ -16,11 +11,11 @@ using System.Text;
 [ApiController]
 public class AuthController : BaseApiController {
 
-    public AuthController(IBusinessRulesInjector businessRulesInjector)
-       : base(businessRulesInjector) {
-    }
+   public AuthController(IBusinessRulesInjector businessRulesInjector, IConfiguration configuration)
+       : base(businessRulesInjector, configuration) {
+   }
 
-    [HttpPost("login")]
+   [HttpPost("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
         if (!ModelState.IsValid) return BadRequest(ModelState);

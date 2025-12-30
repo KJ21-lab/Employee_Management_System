@@ -4,13 +4,21 @@ using BusinessRules.LoginPage;
 
 using DependencyInjectors.PersistenceInjector;
 
+using EmployeeManagementSystem.Server.Models.Interfaces;
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Identity.Client;
 
+using System.Security.Principal;
+
 namespace DependencyInjectors.BusinessRules {
-    public class BusinessRulesInjector(IPersistenceFactoriesInjector persistenceFactoriesInjector) : IBusinessRulesInjector {
+   public class BusinessRulesInjector(
+       IPersistenceFactoriesInjector persistenceFactoriesInjector,
+       IPasswordHasher<IAccountRecord> passwordHasher
+   ) : IBusinessRulesInjector {
 
-        public IEmployeeBusinessRules EmployeeBusinessRules() => new EmployeeBusinessRules(persistenceFactoriesInjector.EmployeeFactory());
+      public IEmployeeBusinessRules EmployeeBusinessRules() => new EmployeeBusinessRules(persistenceFactoriesInjector.EmployeeFactory());
 
-        public ILoginPageBusinessRules LoginPageBusinessRules() => new LoginPageBusinessRules(persistenceFactoriesInjector.AccountFactory());
+        public ILoginPageBusinessRules LoginPageBusinessRules() => new LoginPageBusinessRules(persistenceFactoriesInjector.AccountFactory(), passwordHasher);
     }
 }

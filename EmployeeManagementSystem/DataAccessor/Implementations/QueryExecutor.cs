@@ -36,7 +36,6 @@ namespace DataAccess.Implementations {
                 parameters: parameters,
                 connection: ref connection,
                 consoleOutput: consoleOutput);
-        
 
         private IEnumerable<DatabaseFields> _executeQueryProcedure<DatabaseFields>(
             string sqlQuery,

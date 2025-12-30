@@ -5,6 +5,9 @@ using DependencyInjectors;
 using DependencyInjectors.BusinessRules;
 using DependencyInjectors.PersistenceInjector;
 
+using EmployeeManagementSystem.Server.Models.Interfaces;
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 
 using SQLitePCL;
@@ -34,6 +37,7 @@ builder.Services.AddSingleton<IDataAccessor, DataAccessor>();
 
 // Register the dependency that was missing.
 builder.Services.AddSingleton<IPersistenceFactoriesInjector, PersistenceFactoriesInjector>();
+builder.Services.AddSingleton<IPasswordHasher<IAccountRecord>, PasswordHasher<IAccountRecord>>();
 
 // --- END: Corrected Service Registration ---
 

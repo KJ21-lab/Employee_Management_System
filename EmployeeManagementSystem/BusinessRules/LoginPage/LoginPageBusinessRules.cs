@@ -26,8 +26,12 @@ namespace BusinessRules.LoginPage {
                  .ReadAccounts()
                  .Result;
                 
-                 var account = accounts.FirstOrDefault(a => a.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
-                if (account == null) return new AuthenticationResult(false, null, "Invalid credentials.");
+                var account = 
+                   accounts
+                   .FirstOrDefault(a => a.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
+                
+                if (account == null) 
+                   return new AuthenticationResult(false, null, "Invalid credentials.");
 
                 var verification = passwordHasher.VerifyHashedPassword(account, account.PasswordHash, password);
                 if (verification == PasswordVerificationResult.Failed)

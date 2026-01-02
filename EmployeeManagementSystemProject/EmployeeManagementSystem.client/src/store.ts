@@ -1,6 +1,6 @@
 // src/store.ts (or src/app/store.ts)
 import { configureStore } from '@reduxjs/toolkit';
-import { employeeApi } from './routes'; // Import your API definition
+import { employeeApi } from './Employees/routes'; // Import your API definition
 
 export const store = configureStore({
   reducer: {

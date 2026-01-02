@@ -7,9 +7,6 @@ using DependencyInjectors.PersistenceInjector;
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Identity.Client;
-
-using System.Security.Principal;
 
 namespace DependencyInjectors.BusinessRules {
    public class BusinessRulesInjector(

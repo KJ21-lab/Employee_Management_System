@@ -15,19 +15,22 @@ public class AuthController : BaseApiController {
        : base(businessRulesInjector, configuration) {
    }
 
-   [HttpPost("login")]
+   [HttpGet("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var result = await _businessRulesInjector.LoginPageBusinessRules().Reader().Login(model.Username, model.Password);
+        var result = await _businessRulesInjector
+         .LoginPageBusinessRules()
+         .Reader()
+         .Login(model.Username, model.Password);
+
         if (!result.Succeeded || result.Account is null) return Unauthorized("Invalid credentials.");
 
         var claims = new List<Claim> {
             new Claim(JwtRegisteredClaimNames.Sub, result.Account.AccountID.ToString()),
             new Claim(JwtRegisteredClaimNames.UniqueName, result.Account.Username),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            // add additional claims (roles, employee id) if you have them
         };
 
         var jwt = _configuration.GetSection("JwtSettings");

@@ -15,7 +15,7 @@ public class AuthController : BaseApiController {
        : base(businessRulesInjector, configuration) {
    }
 
-   [HttpGet("login")]
+   [HttpPost("api/login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
         if (!ModelState.IsValid) return BadRequest(ModelState);

@@ -1,5 +1,4 @@
 import { useGetEmployeesQuery } from './routes';
-import { Button } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { type Employee } from './types'
 import Box from '@mui/material/Box';

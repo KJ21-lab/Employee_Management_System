@@ -9,7 +9,6 @@ export const Layout = () => {
    return (
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
          <Stack direction="row" spacing={0} sx={{ height: '100%' }}>
-
             <Box className='menu-bar-vertical' />
 
             <Box className='background-box' sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -20,6 +19,7 @@ export const Layout = () => {
                   </Toolbar>
                </AppBar>
                <Outlet />
+
             </Box>
          </Stack>
       </div>

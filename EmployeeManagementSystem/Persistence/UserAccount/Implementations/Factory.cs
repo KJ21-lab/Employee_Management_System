@@ -15,11 +15,11 @@ namespace Persistence.UserAccount.Implementations {
         }
 
         public Task<IEnumerable<IAccountRecord>> ReadAccountsByIds(IEnumerable<Guid> accountIDs) =>
-            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountRecord WHERE TRIM(ACCOUNT_ID) IN(@ACCOUNT_ID)",
+            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountsRecord WHERE TRIM(ACCOUNT_ID) IN(@ACCOUNT_ID)",
                                  parameters: new { AccountIDs = accountIDs }));
 
         public Task<IEnumerable<IAccountRecord>> ReadAccounts() =>
-            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountRecord"));
+            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountsRecord"));
 
         public Task<OperationResult> Upsert(Guid accountID) => throw new NotImplementedException();
         public Task<OperationResult> Upsert(IEnumerable<Guid> accountIDs) => throw new NotImplementedException();

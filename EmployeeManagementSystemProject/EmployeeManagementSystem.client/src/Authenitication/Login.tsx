@@ -1,5 +1,5 @@
 import { useState, useCallback, type ChangeEvent} from 'react';
-import { Box, Card, Stack, CardContent, Typography, TextField } from '@mui/material';
+import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar } from '@mui/material';
 import CustomButton from '../ReusableComponents';
 import { useLoginMutation } from './LoginRoutes';
 import { type LoginRequest } from './LoginModels';
@@ -28,9 +28,25 @@ const LoginPage = () => {
          await login({
             username: LoginData?.username || '',
             password: LoginData?.password || '',
-         })
+         }).unwrap();
+         <Snackbar open={true} autoHideDuration={6000}>
+            <Alert
+               severity="success"
+               variant="filled"
+               sx={{ width: '100%' }}>
+               Login Requested!
+            </Alert>
+         </Snackbar>
       } catch (error) {
-         console.error("Failed to update log:", error);
+         console.error("Failed to request login:", error);
+         <Snackbar open={true} autoHideDuration={6000}>
+            <Alert
+               severity="error"
+               variant="filled"
+               sx={{ width: '100%' }}>
+               Failed to request login.
+            </Alert>
+         </Snackbar>
       }
    }, [LoginData, login])
 

@@ -25,10 +25,11 @@ const LoginPage = () => {
 
    const handleLogin = useCallback(async () => {
       try {
-         await login({
+         const loginResult = await login({
             username: LoginData?.username || '',
             password: LoginData?.password || '',
          }).unwrap();
+
          <Snackbar open={true} autoHideDuration={6000}>
             <Alert
                severity="success"
@@ -37,6 +38,9 @@ const LoginPage = () => {
                Login Requested!
             </Alert>
          </Snackbar>
+
+         localStorage.setItem('token', loginResult.token);
+
       } catch (error) {
          console.error("Failed to request login:", error);
          <Snackbar open={true} autoHideDuration={6000}>

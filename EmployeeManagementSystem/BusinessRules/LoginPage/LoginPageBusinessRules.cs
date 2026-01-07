@@ -25,7 +25,7 @@ namespace BusinessRules.LoginPage {
                  accountFactory 
                  .ReadAccounts()
                  .Result;
-                
+
                 var account = 
                    accounts
                    .FirstOrDefault(a => a.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));

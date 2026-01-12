@@ -1,12 +1,15 @@
-import { useState, useCallback, type ChangeEvent} from 'react';
-import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar } from '@mui/material';
+import { useState, useCallback, type ChangeEvent, useEffect } from 'react';
+import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar, type SnackbarCloseReason } from '@mui/material';
 import CustomButton from '../ReusableComponents';
 import { useLoginMutation } from './LoginRoutes';
 import { type LoginRequest } from './LoginModels';
 import './Login.scss'
+import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
 
    const [login] = useLoginMutation();
+   const navigate = useNavigate();
+   const [barState, setBarState] = useState({ open: false, message: "", severity: "success" as "success" | "error" })
    const [LoginData, setLoginRequestData] = useState<LoginRequest>(() => {
       return {
          username: "",
@@ -14,7 +17,17 @@ const LoginPage = () => {
       }
    });
 
-   const handleLoginDataChange = useCallback((field: keyof LoginRequest, e: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => {
+   const handleCloseToast = (
+      event?: React.SyntheticEvent | Event,
+      reason?: SnackbarCloseReason
+   ) => {
+      if (reason === 'clickaway')
+         return;
+
+      setBarState((prev) => ({ ...prev, open: false }));
+   };
+
+   const handleLoginDataChange = useCallback((field: keyof LoginRequest, e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setLoginRequestData((prevData) => {
          return {
             ...prevData,
@@ -30,29 +43,17 @@ const LoginPage = () => {
             password: LoginData?.password || '',
          }).unwrap();
 
-         <Snackbar open={true} autoHideDuration={6000}>
-            <Alert
-               severity="success"
-               variant="filled"
-               sx={{ width: '100%' }}>
-               Login Requested!
-            </Alert>
-         </Snackbar>
-
+         setBarState({ open: true, message: "Login successful", severity: "success" });
          localStorage.setItem('token', loginResult.token);
+         setTimeout(() => {
+            navigate('/home');
+         }, 500)
 
       } catch (error) {
          console.error("Failed to request login:", error);
-         <Snackbar open={true} autoHideDuration={6000}>
-            <Alert
-               severity="error"
-               variant="filled"
-               sx={{ width: '100%' }}>
-               Failed to request login.
-            </Alert>
-         </Snackbar>
+         setBarState({ open: true, message: "Login request failed", severity: "error" });
       }
-   }, [LoginData, login])
+   }, [LoginData, login, navigate])
 
    return (
       <Box className='box-container'>
@@ -98,6 +99,20 @@ const LoginPage = () => {
                </Stack>
             </CardContent>
          </Card>
+         <Snackbar
+            open={barState.open}
+            autoHideDuration={6000}
+            onClose={handleCloseToast}
+            sx={{ width: '20%' }}>
+
+            <Alert
+               severity={barState.severity}
+               variant="filled"
+               sx={{ width: '100%' }}>
+               {barState.message}
+            </Alert>
+
+         </Snackbar>
       </Box>
    )
 }

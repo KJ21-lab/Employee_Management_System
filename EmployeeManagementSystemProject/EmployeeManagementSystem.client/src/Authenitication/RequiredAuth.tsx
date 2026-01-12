@@ -11,8 +11,8 @@ const RequiredAuth = () => {
    // 3. The Logic
    return (
       token
-         ? <Outlet />  // <--- SUCCESS: Render the requested page (Dashboard, Home, etc.)
-         : <Navigate to="/" state={{ from: location }} replace /> // <--- FAIL: Redirect to Login
+         ? <Outlet />
+         : <Navigate to="/" state={{ from: location }} replace />
    );
 }
 

@@ -1,15 +1,17 @@
-// src/store.ts (or src/app/store.ts)
 import { configureStore } from '@reduxjs/toolkit';
-import { employeeApi } from './Employees/routes'; // Import your API definition
+import { employeeApi } from './Employees/routes';
+import { loginApi } from './Authenitication/LoginRoutes';
 
 export const store = configureStore({
-  reducer: {
-        [employeeApi.reducerPath]: employeeApi.reducer,
-  },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of RTK Query.
-  middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(employeeApi.middleware),
+   reducer: {
+      [employeeApi.reducerPath]: employeeApi.reducer,
+      [loginApi.reducerPath]: loginApi.reducer,
+   },
+   // Adding the api middleware enables caching, invalidation, polling,
+   // and other useful features of RTK Query.
+   middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(employeeApi.middleware)
+                            .concat(loginApi.middleware)
 });
 
 // Optional: Infer types for RootState and AppDispatch

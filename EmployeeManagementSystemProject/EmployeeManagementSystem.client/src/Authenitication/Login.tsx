@@ -1,4 +1,4 @@
-import { useState, useCallback, type ChangeEvent, useEffect } from 'react';
+import { useState, useCallback, type ChangeEvent } from 'react';
 import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar, type SnackbarCloseReason } from '@mui/material';
 import CustomButton from '../ReusableComponents';
 import { useLoginMutation } from './LoginRoutes';

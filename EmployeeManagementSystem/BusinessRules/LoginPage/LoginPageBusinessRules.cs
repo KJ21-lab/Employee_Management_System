@@ -20,7 +20,6 @@ namespace BusinessRules.LoginPage {
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrEmpty(password))
                     return new AuthenticationResult(false, null, "Invalid credentials.");
 
-                // TODO: add ReadAccountByUsername to IAccountFactory to avoid loading all accounts.
                 var accounts = 
                  accountFactory 
                  .ReadAccounts()

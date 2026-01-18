@@ -3,6 +3,7 @@ import { Layout } from './Layout/InitialLayout';
 import LoginPage from './Authenitication/Login';
 import HomePage from './Home/HomePage';
 import RequiredAuth from './Authenitication/RequiredAuth';
+import EmployeeIndex from './Employees/EmployeeIndex';
 
 export const router = createBrowserRouter([{
    path: "/",
@@ -21,7 +22,12 @@ export const router = createBrowserRouter([{
             {
                path: '/home',
                element: <HomePage />
+            },
+            {
+               path: '/employees',
+               element: <EmployeeIndex/>
             }
+
          ]
       }
 

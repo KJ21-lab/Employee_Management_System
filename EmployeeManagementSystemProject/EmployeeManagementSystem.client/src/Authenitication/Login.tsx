@@ -63,8 +63,10 @@ const LoginPage = () => {
             sx={{
                backgroundColor: 'white',
                borderRadius: '20px',
-               width: '40%',
-               height: '60%'
+               width: '100%',
+               maxWidth: '450px',
+               height: 'auto',
+               minHeight: '400px'
             }}>
             <CardContent>
                <Stack direction='column' spacing={5} alignItems='center'>

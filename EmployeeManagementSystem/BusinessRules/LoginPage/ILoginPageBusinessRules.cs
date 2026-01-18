@@ -15,11 +15,12 @@ namespace BusinessRules.LoginPage {
 
     }
 
-    public interface IAccountEntity {
+    public interface IAccountEntity : IAccountEntityProperties {
         Guid AccountID { get; }
     }   
     public interface IAccountEntityProperties {
         string Username { get; set; }
-        string Password { get; set; }
-    }   
+        string PasswordHash { get; set; }
+        Guid EmployeeID { get; set; }
+   }
 }

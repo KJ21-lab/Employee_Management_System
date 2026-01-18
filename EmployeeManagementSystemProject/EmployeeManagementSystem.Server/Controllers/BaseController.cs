@@ -12,6 +12,4 @@ public abstract class BaseApiController : ControllerBase {
         _businessRulesInjector = businessRulesInjector;
         _configuration = configuration;
     }
-
-
 }

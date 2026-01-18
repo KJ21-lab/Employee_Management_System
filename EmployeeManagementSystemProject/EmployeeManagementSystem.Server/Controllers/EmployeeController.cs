@@ -12,20 +12,20 @@ public class EmployeeController : BaseApiController {
    }
 
    [HttpGet]
-    [Route("api/Employee/GetEmployees")]
-    public async Task<IActionResult> GetEmployees() {
-        try {
+   [Route("api/Employee/GetEmployees")]
+   public async Task<IActionResult> GetEmployees() {
+      try {
 
-            IEnumerable<IEmployeeEntity> habits =
-                await _businessRulesInjector
-                .EmployeeBusinessRules()
-                .Reader()
-                .ReadAll();
+         IEnumerable<IEmployeeEntity> employees =
+             await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Reader()
+             .ReadAll();
 
-            return Ok(habits);
-        } catch (Exception ex) {
-            return StatusCode(500, ex.Message);
-        }
-    }
+         return Ok(employees);
+      } catch (Exception ex) {
+         return StatusCode(500, ex.Message);
+      }
+   }
 
 }

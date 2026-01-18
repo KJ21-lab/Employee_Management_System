@@ -1,4 +1,6 @@
-﻿using BusinessRules.Employees.Implementations;
+﻿using BusinessRules.Accounts.Implementations;
+using BusinessRules.Accounts.Interfaces;
+using BusinessRules.Employees.Implementations;
 using BusinessRules.Employees.Interfaces;
 using BusinessRules.LoginPage;
 
@@ -16,6 +18,8 @@ namespace DependencyInjectors.BusinessRules {
 
       public IEmployeeBusinessRules EmployeeBusinessRules() => new EmployeeBusinessRules(persistenceFactoriesInjector.EmployeeFactory());
 
-        public ILoginPageBusinessRules LoginPageBusinessRules() => new LoginPageBusinessRules(persistenceFactoriesInjector.AccountFactory(), passwordHasher);
-    }
+      public ILoginPageBusinessRules LoginPageBusinessRules() => new LoginPageBusinessRules(persistenceFactoriesInjector.AccountFactory(), passwordHasher);
+      public IAccountBusinessRules AccountBusinessRules() => new AccountBusinessRules(persistenceFactoriesInjector.AccountFactory());
+
+   }
 }

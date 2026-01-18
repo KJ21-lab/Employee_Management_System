@@ -1,22 +1,35 @@
 .outer-box {
-   
+   min-height: 100%;
+   height: auto;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   flex-direction: column;
 }
 
 .welcome-split-text {
    align-self: flex-start;
+   font-weight: 500;
    font-size: 1.8rem;
-   font-weight: 450;
 }
+
 .description-split-text {
    align-self: flex-start;
    font-size: 1rem;
-   font-weight: 450;
+   font-weight: 400;
    margin-left: 80px;
+}
+
+.key-summary-split-text {
+   font-weight: 500;
+   font-size: 1.5rem;
 }
 
 .user-card {
    height: 80%;
    width: 40%;
+   position: relative;
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
@@ -27,17 +40,15 @@
 
 .summary-stack {
    height: auto;
-   width: 70%;
+   width: 100%;
    align-items: center;
    justify-content: center;
-   overflow-x: auto;
 }
 
 .summary-card {
-   aspect-ratio: 1/1;
-   width: 20%;
-   max-width: 250px;
-   min-width: 150px;
+   height: 150px;
+   width: 220px; 
+   flex-shrink: 0;
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
@@ -62,4 +73,17 @@
    flex-direction: column;
    justify-content: space-between;
    background-color: white;
+}
+
+.admin-card {
+   height:180px;
+   width: 200px;
+   flex-shrink: 0;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   border-radius: 50px;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
 }

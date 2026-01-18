@@ -2,7 +2,8 @@ import { useGetEmployeesQuery } from './routes';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { type Employee } from './types'
 import Box from '@mui/material/Box';
-import './App.css'
+import './EmployeeIndex.scss'
+import { AppBar, Toolbar } from '@mui/material';
 
 const columns: GridColDef<Employee>[] = [
    {
@@ -47,15 +48,14 @@ export const EmployeeIndex = () => {
    console.log(habits)
 
    return (
-      <div className="data-grid">
-         <Box sx={{ height: 700, width: 1100 }}>
+      <Box sx={{ height: '98%', width: '98%',flexDirection: 'column', ml:'auto', mt:'auto'}}>
+        
             <DataGrid
+               sx={{borderRadius: '20px', }}
                rows={habits}
                getRowId={(row: Employee) => row.employeeID}
                columns={columns}
-
                initialState={{
-
                   pagination: {
                      paginationModel: {
                         pageSize: 30,
@@ -65,7 +65,6 @@ export const EmployeeIndex = () => {
 
             />
          </Box>
-      </div>
    );
 }
 

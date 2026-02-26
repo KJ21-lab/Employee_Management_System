@@ -33,20 +33,25 @@ const HomePage = () => {
                delay={50}
             />
          </Stack>
+         {/* Title */}
+
 
 
          {/* =========================================
              2. UPPER SECTION (Admin Profile & Key Summary)
              ========================================= */}
-         <Stack
-            direction="row"
+         <Box
             sx={{
-               minHeight: '50vh',
+               display: 'grid',
+               gridTemplateColumns: '35% 1fr',
+               gap: 8,
                width: '100%',
-               alignItems: 'center',
-               justifyContent: 'center',
-               mt: 5,
-            }}>
+               maxWidth: '1400px',
+               mt: 15,
+               pb: 5,
+               ml: 10,
+            }}
+         >
 
             <Stack
                direction="row"
@@ -62,8 +67,8 @@ const HomePage = () => {
                   elevation={10}
                   className='user-card'
                   sx={{
-                     height: '300px',
-                     width: '40%',
+                     height: '250px',
+                     width: '100%',
                      borderRadius: '20px',
                      backgroundImage: `url(${meshBackground})`,
                      backgroundSize: 'cover',
@@ -86,24 +91,19 @@ const HomePage = () => {
                </Card>
 
                {/* --- RIGHT: Key Summary + Small Cards --- */}
-               <Stack
-                  direction="column"
-                  spacing={3}
-                  sx={{ height: '100%', width: '50%', alignItems: 'flex-start' }}
-               >
-                  {/* Title */}
-                  <SplitText
-                     text='Key Summary'
-                     className='key-summary-split-text'
-                     delay={50}
-                  />
+               <Box sx={{ position: 'relative', width: '50%' }}>
+                  <Box sx={{ position: 'absolute', top: -50, left: 17 }}>
+                     <SplitText text='Key Summary' className='key-summary-split-text' delay={50} />
+                  </Box>
+
+
 
                   {/* 3 Small Cards Stack */}
                   <Stack
                      direction='row'
                      spacing={2}
                      className='summary-stack'
-                     sx={{ justifyContent: 'flex-start', p: 2 }}>
+                     sx={{ justifyContent: 'flex-start', p: 2, }}>
 
                      { /*Total Employees */}
                      <Card
@@ -154,10 +154,9 @@ const HomePage = () => {
                      </Card>
 
                   </Stack>
-
-               </Stack>
+               </Box>
             </Stack>
-         </Stack>
+         </Box>
 
          {/* =========================================
              3. LOWER SECTION (Bottom Cards)
@@ -166,24 +165,24 @@ const HomePage = () => {
             sx={{
                display: 'grid',
                gridTemplateColumns: '35% 1fr',
-               gap: 15,
-               width: '90%',
+               gap: 5,
+               width: '100%',
                maxWidth: '1400px',
                mt: 5,
                pb: 5,
-               mx: 'auto',
+               ml: 10,
             }}
          >
             {/* LEFT COLUMN: Change Credentials Card */}
             <Card
                elevation={10}
                sx={{
-                  height: '350px',
-                  width: '100%',
+                  height: '400px',
+                  width: '90%',
                   borderRadius: '20px',
                }}>
                <CardContent>
-                  <Stack direction='column' spacing={4} sx={{ mt: 3, px: 2, p:4}}>
+                  <Stack direction='column' spacing={4} sx={{ mt: 3, px: 2, p: 4 }}>
                      <Typography variant='h3' align='left' sx={{ fontWeight: '500', fontSize: '1.4rem' }}>
                         Change credentials
                      </Typography>
@@ -205,43 +204,48 @@ const HomePage = () => {
             </Card>
 
             {/* RIGHT COLUMN: Users & Projects Cards */}
-            <Stack direction='row' spacing={3} sx={{ height: '350px', width: '100%' }}>
+            <Stack direction='column' spacing={0} height='100%' width='100%' >
 
-               {/* Users Card */}
-               <Card
-                  elevation={10}
-                  className='admin-card'
-                  sx={{ borderRadius: '20px', }}>
-                  <CardContent sx={{ width: '100%', height: '100%', p: 3 }}>
-                     <Stack direction='column' spacing={3} height='100%' >
-                        <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
-                           Users
-                        </Typography>
-                        <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                           {accounts.data?.length || 0}
-                        </Typography>
-                     </Stack>
-                  </CardContent>
-               </Card>
+               <SplitText text='Admin Dashboard' className='admin-dashboard-text' delay={50} />
 
-               {/* Projects Card */}
-               <Card
-                  elevation={10}
-                  className='admin-card'
-                  sx={{ borderRadius: '20px' }}>
-                  <CardContent sx={{ height: '100%', p: 3, }}>
-                     <Stack direction='column' spacing={3} height='100%'>
-                        <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
-                           Projects
-                        </Typography>
-                        <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                           0
-                        </Typography>
-                     </Stack>
-                  </CardContent>
-               </Card>
+               <Stack direction='row' spacing={3} sx={{ alignItems: 'center', height: '400px', width: '100%' }}>
+                  {/* Users Card */}
+                  <Card
+                     elevation={10}
+                     className='admin-card'
+                     sx={{ borderRadius: '20px', }}>
+                     <CardContent sx={{ width: '100%', height: '100%', p: 3 }}>
+                        <Stack direction='column' spacing={3} height='100%' >
+                           <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
+                              Users
+                           </Typography>
+                           <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
+                              {accounts.data?.length || 0}
+                           </Typography>
+                        </Stack>
+                     </CardContent>
+                  </Card>
 
+                  {/* Projects Card */}
+                  <Card
+                     elevation={10}
+                     className='admin-card'
+                     sx={{ borderRadius: '20px' }}>
+                     <CardContent sx={{ height: '100%', p: 3, }}>
+                        <Stack direction='column' spacing={3} height='100%'>
+                           <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
+                              Projects
+                           </Typography>
+                           <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
+                              0
+                           </Typography>
+                        </Stack>
+                     </CardContent>
+                  </Card>
+
+               </Stack>
             </Stack>
+
          </Box>
 
       </Box>

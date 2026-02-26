@@ -6,13 +6,14 @@ namespace BusinessRules.Employees.Interfaces {
     }
 
     public interface IEmployeeEntity : IEmployeeEntityProperties  {
-        Guid EmployeeID { get; }   
+        Guid EmployeeUID { get; }   
     }
 
     public interface IEmployeeEntityProperties {
         string Name { get; set; }
         string JobTitle { get; set; }
         DateTime HireDate { get; set; }
+        int EmployeeID { get; set; }
     }
 
     public interface IEmployeeEntityReader {

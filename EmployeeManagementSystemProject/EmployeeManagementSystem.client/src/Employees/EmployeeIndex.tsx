@@ -3,7 +3,6 @@ import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { type Employee } from './types'
 import Box from '@mui/material/Box';
 import './EmployeeIndex.scss'
-import { AppBar, Toolbar } from '@mui/material';
 
 const columns: GridColDef<Employee>[] = [
    {
@@ -48,23 +47,24 @@ export const EmployeeIndex = () => {
    console.log(habits)
 
    return (
-      <Box sx={{ height: '98%', width: '98%',flexDirection: 'column', ml:'auto', mt:'auto'}}>
-        
-            <DataGrid
-               sx={{borderRadius: '20px', }}
-               rows={habits}
-               getRowId={(row: Employee) => row.employeeID}
-               columns={columns}
-               initialState={{
-                  pagination: {
-                     paginationModel: {
-                        pageSize: 30,
-                     },
-                  },
-               }}
+      <Box sx={{ display: 'flex', height: '98%', width: '98%', flexDirection: 'column', ml: 'auto', mt: 'auto' }}>
 
-            />
-         </Box>
+         <DataGrid
+            sx={{ borderRadius: '20px', }}
+            rows={habits}
+            editMode='row'
+            getRowId={(row: Employee) => row.employeeID}
+            columns={columns}
+            initialState={{
+               pagination: {
+                  paginationModel: {
+                     pageSize: 30,
+                  },
+               },
+            }}
+
+         />
+      </Box>
    );
 }
 

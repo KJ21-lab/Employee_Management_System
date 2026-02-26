@@ -15,12 +15,13 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
     }
 
     public interface IEmployeeRecord : IEmployeeRecordProperties {
-        Guid EmployeeID { get; }
+        Guid EmployeeUID { get; }
     }
 
     public interface IEmployeeRecordProperties {
         string Name { get; set; }
         string JobTitle { get; set; }
         DateTime HireDate { get; set; }
-    }
+       int EmployeeID { get; set; }
+   }
 }

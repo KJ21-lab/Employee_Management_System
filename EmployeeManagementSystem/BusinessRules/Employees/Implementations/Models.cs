@@ -7,15 +7,17 @@ namespace BusinessRules.Employees.Implementations {
         public EmployeetEntity() { }
 
         public EmployeetEntity(IEmployeeRecord record) {
-            EmployeeID = record.EmployeeID;
+            EmployeeUID = record.EmployeeUID;
             Name = record.Name;
             JobTitle = record.JobTitle;
             HireDate = record.HireDate;
+            EmployeeID = record.EmployeeID;
         }
 
-        public Guid EmployeeID { get; }
+        public Guid EmployeeUID { get; }
         public string Name { get; set; } = string.Empty;
         public string JobTitle { get; set; } = string.Empty;
         public DateTime HireDate { get; set; }
+        public int EmployeeID { get; set; } = 0;
     }
 }

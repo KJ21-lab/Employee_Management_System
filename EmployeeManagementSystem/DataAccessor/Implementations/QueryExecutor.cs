@@ -26,7 +26,7 @@ namespace DataAccess.Implementations {
             return records;
         }
 
-        public int NonQueryProcedure<DatabaseField>(
+        public void NonQueryProcedure<DatabaseField>(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
@@ -43,10 +43,7 @@ namespace DataAccess.Implementations {
             string consoleOutput,
             object? parameters = null) {
             try {
-                Console.WriteLine($"[ DB Call ] :: {sqlQuery} :: starting");
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-
+                
                 connection ??= defaultConnection;
                 IEnumerable<DatabaseFields> databaseRecords;
                 using (connection) {
@@ -59,11 +56,6 @@ namespace DataAccess.Implementations {
                     connection.Close();
                 }
 
-                stopwatch.Stop();
-                Console.WriteLine($"[ DB Call ] :: {sqlQuery} :: finished [ {stopwatch.ElapsedMilliseconds} ms] :: [ {databaseRecords.Count()} records ]");
-                if (string.IsNullOrWhiteSpace(consoleOutput))
-                    Console.WriteLine($"${{consoleOutput}}");
-
                 return databaseRecords;
             } finally {
                 connection.Close();
@@ -71,18 +63,14 @@ namespace DataAccess.Implementations {
             }
         }
 
-        private int _executeNonQueryProcedure<DatabaseField>(
+        private void _executeNonQueryProcedure<DatabaseField>(
             string sqlQuery,
             ref IDbConnection connection,
             string consoleOutput,
             object? parameters = null) {
             try {
-                Console.WriteLine($"[ DB Call ] :: {sqlQuery} :: starting");
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
 
                 connection ??= defaultConnection;
-                int countAffectedRows = 0;
                 using (connection) {
                     connection.Open();
                     connection.Execute(
@@ -93,11 +81,6 @@ namespace DataAccess.Implementations {
                     connection.Close();
                 }
 
-                stopwatch.Stop();
-                Console.WriteLine($"[ DB Call ] :: {sqlQuery} :: finished [ {stopwatch.ElapsedMilliseconds} ms] :: [ {countAffectedRows} records ]");
-                if (string.IsNullOrWhiteSpace(consoleOutput))
-                    Console.WriteLine($"${{consoleOutput}}");
-                return countAffectedRows;
             } finally {
                 connection.Close();
                 connection.Dispose();

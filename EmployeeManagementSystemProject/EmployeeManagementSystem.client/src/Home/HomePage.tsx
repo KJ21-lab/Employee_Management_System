@@ -20,7 +20,7 @@ const HomePage = () => {
          <Stack
             direction='column'
             spacing={2}
-            sx={{ width: '100%', alignItems: 'flex-start', pl: 10, pt: 5 }}
+            sx={{ width: '100%', alignItems: 'flex-start', pl: 10, pt: 5, border: "8px solid black" }}
          >
             <SplitText
                text='Dashboard Overview'
@@ -36,7 +36,6 @@ const HomePage = () => {
          {/* Title */}
 
 
-
          {/* =========================================
              2. UPPER SECTION (Admin Profile & Key Summary)
              ========================================= */}
@@ -50,6 +49,7 @@ const HomePage = () => {
                mt: 15,
                pb: 5,
                ml: 10,
+               border: "8px solid black"
             }}
          >
 
@@ -59,7 +59,8 @@ const HomePage = () => {
                sx={{
                   alignItems: 'flex-start',
                   width: '90%',
-                  maxWidth: '1400px'
+                  maxWidth: '1400px',
+                  border: "8px solid black"
                }}
             >
                {/* User Card */}
@@ -103,7 +104,7 @@ const HomePage = () => {
                      direction='row'
                      spacing={2}
                      className='summary-stack'
-                     sx={{ justifyContent: 'flex-start', p: 2, }}>
+                     sx={{ justifyContent: 'flex-start', p: 2, border: "8px solid black" }}>
 
                      { /*Total Employees */}
                      <Card
@@ -171,6 +172,7 @@ const HomePage = () => {
                mt: 5,
                pb: 5,
                ml: 10,
+               border: "8px solid black"
             }}
          >
             {/* LEFT COLUMN: Change Credentials Card */}
@@ -208,7 +210,7 @@ const HomePage = () => {
 
                <SplitText text='Admin Dashboard' className='admin-dashboard-text' delay={50} />
 
-               <Stack direction='row' spacing={3} sx={{ alignItems: 'center', height: '400px', width: '100%' }}>
+               <Stack direction='row' spacing={3} sx={{ alignItems: 'center', height: '400px', width: '100%', border: "8px solid black" }}>
                   {/* Users Card */}
                   <Card
                      elevation={10}

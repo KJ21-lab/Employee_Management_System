@@ -1,4 +1,4 @@
-import { AppBar, Box, Card, CardContent, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Toolbar } from '@mui/material'
+import {  Box, Card, CardContent, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import './Layout.scss'
@@ -9,11 +9,7 @@ export const Layout = () => {
 
    return (
       <Box style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-         <AppBar position='static' elevation={0}>
-            <Toolbar sx={{ backgroundColor: 'white', fontFamily: 'Roboto' }}>
-               <PersonIcon sx={{ mr: 2, backgroundColor: '#3F51B5' }} />
-            </Toolbar>
-         </AppBar>
+        
 
          <Stack direction="row" spacing={0} sx={{ flex: 1 }}>
             <Card sx={{ width: '13%', height: '100%' }}>
@@ -23,7 +19,7 @@ export const Layout = () => {
                      {/* Home */}
                      <ListItem
                         disablePadding
-                        component={Link} to={'/home'}
+                        component={Link} to={'home'}
                         sx={{
                            cursor: 'pointer',
                            '&:hover': {

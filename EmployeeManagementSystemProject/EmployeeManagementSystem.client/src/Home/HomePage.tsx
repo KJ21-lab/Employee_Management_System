@@ -36,19 +36,23 @@ const HomePage = () => {
          {/* Title */}
 
 
+        
+
          {/* =========================================
              2. UPPER SECTION (Admin Profile & Key Summary)
              ========================================= */}
          <Box
             sx={{
-               display: 'grid',
-               gridTemplateColumns: '35% 1fr',
-               gap: 8,
-               width: '100%',
-               maxWidth: '1400px',
-               mt: 15,
-               pb: 5,
-               ml: 10,
+               display: 'flex',
+               // gridTemplateColumns: '35% 1fr',
+               //gap: 8,
+               //width: '100%',
+               //maxWidth: '1400px',
+               //mt: 15,
+               //pb: 5,
+               //ml: 10,
+               height: '400px',
+               margin: 5,
                border: "8px solid black"
             }}
          >
@@ -57,9 +61,10 @@ const HomePage = () => {
                direction="row"
                spacing={3}
                sx={{
-                  alignItems: 'flex-start',
-                  width: '90%',
-                  maxWidth: '1400px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  width: '100%',
                   border: "8px solid black"
                }}
             >
@@ -69,7 +74,7 @@ const HomePage = () => {
                   className='user-card'
                   sx={{
                      height: '250px',
-                     width: '100%',
+                     width: '420px',
                      borderRadius: '20px',
                      backgroundImage: `url(${meshBackground})`,
                      backgroundSize: 'cover',
@@ -92,19 +97,34 @@ const HomePage = () => {
                </Card>
 
                {/* --- RIGHT: Key Summary + Small Cards --- */}
-               <Box sx={{ position: 'relative', width: '50%' }}>
-                  <Box sx={{ position: 'absolute', top: -50, left: 17 }}>
-                     <SplitText text='Key Summary' className='key-summary-split-text' delay={50} />
-                  </Box>
-
-
+               <Box
+                  sx={{
+                     flexDirection: 'column',
+                     gap: 0,
+                     border: "8px solid black",
+                     width: '50%',
+                     display: 'flex',
+                     alignItems: 'flex-start',
+                     justifyContent: "flex-start",
+                     alignSelf: 'flex-start'
+               }}>
+                  <SplitText
+                     text='Key Summary'
+                     className='key-summary-split-text'
+                     delay={50}/>
 
                   {/* 3 Small Cards Stack */}
                   <Stack
                      direction='row'
                      spacing={2}
                      className='summary-stack'
-                     sx={{ justifyContent: 'flex-start', p: 2, border: "8px solid black" }}>
+                     sx={{
+                        width: "100%",
+                        display: 'flex',
+                        border: "8px solid black",
+                        justifyContent: 'flex-start',
+                        alignItems: "flex-start"
+                     }}>
 
                      { /*Total Employees */}
                      <Card

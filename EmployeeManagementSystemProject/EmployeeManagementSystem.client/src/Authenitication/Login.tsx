@@ -1,5 +1,6 @@
 import { useState, useCallback, type ChangeEvent } from 'react';
-import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar, type SnackbarCloseReason } from '@mui/material';
+import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar, type SnackbarCloseReason, AppBar, Toolbar } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
 import CustomButton from '../ReusableComponents/CustomButton';
 import { useLoginMutation } from './LoginRoutes';
 import { type LoginRequest } from './LoginModels';
@@ -56,65 +57,72 @@ const LoginPage = () => {
    }, [LoginData, login, navigate])
 
    return (
-      <Box className='box-container'>
+      <Box className ='box-container'>
 
-         <Card
-            elevation={10}
-            sx={{
-               backgroundColor: 'white',
-               borderRadius: '20px',
-               width: '100%',
-               maxWidth: '450px',
-               height: 'auto',
-               minHeight: '400px'
-            }}>
-            <CardContent>
-               <Stack direction='column' spacing={5} alignItems='center'>
-                  <Typography variant='h4' align='center' sx={{ fontWeight: '700', fontSize: '2rem' }}>
-                     Login
-                  </Typography>
+         <AppBar position="static" elevation={0} sx={{ alignSelf: 'flex-start' }}>
+            <Toolbar sx={{ backgroundColor: 'white', fontFamily: 'Roboto' }}>
+               <PersonIcon sx={{ mr: 2, backgroundColor: '#3F51B5' }} />
+            </Toolbar>
+         </AppBar>
 
-                  <TextField
-                     variant='standard'
-                     type='text'
-                     label="Username"
-                     placeholder='Enter Username'
-                     onChange={(e) => handleLoginDataChange('username', e)}
-                     sx={{ width: '80%' }}>
-                  </TextField>
+         <Box className ='box-container'>
+            <Card
+               elevation={10}
+               sx={{
+                  backgroundColor: 'white',
+                  borderRadius: '20px',
+                  width: '100%',
+                  maxWidth: '450px',
+                  height: 'auto',
+                  minHeight: '400px'
+               }}>
+               <CardContent>
+                  <Stack direction='column' spacing={5} alignItems='center'>
+                     <Typography variant='h4' align='center' sx={{ fontWeight: '700', fontSize: '2rem' }}>
+                        Login
+                     </Typography>
 
-                  <TextField
-                     variant='standard'
-                     label="Password"
-                     type='password'
-                     placeholder='Enter password'
-                     onChange={(e) => handleLoginDataChange('password', e)}
-                     sx={{ width: '80%' }}>
-                  </TextField>
+                     <TextField
+                        variant='standard'
+                        type='text'
+                        label="Username"
+                        placeholder='Enter Username'
+                        onChange={(e) => handleLoginDataChange('username', e)}
+                        sx={{ width: '80%' }}>
+                     </TextField>
 
-                  <CustomButton
-                     variant='contained'
-                     onClick={handleLogin}
-                     sx={{ width: '40%', height: '50%' }}>
-                     Login
-                  </CustomButton>
-               </Stack>
-            </CardContent>
-         </Card>
-         <Snackbar
-            open={barState.open}
-            autoHideDuration={6000}
-            onClose={handleCloseToast}
-            sx={{ width: '20%' }}>
+                     <TextField
+                        variant='standard'
+                        label="Password"
+                        type='password'
+                        placeholder='Enter password'
+                        onChange={(e) => handleLoginDataChange('password', e)}
+                        sx={{ width: '80%' }}>
+                     </TextField>
 
-            <Alert
-               severity={barState.severity}
-               variant="filled"
-               sx={{ width: '100%' }}>
-               {barState.message}
-            </Alert>
+                     <CustomButton
+                        variant='contained'
+                        onClick={handleLogin}
+                        sx={{ width: '40%', height: '50%' }}>
+                        Login
+                     </CustomButton>
+                  </Stack>
+               </CardContent>
+            </Card>
+            <Snackbar
+               open={barState.open}
+               autoHideDuration={6000}
+               onClose={handleCloseToast}
+               sx={{ width: '20%' }}>
 
-         </Snackbar>
+               <Alert
+                  severity={barState.severity}
+                  variant="filled"
+                  sx={{ width: '100%' }}>
+                  {barState.message}
+               </Alert>
+            </Snackbar>
+         </Box>
       </Box>
    )
 }

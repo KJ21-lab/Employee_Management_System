@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Card, CardContent, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import meshBackground from '../assets/LavaLamp_bg.png'
 import './HomePage.scss'
@@ -13,6 +13,11 @@ const HomePage = () => {
 
    return (
       <Box className='outer-box' sx={{ pb: 5 }}>
+         <AppBar position="static" elevation={0} sx={{ alignSelf: 'flex-start' }}>
+            <Toolbar sx={{ backgroundColor: 'white', fontFamily: 'Roboto' }}>
+               <PersonIcon sx={{ mr: 2, backgroundColor: '#3F51B5' }} />
+            </Toolbar>
+         </AppBar>
 
          {/* =========================================
              1. HEADER SECTION (Dashboard Overview)
@@ -20,7 +25,14 @@ const HomePage = () => {
          <Stack
             direction='column'
             spacing={2}
-            sx={{ width: '100%', alignItems: 'flex-start', pl: 10, pt: 5, border: "8px solid black" }}
+            sx={{
+               display: 'flex',
+               width: '100%',
+               justifyContent: 'flex-start',
+               alignItems: 'flex-start',
+               pl: 5,
+               border: "8px solid black"
+            }}
          >
             <SplitText
                text='Dashboard Overview'
@@ -36,7 +48,7 @@ const HomePage = () => {
          {/* Title */}
 
 
-        
+
 
          {/* =========================================
              2. UPPER SECTION (Admin Profile & Key Summary)
@@ -59,7 +71,7 @@ const HomePage = () => {
 
             <Stack
                direction="row"
-               spacing={3}
+               spacing={1}
                sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -82,8 +94,7 @@ const HomePage = () => {
                      display: 'flex',
                      alignItems: 'center',
                      justifyContent: 'center'
-                  }}
-               >
+                  }}>
                   <CardContent>
                      <Stack direction='column' spacing={3} alignItems='center'>
                         <Avatar sx={{ width: 80, height: 80, bgcolor: 'rgba(255, 255, 255, 0.4)' }}>
@@ -97,21 +108,21 @@ const HomePage = () => {
                </Card>
 
                {/* --- RIGHT: Key Summary + Small Cards --- */}
-               <Box
+               <Stack
+                  direction='column'
+                  spacing={2}
                   sx={{
-                     flexDirection: 'column',
-                     gap: 0,
-                     border: "8px solid black",
                      width: '50%',
+                     height: '100%',
                      display: 'flex',
                      alignItems: 'flex-start',
                      justifyContent: "flex-start",
-                     alignSelf: 'flex-start'
-               }}>
+                  }}>
                   <SplitText
                      text='Key Summary'
                      className='key-summary-split-text'
-                     delay={50}/>
+                     delay={50}
+                      />
 
                   {/* 3 Small Cards Stack */}
                   <Stack
@@ -119,9 +130,7 @@ const HomePage = () => {
                      spacing={2}
                      className='summary-stack'
                      sx={{
-                        width: "100%",
                         display: 'flex',
-                        border: "8px solid black",
                         justifyContent: 'flex-start',
                         alignItems: "flex-start"
                      }}>
@@ -175,7 +184,7 @@ const HomePage = () => {
                      </Card>
 
                   </Stack>
-               </Box>
+               </Stack>
             </Stack>
          </Box>
 

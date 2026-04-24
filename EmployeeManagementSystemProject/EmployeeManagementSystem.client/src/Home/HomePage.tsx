@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Card, CardContent, Stack, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Card, CardContent, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import meshBackground from '../assets/LavaLamp_bg.png'
 import './HomePage.scss'
@@ -46,8 +46,6 @@ const HomePage = () => {
             />
          </Stack>
          {/* Title */}
-
-
 
 
          {/* =========================================
@@ -122,7 +120,7 @@ const HomePage = () => {
                      text='Key Summary'
                      className='key-summary-split-text'
                      delay={50}
-                      />
+                  />
 
                   {/* 3 Small Cards Stack */}
                   <Stack
@@ -147,12 +145,20 @@ const HomePage = () => {
 
                         <CardContent sx={{ height: '100%', width: '100%' }}>
                            <Stack direction='column' height='100%' justifyContent='flex-end' marginTop='15px'>
-                              <Avatar sx={{ width: 30, height: 30, bgcolor: 'rgba(255, 255, 255, 0.4)', alignSelf: 'flex-end', mb: 3 }}>
+                              <Avatar sx={{
+                                 width: 30,
+                                 height: 30,
+                                 bgcolor: 'rgba(255, 255, 255, 0.4)',
+                                 alignSelf: 'flex-end',
+                                 mb: 3
+                              }}>
                                  <PersonIcon sx={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: 25 }} />
                               </Avatar>
+
                               <Typography variant='body1' align='left' sx={{ color: 'white', fontWeight: '400', fontSize: 20 }}>
                                  Total Employees
                               </Typography>
+
                               <Typography variant='body1' align='left' sx={{ color: 'white', fontWeight: '500', fontSize: 30 }}>
                                  {employees.data?.length}
                               </Typography>
@@ -193,92 +199,138 @@ const HomePage = () => {
              ========================================= */}
          <Box
             sx={{
-               display: 'grid',
-               gridTemplateColumns: '35% 1fr',
-               gap: 5,
+               display: 'flex',
                width: '100%',
                maxWidth: '1400px',
-               mt: 5,
-               pb: 5,
-               ml: 10,
                border: "8px solid black"
-            }}
-         >
-            {/* LEFT COLUMN: Change Credentials Card */}
-            <Card
-               elevation={10}
+            }}>
+            <Stack
+               direction='row'
+               spacing={6}
                sx={{
-                  height: '400px',
-                  width: '90%',
-                  borderRadius: '20px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  height: '100%',
+                  border: "8px solid black"
                }}>
-               <CardContent>
-                  <Stack direction='column' spacing={4} sx={{ mt: 3, px: 2, p: 4 }}>
-                     <Typography variant='h3' align='left' sx={{ fontWeight: '500', fontSize: '1.4rem' }}>
-                        Change credentials
-                     </Typography>
-                     <TextField
-                        variant='standard'
-                        label="Username"
-                        placeholder='Username'
-                        fullWidth
-                     />
-                     <TextField
-                        variant='standard'
-                        label="Password"
-                        type='password'
-                        placeholder='Password'
-                        fullWidth
-                     />
+                  {/* LEFT COLUMN: Change Credentials Card */}
+                  <Card
+                     elevation={10}
+                     sx={{
+                        display: 'flex',
+                        height: '400px',
+                        width: '30%',
+                        borderRadius: '20px',
+                     }}>
+                     <CardContent
+                     sx={{ width: '100%', height: '100%'}}>
+                     <Stack
+                        direction='column'
+                        spacing={4}
+                        sx={{
+                           height: '100%',
+                           width: '100%',
+                           display: 'flex',
+                           alignItems: 'flex-start',
+                           mt: 3
+                        }}>
+                           <Typography variant='h3' align='left' sx={{ fontWeight: '500', fontSize: '1.4rem' }}>
+                              Change credentials
+                           </Typography>
+                           
+                           <TextField
+                              variant='standard'
+                              label="Username"
+                              placeholder='Username'
+                              sx={{
+                                 width: "90%"
+                              }} />
+                           
+                           <TextField
+                              variant='standard'
+                              label="Password"
+                              type='password'
+                              placeholder='Password'
+                               sx={{
+                                  width: "90%"
+                               }} />
+
+                        <Button
+                           variant="contained"
+                           sx={{
+                              width: '40%',
+                              backgroundColor: "#6169FF"
+                           }}>
+                              Update
+                           </Button>
+                        </Stack>
+                     </CardContent>
+                  </Card>
+                  
+                  {/* RIGHT COLUMN: Users & Projects Cards */}
+               <Stack
+                  direction='column'
+                  spacing={0}
+                  height='100%'
+                  width='60%'
+                  sx={{
+                     display: 'flex',
+                     alignItems: 'flex-start',
+                  }}>
+                  
+                  <SplitText text='Admin Dashboard' className='admin-dashboard-text' delay={50} />
+
+                  <Stack
+                     direction='row'
+                     spacing={3}
+                     sx={{
+                        alignItems: 'flex-start',
+                        height: '400px',
+                        width: '100%',
+                     }}>
+                        {/* Users Card */}
+                        <Card
+                           elevation={10}
+                           className='admin-card'
+                           sx={{ borderRadius: '20px', }}>
+                           <CardContent
+                              sx={{
+                              width: '100%', height: '100%', p: 3
+                              }}>
+                              <Stack direction='column' spacing={3} height='100%' >
+                                 <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
+                                    Users
+                                 </Typography>
+
+                                 <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
+                                    {accounts.data?.length || 0}
+                                 </Typography>
+                              </Stack>
+                           </CardContent>
+                        </Card>
+                  
+                        {/* Projects Card */}
+                        <Card
+                           elevation={10}
+                           className='admin-card'
+                           sx={{ borderRadius: '20px' }}>
+                           <CardContent sx={{ height: '100%', p: 3, }}>
+                              <Stack direction='column' spacing={3} height='100%'>
+                                 <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
+                                    Projects
+                                 </Typography>
+                                 <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
+                                    0
+                                 </Typography>
+                              </Stack>
+                           </CardContent>
+                        </Card>
+                  
+                     </Stack>
                   </Stack>
-               </CardContent>
-            </Card>
-
-            {/* RIGHT COLUMN: Users & Projects Cards */}
-            <Stack direction='column' spacing={0} height='100%' width='100%' >
-
-               <SplitText text='Admin Dashboard' className='admin-dashboard-text' delay={50} />
-
-               <Stack direction='row' spacing={3} sx={{ alignItems: 'center', height: '400px', width: '100%', border: "8px solid black" }}>
-                  {/* Users Card */}
-                  <Card
-                     elevation={10}
-                     className='admin-card'
-                     sx={{ borderRadius: '20px', }}>
-                     <CardContent sx={{ width: '100%', height: '100%', p: 3 }}>
-                        <Stack direction='column' spacing={3} height='100%' >
-                           <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
-                              Users
-                           </Typography>
-                           <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                              {accounts.data?.length || 0}
-                           </Typography>
-                        </Stack>
-                     </CardContent>
-                  </Card>
-
-                  {/* Projects Card */}
-                  <Card
-                     elevation={10}
-                     className='admin-card'
-                     sx={{ borderRadius: '20px' }}>
-                     <CardContent sx={{ height: '100%', p: 3, }}>
-                        <Stack direction='column' spacing={3} height='100%'>
-                           <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
-                              Projects
-                           </Typography>
-                           <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                              0
-                           </Typography>
-                        </Stack>
-                     </CardContent>
-                  </Card>
-
-               </Stack>
             </Stack>
-
          </Box>
-
       </Box>
    )
 

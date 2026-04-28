@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 import type { Account } from './types'; // Imports the TypeScript Habit interface from the types.ts file.
+import { baseQueryWithReauth } from '../Authenitication/LoginRoutes'
 
 // Define a service using a base URL and expected endpoints
 export const accountsApi = createApi({
    reducerPath: 'accountsApi',
-   baseQuery: fetchBaseQuery({ baseUrl: '/api/' }),
+   baseQuery: baseQueryWithReauth,
 
    tagTypes: ['Accounts'],
    endpoints: (build) => ({

@@ -8,9 +8,10 @@ const RequiredAuth = () => {
    // In a real app, you might check a Redux state here instead
    const token = localStorage.getItem('token');
 
+   const isAuthenticated = token && token !== "null" && token !== "undefined";
    // 3. The Logic
    return (
-      token
+      isAuthenticated 
          ? <Outlet />
          : <Navigate to="/" state={{ from: location }} replace />
    );

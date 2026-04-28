@@ -1,4 +1,4 @@
-import { useState, useCallback, type ChangeEvent } from 'react';
+import { useState, useCallback, type ChangeEvent, useEffect } from 'react';
 import { Box, Card, Stack, CardContent, Typography, TextField, Alert, Snackbar, type SnackbarCloseReason, AppBar, Toolbar } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import CustomButton from '../ReusableComponents/CustomButton';
@@ -17,6 +17,13 @@ const LoginPage = () => {
          password: "",
       }
    });
+
+   useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token && token !== "null") {
+         navigate('/home', { replace: true });
+      }
+   }, [navigate]);
 
    const handleCloseToast = (
       event?: React.SyntheticEvent | Event,

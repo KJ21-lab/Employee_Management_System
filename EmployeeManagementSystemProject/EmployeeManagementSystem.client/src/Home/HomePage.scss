@@ -3,21 +3,20 @@
   height: 100%;
   overflow: hidden;
   display: "flex";
-  border: 8px solid black;
   justify-content: center;
   align-content: center
 }
 
-.welcome-split-text {
+.overview-split-text {
    font-weight: 500;
    font-size: 1.8rem;
+   margin: 0; 
 }
 
 .description-split-text {
-   align-self: flex-start;
-   font-size: 1rem;
+   font-size: .9rem;
    font-weight: 400;
-   margin-left: 80px;
+   margin: 0; 
 }
 
 .key-summary-split-text {

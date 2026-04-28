@@ -1,4 +1,4 @@
-import { AppBar, Avatar, Box, Button, Card, CardContent, Stack, TextField, Toolbar, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Card, CardContent, CircularProgress, Stack, TextField, Toolbar, Typography } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import meshBackground from '../assets/LavaLamp_bg.png'
 import './HomePage.scss'
@@ -8,8 +8,9 @@ import { useGetEmployeesQuery } from '../Employees/routes';
 import { useGetAccountsQuery } from '../Accounts/routes';
 
 const HomePage = () => {
-   const employees = useGetEmployeesQuery();
-   const accounts = useGetAccountsQuery();
+   // Grab both the data and the isLoading state
+   const { data: employeesData, isLoading: employeesLoading } = useGetEmployeesQuery();
+   const { data: accountsData, isLoading: accountsLoading } = useGetAccountsQuery();
 
    return (
       <Box className='outer-box' sx={{ pb: 5 }}>
@@ -31,51 +32,71 @@ const HomePage = () => {
                justifyContent: 'flex-start',
                alignItems: 'flex-start',
                pl: 5,
-               border: "8px solid black"
-            }}
-         >
-            <SplitText
-               text='Dashboard Overview'
-               className='welcome-split-text'
-               delay={50}
-            />
-            <SplitText
-               text='Welcome to your admin dashboard.'
-               className='description-split-text'
-               delay={50}
-            />
+               mt: 4,
+               //border: '8px solid black'
+            }}>
+
+            <Box sx={{
+               maxWidth: '600px',
+               display: 'flex',
+               flexDirection: 'column',
+               alignItems: 'flex-start',
+               gap: 2,
+            }}>
+
+               <SplitText
+                  text='Dashboard Overview'
+                  className='overview-split-text'
+                  delay={50}
+                  duration={1}
+                  splitType="words"
+                />
+
+               <Box sx={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  flexDirection: 'column',
+                  gap: 0,
+               }}>
+                  <SplitText
+                     text="Welcome to your admin dashboard."
+                     className='description-split-text'
+                     delay={50}
+                     duration={1}
+                     splitType="lines"
+                  />
+                  <SplitText
+                     text="Here you can manage your profile and track projects, employees, and departments."
+                     className='description-split-text'
+                     delay={50}
+                     duration={2}
+                     splitType="lines"
+                  />
+               </Box>
+            </Box>
          </Stack>
          {/* Title */}
 
 
          {/* =========================================
-             2. UPPER SECTION (Admin Profile & Key Summary)
+            2. UPPER SECTION (Admin Profile & Key Summary)
              ========================================= */}
          <Box
             sx={{
                display: 'flex',
-               // gridTemplateColumns: '35% 1fr',
-               //gap: 8,
-               //width: '100%',
-               //maxWidth: '1400px',
-               //mt: 15,
-               //pb: 5,
-               //ml: 10,
                height: '400px',
                margin: 5,
-               border: "8px solid black"
             }}
          >
 
             <Stack
                direction="row"
-               spacing={1}
+               spacing={3}
                sx={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   width: '100%',
-                  border: "8px solid black"
                }}
             >
                {/* User Card */}
@@ -95,12 +116,15 @@ const HomePage = () => {
                   }}>
                   <CardContent>
                      <Stack direction='column' spacing={3} alignItems='center'>
+
                         <Avatar sx={{ width: 80, height: 80, bgcolor: 'rgba(255, 255, 255, 0.4)' }}>
                            <PersonIcon sx={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: 75 }} />
                         </Avatar>
+
                         <Typography variant='body1' align='center' sx={{ color: 'white', fontWeight: '500', fontSize: 25 }}>
                            Admin Profile
                         </Typography>
+
                      </Stack>
                   </CardContent>
                </Card>
@@ -111,15 +135,18 @@ const HomePage = () => {
                   spacing={2}
                   sx={{
                      width: '50%',
-                     height: '100%',
+                     height: '80%',
+                     alignSelf: 'flex-start',
                      display: 'flex',
                      alignItems: 'flex-start',
                      justifyContent: "flex-start",
+                     pt: 3
                   }}>
                   <SplitText
                      text='Key Summary'
                      className='key-summary-split-text'
                      delay={50}
+                     splitType="words"
                   />
 
                   {/* 3 Small Cards Stack */}
@@ -145,6 +172,7 @@ const HomePage = () => {
 
                         <CardContent sx={{ height: '100%', width: '100%' }}>
                            <Stack direction='column' height='100%' justifyContent='flex-end' marginTop='15px'>
+
                               <Avatar sx={{
                                  width: 30,
                                  height: 30,
@@ -160,8 +188,14 @@ const HomePage = () => {
                               </Typography>
 
                               <Typography variant='body1' align='left' sx={{ color: 'white', fontWeight: '500', fontSize: 30 }}>
-                                 {employees.data?.length}
+                                 {employeesLoading ?
+                                    (
+                                       <CircularProgress size={30} sx={{ color: 'white' }} />
+                                    ) : (
+                                    employeesData?.length || 0
+                                 )}
                               </Typography>
+
                            </Stack>
                         </CardContent>
                      </Card>
@@ -176,12 +210,15 @@ const HomePage = () => {
                         }}>
                         <CardContent sx={{ height: '100%', width: '100%' }}>
                            <Stack direction='column' height='100%' justifyContent='flex-end' marginTop='15px'>
+
                               <Avatar sx={{ width: 30, height: 30, bgcolor: 'rgba(255, 255, 255, 0.4)', alignSelf: 'flex-end', mb: 3 }}>
                                  <PersonIcon sx={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: 25 }} />
                               </Avatar>
+
                               <Typography variant='body1' align='left' sx={{ color: 'white', fontWeight: '400', fontSize: 20 }}>
                                  Total Departments
                               </Typography>
+
                               <Typography variant='body1' align='left' sx={{ color: 'white', fontWeight: '500', fontSize: 30 }}>
                                  0
                               </Typography>
@@ -202,19 +239,18 @@ const HomePage = () => {
                display: 'flex',
                width: '100%',
                maxWidth: '1400px',
-               border: "8px solid black"
             }}>
             <Stack
                direction='row'
-               spacing={6}
+               spacing={9}
                sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   width: '100%',
                   height: '100%',
-                  border: "8px solid black"
+                  ml: 2
                }}>
-                  {/* LEFT COLUMN: Change Credentials Card */}
+                  {/* LEFT COLUMN: Profile Edit Card */}
                   <Card
                      elevation={10}
                      sx={{
@@ -236,7 +272,7 @@ const HomePage = () => {
                            mt: 3
                         }}>
                            <Typography variant='h3' align='left' sx={{ fontWeight: '500', fontSize: '1.4rem' }}>
-                              Change credentials
+                              Profile Edit
                            </Typography>
                            
                            <TextField
@@ -279,7 +315,11 @@ const HomePage = () => {
                      alignItems: 'flex-start',
                   }}>
                   
-                  <SplitText text='Admin Dashboard' className='admin-dashboard-text' delay={50} />
+                  <SplitText
+                     text='Admin Dashboard'
+                     className='admin-dashboard-text'
+                     delay={50}
+                     splitType='words'/>
 
                   <Stack
                      direction='row'
@@ -299,12 +339,18 @@ const HomePage = () => {
                               width: '100%', height: '100%', p: 3
                               }}>
                               <Stack direction='column' spacing={3} height='100%' >
+
                                  <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
                                     Users
                                  </Typography>
 
                                  <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                                    {accounts.data?.length || 0}
+                                    {accountsLoading?
+                                       (
+                                          <CircularProgress size={30} sx={{ color: 'white' }} />
+                                       ) : (
+                                          accountsData?.length || 0
+                                       )}
                                  </Typography>
                               </Stack>
                            </CardContent>
@@ -317,12 +363,15 @@ const HomePage = () => {
                            sx={{ borderRadius: '20px' }}>
                            <CardContent sx={{ height: '100%', p: 3, }}>
                               <Stack direction='column' spacing={3} height='100%'>
+
                                  <Typography variant='body1' sx={{ fontWeight: '500', fontSize: 18 }}>
-                                    Projects
-                                 </Typography>
+                                       Projects
+                                  </Typography>
+                                 
                                  <Typography variant='h2' sx={{ fontWeight: '500', fontSize: 40 }}>
-                                    0
+                                      0
                                  </Typography>
+
                               </Stack>
                            </CardContent>
                         </Card>

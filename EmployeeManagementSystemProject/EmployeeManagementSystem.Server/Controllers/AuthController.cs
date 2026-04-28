@@ -16,46 +16,43 @@ public class AuthController : BaseApiController {
    }
 
    [HttpPost("api/login")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        var result = await _businessRulesInjector
+   [AllowAnonymous]
+   public async Task<IActionResult> Login([FromBody] LoginRequest_Model model) {
+      
+     if (!ModelState.IsValid) return BadRequest(ModelState);
+      
+      var result = await _businessRulesInjector
          .LoginPageBusinessRules()
          .Reader()
          .Login(model.Username, model.Password);
+      
+      if (!result.Succeeded || result.Account is null) 
+         return Unauthorized("Invalid credentials.");
+   
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("a_very_long_secret_key_that_is_32_chars"));
+      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+      
+      // 3. THE TOKEN DATA (The "Claims")
+      var claims = new[] {
+          new Claim(JwtRegisteredClaimNames.Sub, "123"),
+          new Claim(JwtRegisteredClaimNames.UniqueName, model.Username)
+      };
+      
+      // 4. GENERATE THE TOKEN
+      var token = new JwtSecurityToken(
+          claims: claims,
+          expires: DateTime.UtcNow.AddMinutes(30),
+          signingCredentials: creds
+      );
+      
+      // 5. RETURN THE STRING
+      return Ok(new { 
+          token = new JwtSecurityTokenHandler().WriteToken(token) 
+      });
+   }
 
-        if (!result.Succeeded || result.Account is null) return Unauthorized("Invalid credentials.");
-
-        var claims = new List<Claim> {
-            new Claim(JwtRegisteredClaimNames.Sub, result.Account.AccountID.ToString()),
-            new Claim(JwtRegisteredClaimNames.UniqueName, result.Account.Username),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
-
-        var jwt = _configuration.GetSection("JwtSettings");
-        var secret = jwt["SecretKey"] ?? throw new InvalidOperationException("JwtSettings:SecretKey missing.");
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        var expires = DateTime.UtcNow.AddHours(1);
-
-        var token = new JwtSecurityToken(
-            issuer: jwt["ValidIssuer"],
-            audience: jwt["ValidAudience"],
-            claims: claims,
-            notBefore: DateTime.UtcNow,
-            expires: expires,
-            signingCredentials: creds
-        );
-
-        return Ok(new {
-            token = new JwtSecurityTokenHandler().WriteToken(token),
-            expires
-        });
-    }
-
-    public class LoginRequest_Model {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-    }
+   public class LoginRequest_Model {
+       public string Username { get; set; } = string.Empty;
+       public string Password { get; set; } = string.Empty;
+   }
 }

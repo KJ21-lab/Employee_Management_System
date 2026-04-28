@@ -8,11 +8,9 @@ import EmployeeIndex from './Employees/EmployeeIndex';
 export const router = createBrowserRouter([
    {
       path: "/",
-      // The Login page should usually have its own simple layout or no layout at all
       element: <LoginPage />,
    },
    {
-      path: "/",
       element: <RequiredAuth />,
       children: [
          {

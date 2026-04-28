@@ -2,8 +2,6 @@
 
 using Microsoft.AspNetCore.Identity;
 
-using Persistence.UserAccount.Implementations;
-
 namespace BusinessRules.LoginPage {
     public class LoginPageBusinessRules(
        IAccountFactory accountFactory, 
@@ -21,9 +19,9 @@ namespace BusinessRules.LoginPage {
                     return new AuthenticationResult(false, null, "Invalid credentials.");
 
                 var accounts = 
-                 accountFactory 
-                 .ReadAccounts()
-                 .Result;
+                   accountFactory 
+                   .ReadAccounts()
+                   .Result;
 
                 var account = 
                    accounts

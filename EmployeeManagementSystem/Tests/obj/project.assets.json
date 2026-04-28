@@ -58,6 +58,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.26": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -90,7 +109,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.22": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.26": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -2868,6 +2887,7 @@
           "BusinessRules": "1.0.0",
           "DataAccess": "1.0.0",
           "DependencyInjectors": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.26",
           "Microsoft.AspNetCore.SpaProxy": "8.0.0-0",
           "SQLitePCLRaw.bundle_e_sqlite3": "3.0.2",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -3021,6 +3041,21 @@
         "readme.md"
       ]
     },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.26": {
+      "sha512": "Z7Fcw2UdQ20QKqE0OgAcRqPpBvjNiSAQb8u3IXFwN0XLQbr/xJlRtg11orvkp7/aQltoRMCr8A9Nc6JhLV1VCQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.26",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.8.0.26.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/10.0.1": {
       "sha512": "HS6Lvw5qfzOXuKcBvNNxn8YNjGalYq8SwmqkuzkFxSm0lC6i1ILfaZg68Vyphk2Mkj4xXeMiua8MWS9UWfxpuw==",
       "type": "package",
@@ -3059,10 +3094,10 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.22": {
-      "sha512": "CFnPIbLHsuLKKsJNC1wMFaeKvxRfDS8fnVzDxLdCI6kMbHB91tCLOm8+rPpAGV99VJSFNhduLEWx22Zjw30wag==",
+    "Microsoft.AspNetCore.SpaProxy/8.0.26": {
+      "sha512": "W/G2DtEUCuXKMgy/OtWhxhmfWe0c087zUk+f4riOttIJzvyrc0X0U2Sf1sPWiN3Nu0n5EW3rX9ANhF94XgPPdQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.22",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.26",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3070,7 +3105,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.8.0.22.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.8.0.26.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },

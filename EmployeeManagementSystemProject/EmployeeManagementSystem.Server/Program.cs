@@ -7,12 +7,15 @@ using DependencyInjectors.PersistenceInjector;
 
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
+using Microsoft.IdentityModel.Tokens;
 
 using SQLitePCL;
 
 using System.Data.Common;
+using System.Text;
 
 Batteries.Init();
 
@@ -51,6 +54,21 @@ builder.Services.AddCors(options => {
                       });
 });
 
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("SecretKey missing");
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => {
+       options.TokenValidationParameters = new TokenValidationParameters {
+          ValidateIssuer = false,   // Turned off for minimal setup
+          ValidateAudience = false, // Turned off for minimal setup
+          ValidateLifetime = true,
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+          ClockSkew = TimeSpan.Zero // Forces exact expiration times
+       };
+    });
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -62,12 +80,11 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwaggerUI();
 }
 
-
-
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

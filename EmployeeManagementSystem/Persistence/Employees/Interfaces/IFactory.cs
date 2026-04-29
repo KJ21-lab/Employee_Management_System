@@ -4,13 +4,13 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IEmployeeFactory {
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployees();
-        Task<IEmployeeRecord?> ReadEmployeeById(Guid employeeId) =>
-            Task.Run(() => ReadEmployeesByIds([employeeId]).Result.FirstOrDefault());
+        Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID) =>
+            Task.Run(() => ReadEmployeesByUIDs([employeeUID]).Result.FirstOrDefault());
 
-        Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByIds(IEnumerable<Guid> habitIDs);
+        Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 
-        Task<OperationResult> Upsert(Guid employeeId) => Upsert([employeeId]);
-        Task<OperationResult> Upsert(IEnumerable<Guid> employeeIds);
+        Task<OperationResult> Upsert(Guid employeeUID) => Upsert([employeeUID]);
+        Task<OperationResult> Upsert(IEnumerable<Guid> employeeUIDs);
 
     }
 

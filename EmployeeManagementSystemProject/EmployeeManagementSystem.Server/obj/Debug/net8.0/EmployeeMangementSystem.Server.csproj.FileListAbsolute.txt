@@ -407,3 +407,4 @@ C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystemPr
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystemProject\EmployeeManagementSystem.Server\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystemProject\EmployeeManagementSystem.Server\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystemProject\EmployeeManagementSystem.Server\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystemProject\EmployeeManagementSystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

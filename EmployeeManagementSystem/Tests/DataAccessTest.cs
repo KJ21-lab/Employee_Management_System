@@ -40,7 +40,7 @@ public class DataAccessTest {
         IEnumerable<IEmployeeRecord> records =
           await factory
             //.ReadHabits();
-          .ReadEmployeesByIds([Guid.Parse("6B29FC40-CA47-1067-B31D-00DD010662DA")]);
+          .ReadEmployeesByUIDs([Guid.Parse("6B29FC40-CA47-1067-B31D-00DD010662DA")]);
 
         Console.WriteLine(records);
     }

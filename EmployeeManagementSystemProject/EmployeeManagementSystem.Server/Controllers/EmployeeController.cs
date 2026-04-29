@@ -28,4 +28,21 @@ public class EmployeeController : BaseApiController {
       }
    }
 
+   [HttpGet]
+   [Route("api/Employee/GetEmployee")]
+   public async Task<IActionResult> GetEmployee(Guid employeeUID) {
+      try {
+
+         IEmployeeEntity? employees =
+             await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Reader()
+             .Read(employeeUID);
+
+         return Ok(employees);
+      } catch (Exception ex) {
+         return StatusCode(500, ex.Message);
+      }
+   }
+
 }

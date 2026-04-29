@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Miscellaneous\Miscellaneous.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Projects\" />
+  </ItemGroup>
+
 </Project>

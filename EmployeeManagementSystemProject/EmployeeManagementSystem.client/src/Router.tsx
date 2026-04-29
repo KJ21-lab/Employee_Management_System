@@ -4,6 +4,9 @@ import LoginPage from './Authenitication/Login';
 import HomePage from './Home/HomePage';
 import RequiredAuth from './Authenitication/RequiredAuth';
 import EmployeeIndex from './Employees/EmployeeIndex';
+import { EmployeeProfile } from './EmployeeProfile/EmployeeProfile';
+
+
 
 export const router = createBrowserRouter([
    {
@@ -22,6 +25,10 @@ export const router = createBrowserRouter([
                {
                   path: 'employees',
                   element: <EmployeeIndex />
+               },
+               {
+                  //path: `${}`,
+                  element: <EmployeeProfile />
                }
             ]
          }

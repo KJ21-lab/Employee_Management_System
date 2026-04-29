@@ -14,7 +14,7 @@ namespace Persistence.Employees.Implementations {
             return record;
         }
 
-        public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByIds(IEnumerable<Guid> employeeIDs) =>
+        public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeIDs) =>
            Task.Run(() => _read(sqlQuery: @"SELECT * FROM EmployeeRecord WHERE TRIM(EMPLOYEE_ID) IN(@EMPLOYEE_ID)",
                                 parameters: new { EmployeeIDs = employeeIDs }));
 

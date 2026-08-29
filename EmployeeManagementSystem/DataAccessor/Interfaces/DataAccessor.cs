@@ -21,5 +21,11 @@
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "");
-    }
+
+        void NonQueryProcedure(
+            string sqlQuery,
+            IDbConnection connection,
+            object? parameters = null,
+            string consoleOutput = "");
+   }
 }

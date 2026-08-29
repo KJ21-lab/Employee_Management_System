@@ -10,10 +10,10 @@ namespace BusinessRules.Employees.Interfaces {
     }
 
     public interface IEmployeeEntityProperties {
-        string Name { get; set; }
-        string JobTitle { get; set; }
-        DateTime HireDate { get; set; }
-        int EmployeeID { get; set; }
+        public string Name { get; set; }
+        public string JobTitle { get; set; }
+        public DateTime HireDate { get; set; }
+        public int EmployeeID { get; set; }
     }
 
     public interface IEmployeeEntityReader {

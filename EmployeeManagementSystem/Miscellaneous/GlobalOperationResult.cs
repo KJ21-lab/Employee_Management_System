@@ -1,6 +1,6 @@
-﻿using NewHabitTracker.Server.Miscellaneous.Interfaces;
+﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
 
-namespace NewHabitTracker.Server.Miscellaneous.Implementations {
+namespace EmployeeManagementSystem.Server.Miscellaneous.Implementations {
     public class GlobalOperationResult : OperationResult {
 
         public GlobalOperationResult(string message) {

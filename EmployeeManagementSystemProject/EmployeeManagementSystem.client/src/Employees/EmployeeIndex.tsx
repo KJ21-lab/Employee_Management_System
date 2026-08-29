@@ -1,69 +1,53 @@
 import { useGetEmployeesQuery } from './routes';
-import { DataGrid, type GridColDef } from '@mui/x-data-grid';
-import { type Employee } from './types'
+//import { DataGrid, GridRowModes, ToolbarButton, type GridColDef, type GridRowModesModel, type GridRowsProp, type GridSlotProps, type GridSlots } from '@mui/x-data-grid';
+import DataGrid, { Column, Editing, FilterRow } from 'devextreme-react/data-grid';
 import Box from '@mui/material/Box';
 import './EmployeeIndex.scss'
 
-const columns: GridColDef<Employee>[] = [
-   {
-      field: 'employeeID',
-      headerName: 'Employee ID',
-      width: 300,
-      editable: true,
-      resizable: false
-   },
-   {
-      field: 'name',
-      headerName: 'Name',
-      type: 'string',
-      width: 150,
-      editable: true,
-      resizable: false
-   },
-   {
-      field: 'jobTitle',
-      headerName: 'Job Title',
-      type: 'string',
-      width: 400,
-      resizable: false,
-      align: 'left',
-      headerAlign: 'left'
-   },
-   {
-      field: 'hireDate',
-      headerName: 'Hire Date',
-      type: 'string',
-      width: 400,
-      resizable: false,
-      align: 'left',
-      headerAlign: 'left',
-   },
-];
-
 export const EmployeeIndex = () => {
 
-   const { data: habits } = useGetEmployeesQuery();
+   const { data: employees } = useGetEmployeesQuery();
 
-   console.log(habits)
+   console.log(employees)
 
    return (
-      <Box sx={{ display: 'flex', height: '98%', width: '98%', flexDirection: 'column', ml: 'auto', mt: 'auto' }}>
-
+      <Box height="100vh" width="85vw" justifyContent="flex-end" alignItems="center"border="8px solid black" alignSelf="flex-end">
          <DataGrid
-            sx={{ borderRadius: '20px', }}
-            rows={habits}
-            editMode='row'
-            getRowId={(row: Employee) => row.employeeID}
-            columns={columns}
-            initialState={{
-               pagination: {
-                  paginationModel: {
-                     pageSize: 30,
-                  },
-               },
-            }}
+            dataSource={employees}
+            keyExpr="employeeID"
+            width="100%"
+            showBorders
+            rowAlternationEnabled>
 
-         />
+            <Column
+               dataField="employeeID"
+               caption="Employee ID"
+               alignment="left"
+            />
+            <Column
+               dataField="name"
+               caption="Name"
+               alignment="left"
+            />
+            <Column
+               dataField="jobTitle"
+               caption="Job Title"
+               alignment="left"
+            />
+            <Column
+               dataField="hireDate"
+               caption="Hire Date"
+               alignment="left"
+               dataType="date"
+            />
+            <FilterRow visible={true} />
+            <Editing
+               mode="row"
+               allowUpdating
+               allowDeleting
+               allowAdding />
+         </DataGrid>
+
       </Box>
    );
 }

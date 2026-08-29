@@ -1,4 +1,6 @@
-﻿using NewHabitTracker.Server.Miscellaneous.Interfaces;
+﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+
+using Persistence.Employees.Implementations;
 
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IEmployeeFactory {
@@ -9,9 +11,7 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 
-        Task<OperationResult> Upsert(Guid employeeUID) => Upsert([employeeUID]);
-        Task<OperationResult> Upsert(IEnumerable<Guid> employeeUIDs);
-
+        Task<OperationResult> Insert(IEmployeeRecord record);
     }
 
     public interface IEmployeeRecord : IEmployeeRecordProperties {

@@ -2,6 +2,8 @@
 
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
+using Miscellaneous.DBCommands;
+
 using NewHabitTracker.Server.Miscellaneous.Interfaces;
 
 namespace Persistence.UserAccount.Implementations {
@@ -15,11 +17,11 @@ namespace Persistence.UserAccount.Implementations {
         }
 
         public Task<IEnumerable<IAccountRecord>> ReadAccountsByIds(IEnumerable<Guid> accountIDs) =>
-            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountsRecord WHERE TRIM(ACCOUNT_ID) IN(@ACCOUNT_ID)",
+            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccountsByIds,
                                  parameters: new { AccountIDs = accountIDs }));
 
         public Task<IEnumerable<IAccountRecord>> ReadAccounts() =>
-            Task.Run(() => _read(sqlQuery: @"SELECT * FROM AccountsRecord"));
+            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccounts));
 
         public Task<OperationResult> Upsert(Guid accountID) => throw new NotImplementedException();
         public Task<OperationResult> Upsert(IEnumerable<Guid> accountIDs) => throw new NotImplementedException();

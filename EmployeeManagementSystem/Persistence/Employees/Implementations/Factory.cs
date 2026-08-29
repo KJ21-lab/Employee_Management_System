@@ -2,7 +2,12 @@ using DataAccess.Interfaces;
 
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
-using NewHabitTracker.Server.Miscellaneous.Interfaces;
+using Miscellaneous.DBCommands;
+
+using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+
+using System.Data.Common;
+using EmployeeManagementSystem.Server.Miscellaneous.Implementations;
 
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IDataAccessor dataAccessor) : IEmployeeFactory {
@@ -14,15 +19,24 @@ namespace Persistence.Employees.Implementations {
             return record;
         }
 
-        public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeIDs) =>
-           Task.Run(() => _read(sqlQuery: @"SELECT * FROM EmployeeRecord WHERE TRIM(EMPLOYEE_ID) IN(@EMPLOYEE_ID)",
-                                parameters: new { EmployeeIDs = employeeIDs }));
+        public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs) =>
+           Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
+                                parameters: new { EmployeeUIDs = employeeUIDs }));
 
         public Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
-            Task.Run(() => _read(sqlQuery: @"SELECT * FROM EmployeeRecord"));
+            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees));
 
-        public Task<OperationResult> Upsert(Guid employeeID) => throw new NotImplementedException();
-        public Task<OperationResult> Upsert(IEnumerable<Guid> employeeIDs) => throw new NotImplementedException();
+        public Task<OperationResult> Insert(IEmployeeRecord record) =>
+         Task.Run<OperationResult>(() => {
+         try {
+               _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
+                        parameters: new { record.EmployeeUID, record.Name, record.JobTitle, record.HireDate, record.EmployeeID } );
+               return new GlobalOperationResult();
+            } catch (Exception ex) {
+               return new GlobalOperationResult($"Employee Insert Failed. { ex.Message } ");
+           }
+         });
+
 
         private IEnumerable<IEmployeeRecord> _read(
             string sqlQuery,
@@ -36,9 +50,16 @@ namespace Persistence.Employees.Implementations {
         .Select(model => new EmployeeRecord(dbModel: model))
         .ToList();
 
-        private void _execute() {
-
-        }
+        private void _execute(
+           string sqlQuery,
+            object? parameters = null) {
+         dataAccessor
+        .InternalStorageCaller().QueryExecutor()
+        .NonQueryProcedure(
+          sqlQuery: sqlQuery,
+          parameters: parameters,
+          connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+      }
     }
 }
 

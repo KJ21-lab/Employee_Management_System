@@ -26,12 +26,12 @@ namespace DataAccess.Implementations {
             return records;
         }
 
-        public void NonQueryProcedure<DatabaseField>(
+        public void NonQueryProcedure(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "") =>
-            _executeNonQueryProcedure<DatabaseField>(
+            _executeNonQueryProcedure(
                 sqlQuery: sqlQuery,
                 parameters: parameters,
                 connection: ref connection,
@@ -63,7 +63,7 @@ namespace DataAccess.Implementations {
             }
         }
 
-        private void _executeNonQueryProcedure<DatabaseField>(
+        private void _executeNonQueryProcedure(
             string sqlQuery,
             ref IDbConnection connection,
             string consoleOutput,

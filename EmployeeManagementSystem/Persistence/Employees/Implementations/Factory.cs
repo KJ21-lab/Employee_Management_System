@@ -1,13 +1,10 @@
 using DataAccess.Interfaces;
 
+using EmployeeManagementSystem.Server.Miscellaneous.Implementations;
+using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
 using Miscellaneous.DBCommands;
-
-using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
-
-using System.Data.Common;
-using EmployeeManagementSystem.Server.Miscellaneous.Implementations;
 
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IDataAccessor dataAccessor) : IEmployeeFactory {

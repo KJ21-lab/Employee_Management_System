@@ -9,6 +9,5 @@ namespace DependencyInjectors.PersistenceInjector {
     public class PersistenceFactoriesInjector(IDataAccessor dataAccessor) : IPersistenceFactoriesInjector {
         public IEmployeeFactory EmployeeFactory() => new EmployeeFactory(dataAccessor);
         public IAccountFactory AccountFactory() => new AccountFactory(dataAccessor);
-
     }
 }

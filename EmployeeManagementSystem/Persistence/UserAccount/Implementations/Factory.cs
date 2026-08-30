@@ -4,7 +4,7 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 
 using Miscellaneous.DBCommands;
 
-using NewHabitTracker.Server.Miscellaneous.Interfaces;
+using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
 
 namespace Persistence.UserAccount.Implementations {
     public class AccountFactory(IDataAccessor dataAccessor) : IAccountFactory {

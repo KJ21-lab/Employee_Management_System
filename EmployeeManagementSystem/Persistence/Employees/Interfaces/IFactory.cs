@@ -5,6 +5,9 @@ using Persistence.Employees.Implementations;
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IEmployeeFactory {
 
+      public IEmployeeRecord Build(
+         Action<IEmployeeRecordProperties> configure);
+
         Task<IEnumerable<IEmployeeRecord>> ReadEmployees();
         Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID) =>
             Task.Run(() => ReadEmployeesByUIDs([employeeUID]).Result.FirstOrDefault());

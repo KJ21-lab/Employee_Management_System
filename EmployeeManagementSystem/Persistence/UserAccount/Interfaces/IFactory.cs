@@ -1,4 +1,4 @@
-﻿using NewHabitTracker.Server.Miscellaneous.Interfaces;
+﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
 
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IAccountFactory {

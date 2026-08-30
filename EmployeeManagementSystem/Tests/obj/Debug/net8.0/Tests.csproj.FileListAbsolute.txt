@@ -416,3 +416,14 @@ C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\T
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\obj\Debug\net8.0\Tests.pdb
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\obj\Debug\net8.0\Tests.genruntimeconfig.cache
 C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\obj\Debug\net8.0\ref\Tests.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\kevin\source\repos\KJ21-lab\Personal-Project\EmployeeManagementSystem\Tests\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

@@ -8,34 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 
 using Persistence.Employees.Implementations;
-
+using Tests;
 using SQLitePCL;
 
 public class DataAccessTest {
     [Fact]
     public async Task Test1() {
-        Batteries.Init();
-
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
-            .Build();
-
-        var services = new ServiceCollection();
-
-        // Register all services, from lowest to highest level dependency.
-        services.AddSingleton<IConfiguration>(configuration);
-        services.AddSingleton<DataAcessConfigSettings>();
-
-        // This is where you register all the services
-        services.AddSingleton<IDataAccessor, DataAccessor>();
-
-        // Build the service provider.
-        var serviceProvider = services.BuildServiceProvider();
-
-        var dataAccessor = serviceProvider.GetRequiredService<IDataAccessor>();
-
-        var factory = new EmployeeFactory(dataAccessor);
+     
+        var dataAccesor = new TestDataAccesor().DataAccessorGenerator();
+        
+        IEmployeeFactory factory =  new EmployeeFactory(dataAccesor);
 
         IEnumerable<IEmployeeRecord> records =
           await factory

@@ -30,7 +30,12 @@ namespace Persistence.Employees.Implementations {
          Task.Run<OperationResult>(() => {
          try {
                _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
-                        parameters: new { record.EmployeeUID, record.Name, record.JobTitle, record.HireDate, record.EmployeeID } );
+                        parameters: new 
+                        { EMPLOYEE_UID      = record.EmployeeUID,
+                          EMPLOYEE_Name     = record.Name,
+                          EMPLOYEE_JobTitle = record.JobTitle,
+                          EMPLOYEE_HireDate = record.HireDate,
+                          EMPLOYEE_ID       = record.EmployeeID } );
                return new GlobalOperationResult();
             } catch (Exception ex) {
                return new GlobalOperationResult($"Employee Insert Failed. { ex.Message } ");
@@ -53,14 +58,16 @@ namespace Persistence.Employees.Implementations {
         private void _execute(
            string sqlQuery,
             object? parameters = null) {
+         var connection = dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection();
          dataAccessor
         .InternalStorageCaller().QueryExecutor()
         .NonQueryProcedure(
           sqlQuery: sqlQuery,
           parameters: parameters,
           connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+         Console.WriteLine("");
       }
-    }
+   }
 }
 
 

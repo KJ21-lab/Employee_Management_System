@@ -14,7 +14,7 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 
-        Task<OperationResult> Insert(IEmployeeRecord record);
+        Task<OperationResult> Upsert(IEmployeeRecord record);
     }
 
     public interface IEmployeeRecord : IEmployeeRecordProperties {

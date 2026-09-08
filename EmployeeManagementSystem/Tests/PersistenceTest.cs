@@ -9,7 +9,7 @@ namespace Tests;
 public class PersistenceTest()
 {
    [Theory]
-   [InlineData( "Bob", "Developer",  "2026-12-25", 1)]
+   [InlineData( "John", "Developer",  "2026-12-25", 1)]
    public async void InsertingEmployee(
        string test_name, 
        string test_jobTitle, 
@@ -30,7 +30,7 @@ public class PersistenceTest()
            configure.EmployeeID = test_id;
         });
 
-       await factory.Insert(record);
+       await factory.Upsert(record);
 
         
        return; 

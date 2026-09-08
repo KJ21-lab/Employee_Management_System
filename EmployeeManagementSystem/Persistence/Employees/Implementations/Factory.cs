@@ -23,7 +23,7 @@ namespace Persistence.Employees.Implementations {
         public Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
             Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees));
 
-        public Task<OperationResult> Insert(IEmployeeRecord record) =>
+        public Task<OperationResult> Upsert(IEmployeeRecord record) =>
          Task.Run<OperationResult>(() => {
          try {
                _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
@@ -62,7 +62,6 @@ namespace Persistence.Employees.Implementations {
           sqlQuery: sqlQuery,
           parameters: parameters,
           connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
-         Console.WriteLine("");
       }
    }
 }

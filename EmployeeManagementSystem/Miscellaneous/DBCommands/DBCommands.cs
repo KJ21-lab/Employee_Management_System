@@ -6,7 +6,12 @@
             public const string ReadEmployeesByUIDs = @"SELECT * FROM EmployeeRecord WHERE TRIM(EMPLOYEE_ID) IN(@EMPLOYEE_UID)";
             public const string InsertEmployees =
                @"INSERT INTO EmployeeRecord (EMPLOYEE_UID, EMPLOYEE_Name, EMPLOYEE_JobTitle, EMPLOYEE_HireDate, EMPLOYEE_ID)" +
-               "VALUES (@EMPLOYEE_UID, @EMPLOYEE_Name, @EMPLOYEE_JobTitle, @EMPLOYEE_HireDate, @EMPLOYEE_ID)";
+               "VALUES (@EMPLOYEE_UID, @EMPLOYEE_Name, @EMPLOYEE_JobTitle, @EMPLOYEE_HireDate, @EMPLOYEE_ID)" +
+               "ON CONFLICT(EMPLOYEE_UID) DO UPDATE SET "  +
+               "EMPLOYEE_Name     = @EMPLOYEE_Name, "     +
+               "EMPLOYEE_JobTitle = @EMPLOYEE_JobTitle, " +
+               "EMPLOYEE_HireDate = @EMPLOYEE_HireDate, " +
+               "EMPLOYEE_ID       = @EMPLOYEE_ID;";
          }
 
          public static class AccountsQueries {

@@ -44,22 +44,27 @@ public class EmployeeController : BaseApiController {
          return StatusCode(500, ex.Message);
       }
    }
-   [HttpPost]
-   [Route("api/Employee/CreateEmployee")]
-   public async Task<IActionResult> CreateEmployee(Guid employeeUID) {
-      try {
+   //[HttpPost]
+   //[Route("api/Employee/CreateEmployee")]
+   //public async Task<IActionResult> CreateEmployee(CreateEmployeeRequestModel model) {
+   //   try {
 
-         IEmployeeEntity? employees =
-             await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Reader()
-             .Read(employeeUID);
+   //      //await _businessRulesInjector
+   //      //   .EmployeeBusinessRules()
+            
 
-         return Ok(employees);
-      } catch (Exception ex) {
-         return StatusCode(500, ex.Message);
-      }
-   }
+
+
+   //      //await _businessRulesInjector
+   //      //    .EmployeeBusinessRules()
+   //      //    .Writer()
+   //      //    .Upsert(model);
+
+   //      //return Ok();
+   //   } catch (Exception ex) {
+   //      return StatusCode(500, ex.Message);
+   //   }
+   //}
 
    public class CreateEmployeeRequestModel {
       public string employee_uid         { get; set; }

@@ -1,3 +1,5 @@
+using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+
 namespace BusinessRules.Employees.Interfaces {
     public interface IEmployeeBusinessRules {
 
@@ -20,11 +22,10 @@ namespace BusinessRules.Employees.Interfaces {
         Task<IEnumerable<IEmployeeEntity>> ReadAll();
         Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUids);
         Task<IEmployeeEntity?> Read(Guid employeeUID) =>
-         Task.Run(() => Read([employeeUID]).Result.FirstOrDefault());
+        Task.Run(() => Read([employeeUID]).Result.FirstOrDefault());
     }
 
     public interface IEmployeeEntityWriter {
-
-
-    }
+      Task<OperationResult> Upsert(IEmployeeEntity entity);
+   }
 }

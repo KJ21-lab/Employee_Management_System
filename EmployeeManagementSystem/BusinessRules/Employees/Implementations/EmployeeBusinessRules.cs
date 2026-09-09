@@ -7,6 +7,6 @@ namespace BusinessRules.Employees.Implementations {
     public class EmployeeBusinessRules(IEmployeeFactory employeeFactory) : IEmployeeBusinessRules {
 
         public IEmployeeEntityReader Reader() => new EmployeeReader(employeeFactory);
-        public IEmployeeEntityWriter Writer() => throw new NotImplementedException();
+        public IEmployeeEntityWriter Writer() => new EmployeeWriter(employeeFactory);
     }
 }

@@ -22,9 +22,9 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
     }
 
     public interface IEmployeeRecordProperties {
-        string Name { get; set; }
-        string JobTitle { get; set; }
-        DateTime HireDate { get; set; }
+       string Name { get; set; }
+       string JobTitle { get; set; }
+       DateTime HireDate { get; set; }
        int EmployeeID { get; set; }
    }
 }

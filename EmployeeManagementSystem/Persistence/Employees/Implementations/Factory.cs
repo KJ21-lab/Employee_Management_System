@@ -24,20 +24,20 @@ namespace Persistence.Employees.Implementations {
             Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees));
 
         public Task<OperationResult> Upsert(IEmployeeRecord record) =>
-         Task.Run<OperationResult>(() => {
-         try {
-               _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
-                        parameters: new 
-                        { EMPLOYEE_UID      = record.EmployeeUID,
-                          EMPLOYEE_Name     = record.Name,
-                          EMPLOYEE_JobTitle = record.JobTitle,
-                          EMPLOYEE_HireDate = record.HireDate,
-                          EMPLOYEE_ID       = record.EmployeeID } );
-               return new GlobalOperationResult();
-            } catch (Exception ex) {
-               return new GlobalOperationResult($"Employee Insert Failed. { ex.Message } ");
-           }
-         });
+            Task.Run<OperationResult>(() => {
+               try {
+                  _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
+                           parameters: new 
+                           { EMPLOYEE_UID      = record.EmployeeUID,
+                             EMPLOYEE_Name     = record.Name,
+                             EMPLOYEE_JobTitle = record.JobTitle,
+                             EMPLOYEE_HireDate = record.HireDate,
+                             EMPLOYEE_ID       = record.EmployeeID } );
+                  return new GlobalOperationResult();
+               } catch (Exception ex) {
+                  return new GlobalOperationResult($"Employee Insert Failed. { ex.Message } ");
+               }
+        });
 
 
         private IEnumerable<IEmployeeRecord> _read(

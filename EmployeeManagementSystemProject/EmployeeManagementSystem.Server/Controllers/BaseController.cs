@@ -12,4 +12,6 @@ public abstract class BaseApiController : ControllerBase {
         _businessRulesInjector = businessRulesInjector;
         _configuration = configuration;
     }
+
+   protected IActionResult ServerError(string message) => StatusCode(500, message);
 }

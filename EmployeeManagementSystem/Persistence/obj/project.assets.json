@@ -713,7 +713,10 @@
         },
         "runtime": {
           "bin/placeholder/Miscellaneous.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },

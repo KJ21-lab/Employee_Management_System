@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9z6unAjAcAk=",
+  "dgSpecHash": "4J/LcwP0Mn0=",
   "success": true,
   "projectFilePath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystemProject\\EmployeeManagementSystem.Server\\EmployeeMangementSystem.Server.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.26\\microsoft.aspnetcore.authentication.jwtbearer.8.0.26.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\10.0.1\\microsoft.aspnetcore.cryptography.internal.10.0.1.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\10.0.1\\microsoft.aspnetcore.cryptography.keyderivation.10.0.1.nupkg.sha512",
-    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.26\\microsoft.aspnetcore.spaproxy.8.0.26.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.31\\microsoft.aspnetcore.spaproxy.8.0.31.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.bcl.cryptography\\8.0.0\\microsoft.bcl.cryptography.8.0.0.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.data.sqlclient\\6.1.1\\microsoft.data.sqlclient.6.1.1.nupkg.sha512",

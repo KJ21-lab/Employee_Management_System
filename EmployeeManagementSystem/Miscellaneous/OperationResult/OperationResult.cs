@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagementSystem.Server.Miscellaneous.Interfaces {
+﻿namespace Miscellaneous.OperationResult {
     public interface OperationResult {
         bool IsSuccess { get; }
 

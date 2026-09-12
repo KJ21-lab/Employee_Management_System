@@ -3,8 +3,7 @@
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
 using Miscellaneous.DBCommands;
-
-using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+using Miscellaneous.OperationResult;
 
 namespace Persistence.UserAccount.Implementations {
     public class AccountFactory(IDataAccessor dataAccessor) : IAccountFactory {

@@ -103,7 +103,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.26": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.31": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -1203,7 +1203,10 @@
         },
         "runtime": {
           "bin/placeholder/Miscellaneous.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Persistence/1.0.0": {
         "type": "project",
@@ -1334,10 +1337,10 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.26": {
-      "sha512": "W/G2DtEUCuXKMgy/OtWhxhmfWe0c087zUk+f4riOttIJzvyrc0X0U2Sf1sPWiN3Nu0n5EW3rX9ANhF94XgPPdQ==",
+    "Microsoft.AspNetCore.SpaProxy/8.0.31": {
+      "sha512": "o9hbbmoRGgTrt2cznRI52qYCizDA1iSWExnZsrRDQQmvEls11374zv63Sw6ASlfOPlzBD4zeSrIRr5eGrEK6pg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.26",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.31",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1345,7 +1348,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.8.0.26.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.8.0.31.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -3123,6 +3126,7 @@
       "DependencyInjectors >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.26",
       "Microsoft.AspNetCore.SpaProxy >= 8.*-*",
+      "Miscellaneous >= 1.0.0",
       "SQLitePCLRaw.bundle_e_sqlite3 >= 3.0.2",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
@@ -3167,6 +3171,9 @@
             },
             "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\DependencyInjector\\DependencyInjectors.csproj": {
               "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\DependencyInjector\\DependencyInjectors.csproj"
+            },
+            "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\Miscellaneous\\Miscellaneous.csproj": {
+              "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\Miscellaneous\\Miscellaneous.csproj"
             }
           }
         }

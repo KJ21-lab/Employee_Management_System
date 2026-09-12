@@ -24,7 +24,7 @@ public class EmployeeController : BaseApiController {
 
          return Ok(employees);
       } catch (Exception ex) {
-         return StatusCode(500, ex.Message);
+         return ServerError(ex.Message);
       }
    }
 
@@ -41,37 +41,38 @@ public class EmployeeController : BaseApiController {
 
          return Ok(employees);
       } catch (Exception ex) {
-         return StatusCode(500, ex.Message);
+         return ServerError(ex.Message);
       }
    }
-   //[HttpPost]
-   //[Route("api/Employee/CreateEmployee")]
-   //public async Task<IActionResult> CreateEmployee(CreateEmployeeRequestModel model) {
-   //   try {
+   [HttpPost]
+   [Route("api/Employee/CreateEmployee")]
+   public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeRequestModel model) {
+      try {
 
-   //      //await _businessRulesInjector
-   //      //   .EmployeeBusinessRules()
-            
+         await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Writer()
+             .Upsert((config) => {
+                config.Name       = model.employee_name;
+                config.JobTitle   = model.employee_job_title;
+                config.HireDate   = DateTime.Parse(model.employee_hire_date);
+                config.EmployeeID = int.Parse(model.employee_id);
+             });
 
-
-
-   //      //await _businessRulesInjector
-   //      //    .EmployeeBusinessRules()
-   //      //    .Writer()
-   //      //    .Upsert(model);
-
-   //      //return Ok();
-   //   } catch (Exception ex) {
-   //      return StatusCode(500, ex.Message);
-   //   }
-   //}
+         return Ok();
+      } catch (Exception ex) {
+         return ServerError(ex.Message);
+      }
+   }
 
    public class CreateEmployeeRequestModel {
-      public string employee_uid         { get; set; }
-      public string employee_name        { get; set; }
-      public string employee_job_title   { get; set; }
-      public string employee_hire_date   { get; set; }
-      public string employee_employee_id { get; set; }
+      public string employee_name       { get; set; } = string.Empty;
+
+      public string employee_job_title { get; set; } = string.Empty;
+      
+      public string employee_hire_date { get; set; } = string.Empty;
+      
+      public string employee_id        { get; set; } = string.Empty;
    }
 
 }

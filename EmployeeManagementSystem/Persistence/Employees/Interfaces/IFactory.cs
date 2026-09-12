@@ -1,6 +1,4 @@
-﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
-
-using Persistence.Employees.Implementations;
+﻿using Miscellaneous.OperationResult;
 
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IEmployeeFactory {

@@ -1,6 +1,4 @@
-﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
-
-namespace EmployeeManagementSystem.Server.Miscellaneous.Implementations {
+﻿namespace Miscellaneous.OperationResult {
     public class GlobalOperationResult : OperationResult {
 
         public GlobalOperationResult(string message) {

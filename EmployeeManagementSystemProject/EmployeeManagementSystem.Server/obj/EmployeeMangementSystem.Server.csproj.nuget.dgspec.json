@@ -40,6 +40,9 @@
               },
               "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\DependencyInjector\\DependencyInjectors.csproj": {
                 "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\DependencyInjector\\DependencyInjectors.csproj"
+              },
+              "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\Miscellaneous\\Miscellaneous.csproj": {
+                "projectPath": "C:\\Users\\kevin\\source\\repos\\KJ21-lab\\Personal-Project\\EmployeeManagementSystem\\Miscellaneous\\Miscellaneous.csproj"
               }
             }
           }
@@ -384,6 +387,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

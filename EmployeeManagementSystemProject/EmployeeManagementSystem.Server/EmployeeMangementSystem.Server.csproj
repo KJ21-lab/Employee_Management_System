@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <SpaRoot>..\newhabittracker.client</SpaRoot>
+    <SpaRoot>..\employeemanagementsystem.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:50571</SpaProxyServerUrl>
   </PropertyGroup>
@@ -21,10 +21,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\EmployeeManagementSystem\BusinessRules\BusinessRules.csproj" />
     <ProjectReference Include="..\..\EmployeeManagementSystem\DataAccessor\DataAccess.csproj" />
-    <ProjectReference Include="..\..\EmployeeManagementSystemProject\newhabittracker.client\employeeManagementSystem.client.esproj">
+    <ProjectReference Include="..\..\EmployeeManagementSystemProject\employeemanagementsystem.client\employeeManagementSystem.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\EmployeeManagementSystem\DependencyInjector\DependencyInjectors.csproj" />
+    <ProjectReference Include="..\..\EmployeeManagementSystem\Miscellaneous\Miscellaneous.csproj" />
   </ItemGroup>
 
 </Project>

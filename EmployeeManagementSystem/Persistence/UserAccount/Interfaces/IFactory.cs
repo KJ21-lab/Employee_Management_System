@@ -1,4 +1,4 @@
-﻿using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+﻿using Miscellaneous.OperationResult;
 
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IAccountFactory {

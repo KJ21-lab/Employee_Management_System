@@ -1,4 +1,4 @@
-using EmployeeManagementSystem.Server.Miscellaneous.Interfaces;
+using Miscellaneous.OperationResult;
 
 namespace BusinessRules.Employees.Interfaces {
     public interface IEmployeeBusinessRules {
@@ -26,6 +26,6 @@ namespace BusinessRules.Employees.Interfaces {
     }
 
     public interface IEmployeeEntityWriter {
-      Task<OperationResult> Upsert(IEmployeeEntity entity);
+      Task<OperationResult> Upsert(Action<IEmployeeEntityProperties> config);
    }
 }

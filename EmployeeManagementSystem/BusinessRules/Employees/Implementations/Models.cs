@@ -20,4 +20,12 @@ namespace BusinessRules.Employees.Implementations {
         public DateTime HireDate { get; set; }
         public int EmployeeID { get; set; } = 0;
     }
+    public class EmployeeEntityProperties : IEmployeeEntityProperties {
+        public EmployeeEntityProperties() { }
+
+        public string Name { get; set; } = string.Empty;
+        public string JobTitle { get; set; } = string.Empty;
+        public DateTime HireDate { get; set; }
+        public int EmployeeID { get; set; } = 0;
+    }
 }

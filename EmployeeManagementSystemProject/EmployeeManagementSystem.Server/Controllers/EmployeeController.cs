@@ -44,9 +44,10 @@ public class EmployeeController : BaseApiController {
          return ServerError(ex.Message);
       }
    }
+
    [HttpPost]
    [Route("api/Employee/CreateEmployee")]
-   public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeRequestModel model) {
+   public async Task<IActionResult> CreateEmployee([FromBody] UpsertEmployeeRequestModel model) {
       try {
 
          await _businessRulesInjector
@@ -65,7 +66,28 @@ public class EmployeeController : BaseApiController {
       }
    }
 
-   public class CreateEmployeeRequestModel {
+   [HttpPut]
+   [Route("api/Employee/UpdateEmployee")]
+   public async Task<IActionResult> UpdateEmployee([FromBody] UpsertEmployeeRequestModel model) {
+      try {
+
+         await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Writer()
+             .Upsert((config) => {
+                config.Name       = model.employee_name;
+                config.JobTitle   = model.employee_job_title;
+                config.HireDate   = DateTime.Parse(model.employee_hire_date);
+                config.EmployeeID = int.Parse(model.employee_id);
+             });
+
+         return Ok();
+      } catch (Exception ex) {
+         return ServerError(ex.Message);
+      }
+   }
+
+   public class UpsertEmployeeRequestModel {
       public string employee_name       { get; set; } = string.Empty;
 
       public string employee_job_title { get; set; } = string.Empty;

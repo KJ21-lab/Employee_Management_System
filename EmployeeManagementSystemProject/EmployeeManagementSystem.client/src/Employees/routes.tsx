@@ -13,7 +13,7 @@ export const employeeApi = createApi({
          query: () => `Employee/GetEmployees`,
          providesTags: ['Employees']
       }),
-      createEmployees: build.mutation<void, Employee>({
+      createEmployee: build.mutation<void, Employee>({
          query: (newEmployee) => ({
             url: 'Employee/CreateEmployee',
             method: 'POST',
@@ -25,6 +25,19 @@ export const employeeApi = createApi({
             },
          }),
          invalidatesTags: ['Employees']
+      }),
+      updateEmployee: build.mutation<void, Employee>({
+         query: (updatedEmployee) => ({
+            url: 'Employee/UpdateEmployee',
+            method: 'PUT',
+            body: {
+               employee_name: updatedEmployee.name,
+               employee_job_title: updatedEmployee.jobTitle,
+               employee_hire_date: updatedEmployee.hireDate,
+               employee_id: String(updatedEmployee.employeeID),
+            },
+         }),
+         invalidatesTags: ['Employees']
       })
    }),
 })
@@ -33,4 +46,5 @@ export const employeeApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
    useGetEmployeesQuery,
-   useCreateEmployeesMutation } = employeeApi
+   useCreateEmployeeMutation,
+   useUpdateEmployeeMutation} = employeeApi

@@ -1,4 +1,4 @@
-import { useCreateEmployeesMutation, useGetEmployeesQuery } from './routes';
+import { useCreateEmployeeMutation, useGetEmployeesQuery } from './routes';
 //import { DataGrid, GridRowModes, ToolbarButton, type GridColDef, type GridRowModesModel, type GridRowsProp, type GridSlotProps, type GridSlots } from '@mui/x-data-grid';
 import DataGrid, { Column, Editing, FilterRow } from 'devextreme-react/data-grid';
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ import notify from 'devextreme/ui/notify';
 export const EmployeeIndex = () => {
 
    const { data: employees = [] } = useGetEmployeesQuery();
-   const [createEmployee] = useCreateEmployeesMutation();
+   const [createEmployee] = useCreateEmployeeMutation();
 
    const epmloyeeList = [...employees]
 

@@ -3,8 +3,8 @@
       public static class SQLQueries {
          public static class EmployeeQueries {
             public const string ReadEmployees = @"SELECT * FROM EmployeeRecord";
-            public const string ReadEmployeesByUIDs = @"SELECT * FROM EmployeeRecord WHERE TRIM(EMPLOYEE_ID) IN(@EMPLOYEE_UID)";
-            public const string InsertEmployees =
+            public const string ReadEmployeesByUIDs = @"SELECT * FROM EmployeeRecord WHERE EMPLOYEE_UID IN @EMPLOYEE_UIDs";
+            public const string UpsertEmployees =
                @"INSERT INTO EmployeeRecord (EMPLOYEE_UID, EMPLOYEE_Name, EMPLOYEE_JobTitle, EMPLOYEE_HireDate, EMPLOYEE_ID)" +
                "VALUES (@EMPLOYEE_UID, @EMPLOYEE_Name, @EMPLOYEE_JobTitle, @EMPLOYEE_HireDate, @EMPLOYEE_ID)" +
                "ON CONFLICT(EMPLOYEE_UID) DO UPDATE SET "  +

@@ -26,6 +26,8 @@ namespace BusinessRules.Employees.Interfaces {
     }
 
     public interface IEmployeeEntityWriter {
-      Task<OperationResult> Upsert(Action<IEmployeeEntityProperties> config);
+      Task<OperationResult> UpsertEmployee(Action<IEmployeeEntityProperties> config);
+      Task<OperationResult> UpsertEmployee(Guid employeeUID, 
+         Action<IEmployeeEntityProperties> config);
    }
 }

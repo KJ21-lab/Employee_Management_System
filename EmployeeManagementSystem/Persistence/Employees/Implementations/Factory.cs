@@ -5,6 +5,8 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 using Miscellaneous.DBCommands;
 using Miscellaneous.OperationResult;
 
+using System.Text.Json;
+
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IDataAccessor dataAccessor) : IEmployeeFactory {
 
@@ -17,7 +19,7 @@ namespace Persistence.Employees.Implementations {
 
         public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs) =>
            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
-                                parameters: new { EmployeeUIDs = employeeUIDs }));
+                                parameters: new { EMPLOYEE_UIDs = employeeUIDs }));
 
         public Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
             Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees));
@@ -25,7 +27,7 @@ namespace Persistence.Employees.Implementations {
         public Task<OperationResult> Upsert(IEmployeeRecord record) =>
             Task.Run<OperationResult>(() => {
                try {
-                  _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.InsertEmployees,
+                  _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.UpsertEmployees,
                            parameters: new 
                            { EMPLOYEE_UID      = record.EmployeeUID,
                              EMPLOYEE_Name     = record.Name,
@@ -34,12 +36,11 @@ namespace Persistence.Employees.Implementations {
                              EMPLOYEE_ID       = record.EmployeeID } );
                   return new GlobalOperationResult();
                } catch (Exception ex) {
-                  return new GlobalOperationResult($"Employee Insert Failed. { ex.Message } ");
+                  return new GlobalOperationResult($"Employee Upsert Failed. { ex.Message } ");
                }
         });
 
-
-        private IEnumerable<IEmployeeRecord> _read(
+      private IEnumerable<IEmployeeRecord> _read(
             string sqlQuery,
             object? parameters = null) =>
         dataAccessor

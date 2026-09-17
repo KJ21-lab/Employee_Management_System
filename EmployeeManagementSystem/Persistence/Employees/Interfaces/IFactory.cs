@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
         Task<OperationResult> Upsert(IEmployeeRecord record);
     }
 
-    public interface IEmployeeRecord : IEmployeeRecordProperties {
+   public interface IEmployeeRecord : IEmployeeRecordProperties {
         Guid EmployeeUID { get; }
     }
 

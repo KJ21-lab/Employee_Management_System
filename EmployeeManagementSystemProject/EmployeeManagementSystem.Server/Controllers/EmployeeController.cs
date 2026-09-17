@@ -53,7 +53,7 @@ public class EmployeeController : BaseApiController {
          await _businessRulesInjector
              .EmployeeBusinessRules()
              .Writer()
-             .Upsert((config) => {
+             .UpsertEmployee((config) => {
                 config.Name       = model.employee_name;
                 config.JobTitle   = model.employee_job_title;
                 config.HireDate   = DateTime.Parse(model.employee_hire_date);
@@ -74,11 +74,13 @@ public class EmployeeController : BaseApiController {
          await _businessRulesInjector
              .EmployeeBusinessRules()
              .Writer()
-             .Upsert((config) => {
-                config.Name       = model.employee_name;
-                config.JobTitle   = model.employee_job_title;
-                config.HireDate   = DateTime.Parse(model.employee_hire_date);
-                config.EmployeeID = int.Parse(model.employee_id);
+             .UpsertEmployee(
+                 employeeUID: Guid.Parse(model.employee_uid),
+                 (config) => {
+                     config.Name       = model.employee_name;
+                     config.JobTitle   = model.employee_job_title;
+                     config.HireDate   = DateTime.Parse(model.employee_hire_date);
+                     config.EmployeeID = int.Parse(model.employee_id);
              });
 
          return Ok();
@@ -88,6 +90,7 @@ public class EmployeeController : BaseApiController {
    }
 
    public class UpsertEmployeeRequestModel {
+      public string employee_uid        { get; set; } = string.Empty;
       public string employee_name       { get; set; } = string.Empty;
 
       public string employee_job_title { get; set; } = string.Empty;

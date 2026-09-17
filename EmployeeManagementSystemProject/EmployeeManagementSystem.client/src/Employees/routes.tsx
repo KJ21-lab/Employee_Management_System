@@ -11,7 +11,13 @@ export const employeeApi = createApi({
    endpoints: (build) => ({
       getEmployees: build.query<Employee[], void>({
          query: () => `Employee/GetEmployees`,
-         providesTags: ['Employees']
+         providesTags: (result) =>
+            result
+               ? [
+                  ...result.map(({ employeeUID }) => ({ type: 'Employees' as const, employeeUID })),
+               { type: 'Employees', id: 'LIST' },
+            ]
+               : [{ type: 'Employees', id: 'LIST' }]
       }),
       createEmployee: build.mutation<void, Employee>({
          query: (newEmployee) => ({
@@ -24,20 +30,24 @@ export const employeeApi = createApi({
                employee_id: String(newEmployee.employeeID),
             },
          }),
-         invalidatesTags: ['Employees']
+         invalidatesTags: [{ type: 'Employees', id: 'LIST' }]
       }),
       updateEmployee: build.mutation<void, Employee>({
          query: (updatedEmployee) => ({
             url: 'Employee/UpdateEmployee',
             method: 'PUT',
             body: {
+               employee_uid: updatedEmployee.employeeUID,
                employee_name: updatedEmployee.name,
                employee_job_title: updatedEmployee.jobTitle,
                employee_hire_date: updatedEmployee.hireDate,
                employee_id: String(updatedEmployee.employeeID),
             },
          }),
-         invalidatesTags: ['Employees']
+         invalidatesTags: (result, error, updatedEmployee) => [
+            { type: 'Employees', id: updatedEmployee.employeeUID },
+            'Employees',
+         ],
       })
    }),
 })

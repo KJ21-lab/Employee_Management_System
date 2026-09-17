@@ -3,7 +3,7 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 namespace Persistence.Employees.Implementations {
     public class EmployeeRecord : IEmployeeRecord {
         public EmployeeRecord() {
-            EmployeeUID = Guid.Parse("2F7264CB-7701-40DE-B368-5EDF01E73167"); //Guid.NewGuid();
+            EmployeeUID = Guid.NewGuid();
         }
 
         public EmployeeRecord(EmployeeRecord_DbModel dbModel) {

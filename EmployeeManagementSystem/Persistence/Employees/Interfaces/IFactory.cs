@@ -13,6 +13,8 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
         Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 
         Task<OperationResult> Upsert(IEmployeeRecord record);
+        Task<OperationResult> DeleteEmployee(Guid employeeUID) => DeleteEmployees([employeeUID]);
+        Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs);
     }
 
    public interface IEmployeeRecord : IEmployeeRecordProperties {

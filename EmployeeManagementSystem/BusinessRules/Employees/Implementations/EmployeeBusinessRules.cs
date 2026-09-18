@@ -8,5 +8,6 @@ namespace BusinessRules.Employees.Implementations {
 
         public IEmployeeEntityReader Reader() => new EmployeeReader(employeeFactory);
         public IEmployeeEntityWriter Writer() => new EmployeeWriter(employeeFactory);
+        public IEmployeeEntityDeleter Deleter() => new EmployeeDeleter(employeeFactory);
     }
 }

@@ -12,6 +12,8 @@
                "EMPLOYEE_JobTitle = @EMPLOYEE_JobTitle, " +
                "EMPLOYEE_HireDate = @EMPLOYEE_HireDate, " +
                "EMPLOYEE_ID       = @EMPLOYEE_ID;";
+            public const string DeleteEmployees = @"DELETE FROM EmployeeRecord WHERE EMPLOYEE_UID IN @EMPLOYEE_UIDs";
+
          }
 
          public static class AccountsQueries {

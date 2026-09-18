@@ -88,16 +88,37 @@ public class EmployeeController : BaseApiController {
          return ServerError(ex.Message);
       }
    }
-
    public class UpsertEmployeeRequestModel {
-      public string employee_uid        { get; set; } = string.Empty;
-      public string employee_name       { get; set; } = string.Empty;
+      public string employee_uid { get; set; } = string.Empty;
+      public string employee_name { get; set; } = string.Empty;
 
       public string employee_job_title { get; set; } = string.Empty;
-      
+
       public string employee_hire_date { get; set; } = string.Empty;
-      
-      public string employee_id        { get; set; } = string.Empty;
+
+      public string employee_id { get; set; } = string.Empty;
    }
+
+   [HttpDelete]
+   [Route("api/Employee/DeleteEmployee")]
+   public async Task<IActionResult> DeleteEmployee([FromBody] string employee_uid) {
+      try {
+
+         await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Deleter()
+             .DeleteEmployee(Guid.Parse(employee_uid));
+
+         return Ok();
+      } catch (Exception ex) {
+         return ServerError(ex.Message);
+      }
+   }
+
+   public class DeleteEmployeeRequestModel {
+      public string employee_uid { get; set; } = string.Empty;
+   }
+
+
 
 }

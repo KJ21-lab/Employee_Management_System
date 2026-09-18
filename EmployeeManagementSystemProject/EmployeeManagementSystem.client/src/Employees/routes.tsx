@@ -16,7 +16,7 @@ export const employeeApi = createApi({
                ? [
                   ...result.map(({ employeeUID }) => ({ type: 'Employees' as const, employeeUID })),
                { type: 'Employees', id: 'LIST' },
-            ]
+                 ]
                : [{ type: 'Employees', id: 'LIST' }]
       }),
       createEmployee: build.mutation<void, Employee>({
@@ -48,7 +48,18 @@ export const employeeApi = createApi({
             { type: 'Employees', id: updatedEmployee.employeeUID },
             'Employees',
          ],
-      })
+      }),
+       deleteEmployee: build.mutation<void, string>({
+          query: (employeeUid) => ({
+             url: 'Employee/DeleteEmployee',
+             method: 'DELETE',
+             body: employeeUid,
+          }),
+          invalidatesTags: (result, error, employeeUid) => [
+             { type: 'Employees', id: employeeUid },
+             { type: 'Employees', id: 'LIST' }
+          ],
+       }),
    }),
 })
 

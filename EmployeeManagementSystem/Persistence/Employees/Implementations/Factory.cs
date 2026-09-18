@@ -36,9 +36,23 @@ namespace Persistence.Employees.Implementations {
                              EMPLOYEE_ID       = record.EmployeeID } );
                   return new GlobalOperationResult();
                } catch (Exception ex) {
-                  return new GlobalOperationResult($"Employee Upsert Failed. { ex.Message } ");
+                  return new GlobalOperationResult($"Employee upsert Failed. { ex.Message } ");
                }
         });
+
+      public Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs) =>
+         Task.Run<OperationResult>(() => {
+            try {
+               _execute(
+                  sqlQuery: DBCommands.SQLQueries.EmployeeQueries.DeleteEmployees,
+                  parameters: new { EMPLOYEE_UIDs = employeeUIDs });
+               
+               return new GlobalOperationResult();
+            } catch ( Exception ex ) {
+               return new GlobalOperationResult($"Employee deletion Failed. {ex.Message}");
+            }
+         });
+
 
       private IEnumerable<IEmployeeRecord> _read(
             string sqlQuery,

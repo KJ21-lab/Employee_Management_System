@@ -5,6 +5,7 @@ namespace BusinessRules.Employees.Interfaces {
 
         IEmployeeEntityReader Reader();
         IEmployeeEntityWriter Writer();
+        IEmployeeEntityDeleter Deleter();
     }
 
     public interface IEmployeeEntity : IEmployeeEntityProperties  {
@@ -29,5 +30,10 @@ namespace BusinessRules.Employees.Interfaces {
       Task<OperationResult> UpsertEmployee(Action<IEmployeeEntityProperties> config);
       Task<OperationResult> UpsertEmployee(Guid employeeUID, 
          Action<IEmployeeEntityProperties> config);
+   }
+
+    public interface IEmployeeEntityDeleter {
+      Task<OperationResult> DeleteEmployee(Guid employeeGuid) => DeleteEmployees([employeeGuid]);
+      Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeGuids);
    }
 }

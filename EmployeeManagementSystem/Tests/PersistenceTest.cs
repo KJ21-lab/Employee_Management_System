@@ -35,4 +35,19 @@ public class PersistenceTest()
         
        return; 
    }
+
+   [Fact]
+   public async void DeleteEmployee()
+   {
+
+      var dataAccesor = new TestDataAccesor().DataAccessorGenerator();
+
+      IEmployeeFactory factory = new EmployeeFactory(dataAccesor);
+
+      await 
+         factory.
+         DeleteEmployee(Guid.Parse("2F7264CB-7701-40DE-B368-5EDF01E73167"));
+        
+       return; 
+   }
 }

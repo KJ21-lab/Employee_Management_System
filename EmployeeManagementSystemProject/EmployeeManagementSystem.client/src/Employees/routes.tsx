@@ -50,10 +50,9 @@ export const employeeApi = createApi({
          ],
       }),
        deleteEmployee: build.mutation<void, string>({
-          query: (employeeUid) => ({
-             url: 'Employee/DeleteEmployee',
+          query: (employee_uid) => ({
+             url: `Employee/DeleteEmployee/${employee_uid}`,
              method: 'DELETE',
-             body: employeeUid,
           }),
           invalidatesTags: (result, error, employeeUid) => [
              { type: 'Employees', id: employeeUid },
@@ -68,4 +67,5 @@ export const employeeApi = createApi({
 export const {
    useGetEmployeesQuery,
    useCreateEmployeeMutation,
-   useUpdateEmployeeMutation} = employeeApi
+   useUpdateEmployeeMutation,
+   useDeleteEmployeeMutation } = employeeApi

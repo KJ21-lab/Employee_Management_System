@@ -100,8 +100,8 @@ public class EmployeeController : BaseApiController {
    }
 
    [HttpDelete]
-   [Route("api/Employee/DeleteEmployee")]
-   public async Task<IActionResult> DeleteEmployee([FromBody] string employee_uid) {
+   [Route("api/Employee/DeleteEmployee/{employee_uid}")]
+   public async Task<IActionResult> DeleteEmployee([FromRoute] string employee_uid) {
       try {
 
          await _businessRulesInjector

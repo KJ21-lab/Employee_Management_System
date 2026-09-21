@@ -8,11 +8,14 @@ import { Link, Outlet } from 'react-router-dom';
 export const Layout = () => {
 
    return (
-      <Box style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-        
-
-         <Stack direction="row" spacing={0} sx={{ flex: 1 }}>
-            <Card sx={{ width: '13%', height: '100%' }}>
+      <Box style={{
+         display: 'flex',
+         justifyContent: 'flex-start',
+         height: '100vh',
+         //border: "8px solid black"
+      }}>
+         <Stack direction="column"  width="15%">
+            <Card sx={{ width: '100%', height: '100%' }}>
                <CardContent sx={{ height: '100%', width: '100%', backgroundColor: '#000033' }}>
                   <List sx={{ mt: 2 }}>
 
@@ -55,11 +58,8 @@ export const Layout = () => {
                   </List>
                </CardContent>
             </Card>
-
-            <Box className='background-box' sx={{ display: 'flex', flexDirection: 'column' }}>
-               <Outlet />
-            </Box>
          </Stack>
+         <Outlet />
       </Box>
 
    )

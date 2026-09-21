@@ -1,12 +1,13 @@
 import { useCreateEmployeeMutation, useDeleteEmployeeMutation, useGetEmployeesQuery, useUpdateEmployeeMutation } from './routes';
 //import { DataGrid, GridRowModes, ToolbarButton, type GridColDef, type GridRowModesModel, type GridRowsProp, type GridSlotProps, type GridSlots } from '@mui/x-data-grid';
-import DataGrid, { Column, Editing, FilterRow } from 'devextreme-react/data-grid';
+import DataGrid, { Column, Editing, FilterRow, Lookup } from 'devextreme-react/data-grid';
 import Box from '@mui/material/Box';
 import './EmployeeIndex.scss'
 import { useCallback } from 'react';
 import type { RowInsertedEvent, RowRemovedEvent, RowUpdatedEvent } from 'devextreme/ui/data_grid';
 import type { Employee } from './types';
 import notify from 'devextreme/ui/notify';
+import roles from './roles';
 
 
 export const EmployeeIndex = () => {
@@ -30,7 +31,7 @@ export const EmployeeIndex = () => {
             hireDate: e.data.hireDate,
          }).unwrap();
 
-         notify("Employee created succesfully.", "sucess", 3000)
+         notify("Employee created succesfully.", "success", 3000)
       } catch (error) {
          console.log("Employee creation failed")
       }
@@ -38,6 +39,8 @@ export const EmployeeIndex = () => {
 
    const handleUpdatingEmployees = useCallback(async (e: RowUpdatedEvent<Employee>) => {
       try {
+         console.log(e.data.jobTitle)
+
          await updateEmployee({
             employeeUID: e.key ?? "",
             employeeID: e.data.employeeID,
@@ -46,7 +49,7 @@ export const EmployeeIndex = () => {
             hireDate: e.data.hireDate,
          }).unwrap();
 
-         notify("Employee updated succesfully.", "sucess", 3000)
+         notify("Employee updated succesfully.", "success", 3000)
       } catch (error) {
          console.log("Employee update failed")
       }
@@ -57,7 +60,7 @@ export const EmployeeIndex = () => {
 
          await deleteEmployee(e.key).unwrap();
 
-         notify("Employee deleted succesfully.", "sucess", 3000)
+         notify("Employee deleted succesfully.", "success", 3000)
       } catch (error) {
          console.log("Employee deletion failed")
       }
@@ -65,11 +68,13 @@ export const EmployeeIndex = () => {
 
 
    return (
-      <Box height="100vh"
-         width="85vw"
+      <Box
+         height="100vh"
+         width="100vw"
+         display="flex"
          justifyContent="flex-end"
-         alignItems="center"
-         border="8px solid black"
+         alignItems="flex-start"
+         //border="8px solid black"
          alignSelf="flex-end">
          <DataGrid
             dataSource={employeeList}
@@ -97,8 +102,10 @@ export const EmployeeIndex = () => {
                caption="Job Title"
                alignment="left"
                dataType="string"
-            />
-            <Column
+                           >
+               <Lookup dataSource={roles} displayExpr="Name" valueExpr="Name" />
+            </Column>
+               <Column
                dataField="hireDate"
                caption="Hire Date"
                alignment="left"

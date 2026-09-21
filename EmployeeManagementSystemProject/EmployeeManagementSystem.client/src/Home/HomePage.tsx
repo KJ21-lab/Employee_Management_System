@@ -13,7 +13,11 @@ const HomePage = () => {
    const { data: accountsData, isLoading: accountsLoading } = useGetAccountsQuery();
 
    return (
-      <Box className='outer-box' sx={{ pb: 5 }}>
+      <Box className='outer-box'
+            sx={{
+            pb: 5,
+            //border: "8px solid black"
+         }}>
          <AppBar position="static" elevation={0} sx={{ alignSelf: 'flex-start' }}>
             <Toolbar sx={{ backgroundColor: 'white', fontFamily: 'Roboto' }}>
                <PersonIcon sx={{ mr: 2, backgroundColor: '#3F51B5' }} />

@@ -4,10 +4,11 @@ import DataGrid, { Column, Editing, FilterRow, Lookup } from 'devextreme-react/d
 import Box from '@mui/material/Box';
 import './EmployeeIndex.scss'
 import { useCallback } from 'react';
-import type { RowInsertedEvent, RowRemovedEvent, RowUpdatedEvent } from 'devextreme/ui/data_grid';
+import type { ColumnCellTemplateData, RowInsertedEvent, RowRemovedEvent, RowUpdatedEvent } from 'devextreme/ui/data_grid';
 import type { Employee } from './types';
 import notify from 'devextreme/ui/notify';
 import roles from './roles';
+import { Link } from 'react-router-dom';
 
 
 export const EmployeeIndex = () => {
@@ -66,11 +67,14 @@ export const EmployeeIndex = () => {
       }
    }, [deleteEmployee]);
 
+   const navigateToEmployee = (e: ColumnCellTemplateData) => {
+      return <Link to={`/employee/${e.data?.employeeUID}`}>{e.value}</Link>;
+   };
 
    return (
       <Box
-         height="100vh"
-         width="100vw"
+         height="100%"
+         width="100%"
          display="flex"
          justifyContent="flex-end"
          alignItems="flex-start"
@@ -90,6 +94,7 @@ export const EmployeeIndex = () => {
                caption="Employee ID"
                alignment="left"
                dataType="string"
+               cellRender={navigateToEmployee}
             />
             <Column
                dataField="name"
@@ -101,8 +106,7 @@ export const EmployeeIndex = () => {
                dataField="jobTitle"
                caption="Job Title"
                alignment="left"
-               dataType="string"
-                           >
+               dataType="string">
                <Lookup dataSource={roles} displayExpr="Name" valueExpr="Name" />
             </Column>
                <Column

@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
                   element: <EmployeeIndex />
                },
                {
-                  //path: `${}`,
+                  path: `employee/:uid`,
                   element: <EmployeeProfile />
                }
             ]

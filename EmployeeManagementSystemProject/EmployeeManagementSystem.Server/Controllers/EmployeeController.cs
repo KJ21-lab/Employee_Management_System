@@ -21,6 +21,24 @@ public class EmployeeController : BaseApiController {
              .EmployeeBusinessRules()
              .Reader()
              .ReadAll();
+             
+
+         return Ok(employees);
+      } catch (Exception ex) {
+         return ServerError(ex.Message);
+      }
+   }
+
+   [HttpGet]
+   [Route("api/Employee/GetEmployees{employee_uid}")]
+   public async Task<IActionResult> GetEmployeess(string employee_uid) {
+      try {
+
+         IEmployeeEntity employees =
+              await _businessRulesInjector
+             .EmployeeBusinessRules()
+             .Reader()
+             .Read(Guid.Parse(employee_uid));
 
          return Ok(employees);
       } catch (Exception ex) {

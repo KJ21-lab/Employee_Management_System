@@ -22,8 +22,8 @@ namespace BusinessRules.Employees.Interfaces {
     public interface IEmployeeEntityReader {
         Task<IEnumerable<IEmployeeEntity>> ReadAll();
         Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUids);
-        Task<IEmployeeEntity?> Read(Guid employeeUID) =>
-        Task.Run(() => Read([employeeUID]).Result.FirstOrDefault());
+        Task<IEmployeeEntity> Read(Guid employeeUID) => 
+            Task.Run(() => Read([employeeUID]).Result.FirstOrDefault());
     }
 
     public interface IEmployeeEntityWriter {

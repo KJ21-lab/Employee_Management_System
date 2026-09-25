@@ -19,6 +19,13 @@ export const employeeApi = createApi({
                  ]
                : [{ type: 'Employees', id: 'LIST' }]
       }),
+      getEmployee: build.query<Employee, string>({
+         query: (employee_uid) => `Employee/GetEmployee/${employee_uid}`,
+         providesTags: (result, error, employeeUid) => [
+            { type: 'Employees', id: employeeUid },
+            { type: 'Employees', id: 'LIST' }
+         ]
+      }),
       createEmployee: build.mutation<void, Employee>({
          query: (newEmployee) => ({
             url: 'Employee/CreateEmployee',
@@ -66,6 +73,7 @@ export const employeeApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
    useGetEmployeesQuery,
+   useGetEmployeeQuery,
    useCreateEmployeeMutation,
    useUpdateEmployeeMutation,
    useDeleteEmployeeMutation } = employeeApi

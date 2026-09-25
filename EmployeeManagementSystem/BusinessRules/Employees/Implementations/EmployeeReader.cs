@@ -19,12 +19,12 @@ namespace BusinessRules.Employees.Implementations {
                 return entities;
             });
         
-      public Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUIDS) => 
+      public Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUIDs) => 
             Task.Run(() => {
 
                 IEnumerable<IEmployeeEntity> entities =
                     employeeFactory
-                    .ReadEmployeesByUIDs(employeeUIDS)
+                    .ReadEmployeesByUIDs(employeeUIDs)
                     .Result
                     .Select(e => new EmployeetEntity(e))
                     .ToList();

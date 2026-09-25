@@ -4,11 +4,11 @@ import DataGrid, { Column, Editing, FilterRow, Lookup } from 'devextreme-react/d
 import Box from '@mui/material/Box';
 import './EmployeeIndex.scss'
 import { useCallback } from 'react';
-import type { ColumnCellTemplateData, RowInsertedEvent, RowRemovedEvent, RowUpdatedEvent } from 'devextreme/ui/data_grid';
 import type { Employee } from './types';
-import notify from 'devextreme/ui/notify';
+import notify from "devextreme/ui/notify";
 import roles from './roles';
 import { Link } from 'react-router-dom';
+import type { ColumnCellTemplateData, RowInsertedEvent, RowRemovedEvent, RowUpdatedEvent } from 'devextreme/ui/data_grid_types';
 
 
 export const EmployeeIndex = () => {

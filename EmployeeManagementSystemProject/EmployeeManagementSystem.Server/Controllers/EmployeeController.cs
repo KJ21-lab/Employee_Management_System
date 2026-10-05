@@ -30,8 +30,8 @@ public class EmployeeController : BaseApiController {
    }
 
    [HttpGet]
-   [Route("api/Employee/GetEmployees{employee_uid}")]
-   public async Task<IActionResult> GetEmployeess(string employee_uid) {
+   [Route("api/Employee/GetEmployee/{employee_uid}")]
+   public async Task<IActionResult> GetEmployees(string employee_uid) {
       try {
 
          IEmployeeEntity employees =
@@ -39,23 +39,6 @@ public class EmployeeController : BaseApiController {
              .EmployeeBusinessRules()
              .Reader()
              .Read(Guid.Parse(employee_uid));
-
-         return Ok(employees);
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
-   }
-
-   [HttpGet]
-   [Route("api/Employee/GetEmployee")]
-   public async Task<IActionResult> GetEmployee(Guid employeeUID) {
-      try {
-
-         IEmployeeEntity? employees =
-             await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Reader()
-             .Read(employeeUID);
 
          return Ok(employees);
       } catch (Exception ex) {

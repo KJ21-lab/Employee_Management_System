@@ -4,86 +4,76 @@ using DataAccess.Interfaces;
 
 using System.Data;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DataAccess.Implementations {
     internal class QueryExecutor : IQueryExecutor {
 
         private readonly IDbConnection defaultConnection;
 
-        public IEnumerable<DatabaseField> QueryProcedure<DatabaseField>(
+        public async Task<IEnumerable<DatabaseField>> QueryProcedure<DatabaseField>(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "") {
             IEnumerable<DatabaseField> records =
-            _executeQueryProcedure<DatabaseField>(
+            
+            await _executeQueryProcedure<DatabaseField>(
                 sqlQuery: sqlQuery,
                 parameters: parameters,
-                connection: ref connection,
-                consoleOutput: consoleOutput)
-            .ToList();
-
-            return records;
+                connection:  connection,
+                consoleOutput: consoleOutput);
+            
+            return records.ToList();
         }
 
-        public void NonQueryProcedure(
+        public async Task NonQueryProcedure(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "") =>
-            _executeNonQueryProcedure(
+            await _executeNonQueryProcedure(
                 sqlQuery: sqlQuery,
                 parameters: parameters,
-                connection: ref connection,
+                connection: connection,
                 consoleOutput: consoleOutput);
 
-        private IEnumerable<DatabaseFields> _executeQueryProcedure<DatabaseFields>(
+        private async Task<IEnumerable<DatabaseFields>> _executeQueryProcedure<DatabaseFields>(
             string sqlQuery,
-            ref IDbConnection connection,
+            IDbConnection connection,
             string consoleOutput,
             object? parameters = null) {
-            try {
                 
-                connection ??= defaultConnection;
-                IEnumerable<DatabaseFields> databaseRecords;
-                using (connection) {
-                    connection.Open();
-                    databaseRecords = connection.Query<DatabaseFields>(
-                        sql: sqlQuery,
-                        param: parameters,
-                        commandType: CommandType.Text,
-                        commandTimeout: 0);
-                    connection.Close();
-                }
+            connection ??= defaultConnection;
+            IEnumerable<DatabaseFields> databaseRecords;
 
-                return databaseRecords;
-            } finally {
+            using (connection) {
+                connection.Open();
+                databaseRecords =  await connection.QueryAsync<DatabaseFields>(
+                    sql: sqlQuery,
+                    param: parameters,
+                    commandType: CommandType.Text,
+                    commandTimeout: 30);
                 connection.Close();
-                connection.Dispose();
             }
+
+            return databaseRecords;
         }
 
-        private void _executeNonQueryProcedure(
+        private async Task _executeNonQueryProcedure(
             string sqlQuery,
-            ref IDbConnection connection,
+            IDbConnection connection,
             string consoleOutput,
             object? parameters = null) {
-            try {
 
-                connection ??= defaultConnection;
-                using (connection) {
-                    connection.Open();
-                    connection.Execute(
-                        sql: sqlQuery,
-                        param: parameters,
-                        commandType: CommandType.Text,
-                        commandTimeout: 0);
-                    connection.Close();
-                }
-
-            } finally {
-                connection.Close();
-                connection.Dispose();
+            connection ??= defaultConnection;
+            using (connection) {
+                connection.Open();
+                await connection.ExecuteAsync(
+                    sql: sqlQuery,
+                    param: parameters,
+                    commandType: CommandType.Text,
+                    commandTimeout: 0);
             }
         }
 

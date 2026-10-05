@@ -5,15 +5,17 @@ import { useGetEmployeeQuery } from '../Employees/routes';
 
 export const EmployeeProfile = () => {
    const currentUID = useParams().uid;
-   const { data: employee = {} } = useGetEmployeeQuery(currentUID ?? "");
+   const { data: employee } = useGetEmployeeQuery(currentUID ?? "");
 
    console.log(employee)
 
    return (
       <Box
          height="100%"
-         width="100%">
-         <Card>
+         width="100%"
+         display="flex">
+         <Card
+            elevation={10}>
 
          </Card>
 

@@ -21,8 +21,8 @@ export const employeeApi = createApi({
       }),
       getEmployee: build.query<Employee, string>({
          query: (employee_uid) => `Employee/GetEmployee/${employee_uid}`,
-         providesTags: (result, error, employeeUid) => [
-            { type: 'Employees', id: employeeUid },
+         providesTags: (result, error, employee_uid) => [
+            { type: 'Employees', id: employee_uid },
             { type: 'Employees', id: 'LIST' }
          ]
       }),

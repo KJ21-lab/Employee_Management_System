@@ -15,27 +15,33 @@ namespace Persistence.UserAccount.Implementations {
             return record;
         }
 
-        public Task<IEnumerable<IAccountRecord>> ReadAccountsByIds(IEnumerable<Guid> accountIDs) =>
-            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccountsByIds,
-                                 parameters: new { AccountIDs = accountIDs }));
+        public async Task<IEnumerable<IAccountRecord>> ReadAccountsByIds(IEnumerable<Guid> accountIDs) =>
+            await _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccountsByIds,
+                        parameters: new { AccountIDs = accountIDs });
 
-        public Task<IEnumerable<IAccountRecord>> ReadAccounts() =>
-            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccounts));
+        public async Task<IEnumerable<IAccountRecord>> ReadAccounts() =>
+            await _read(sqlQuery: DBCommands.SQLQueries.AccountsQueries.ReadAccounts);
 
         public Task<OperationResult> Upsert(Guid accountID) => throw new NotImplementedException();
         public Task<OperationResult> Upsert(IEnumerable<Guid> accountIDs) => throw new NotImplementedException();
 
-        private IEnumerable<IAccountRecord> _read(
+        private async Task<IEnumerable<IAccountRecord>> _read(
             string sqlQuery,
-            object? parameters = null) =>
-            dataAccessor
+            object? parameters = null) {
+      
+            IEnumerable<AccountRecord_DbModel> model =  
+                await dataAccessor
                 .InternalStorageCaller().QueryExecutor()
                 .QueryProcedure<AccountRecord_DbModel>(
                     sqlQuery: sqlQuery,
                     parameters: parameters,
-                    connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection())
-                .Select(model => new AccountRecord(dbModel: model))
-                .ToList();
+                    connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+
+
+            return model
+                     .Select(model => new AccountRecord(dbModel: model))
+                     .ToList();
+        }
 
         private void _execute() {
 

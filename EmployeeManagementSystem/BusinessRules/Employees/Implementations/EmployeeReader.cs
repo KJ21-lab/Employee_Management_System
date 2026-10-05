@@ -6,30 +6,26 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 namespace BusinessRules.Employees.Implementations {
     public class EmployeeReader(IEmployeeFactory employeeFactory) : IEmployeeEntityReader {
 
-        public Task<IEnumerable<IEmployeeEntity>> ReadAll() => 
-            Task.Run(() => {
+        public async Task<IEnumerable<IEmployeeEntity>> ReadAll() {
 
-                IEnumerable<IEmployeeEntity> entities =
-                    employeeFactory
-                    .ReadEmployees()
-                    .Result
-                    .Select(e => new EmployeetEntity(e))
-                    .ToList();
+            IEnumerable<IEmployeeRecord> records =
+                await employeeFactory
+                      .ReadEmployees();
 
-                return entities;
-            });
+            return records
+                   .Select(e => new EmployeetEntity(e))
+                   .ToList();
+        }
         
-      public Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUIDs) => 
-            Task.Run(() => {
+         public async Task<IEnumerable<IEmployeeEntity>> Read(IEnumerable<Guid> employeeUIDs) { 
 
-                IEnumerable<IEmployeeEntity> entities =
-                    employeeFactory
-                    .ReadEmployeesByUIDs(employeeUIDs)
-                    .Result
-                    .Select(e => new EmployeetEntity(e))
-                    .ToList();
-
-                return entities;
-            });
+             IEnumerable<IEmployeeRecord> records =
+                  await employeeFactory
+                        .ReadEmployeesByUIDs(employeeUIDs);
+                  
+              return records
+                     .Select(e => new EmployeetEntity(e))
+                     .ToList();
+         }
     }
 }

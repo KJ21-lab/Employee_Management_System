@@ -17,33 +17,31 @@ namespace Persistence.Employees.Implementations {
             return record;
         }
 
-        public Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs) =>
-           Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
-                                parameters: new { EMPLOYEE_UIDs = employeeUIDs }));
+        public async Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
+            await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees);
 
-        public Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
-            Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees));
+        public async Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs) =>
+            await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
+                        parameters: new { EMPLOYEE_UIDs = employeeUIDs });
 
-        public Task<OperationResult> Upsert(IEmployeeRecord record) =>
-            Task.Run<OperationResult>(() => {
-               try {
-                  _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.UpsertEmployees,
-                           parameters: new 
-                           { EMPLOYEE_UID      = record.EmployeeUID,
-                             EMPLOYEE_Name     = record.Name,
-                             EMPLOYEE_JobTitle = record.JobTitle,
-                             EMPLOYEE_HireDate = record.HireDate,
-                             EMPLOYEE_ID       = record.EmployeeID } );
-                  return new GlobalOperationResult();
-               } catch (Exception ex) {
-                  return new GlobalOperationResult($"Employee upsert Failed. { ex.Message } ");
-               }
-        });
-
-      public Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs) =>
-         Task.Run<OperationResult>(() => {
+        public async Task<OperationResult> Upsert(IEmployeeRecord record) {
+             try {
+                await _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.UpsertEmployees,
+                         parameters: new 
+                         { EMPLOYEE_UID      = record.EmployeeUID,
+                           EMPLOYEE_Name     = record.Name,
+                           EMPLOYEE_JobTitle = record.JobTitle,
+                           EMPLOYEE_HireDate = record.HireDate,
+                           EMPLOYEE_ID       = record.EmployeeID });
+                return new GlobalOperationResult();
+             } catch (Exception ex) {
+                return new GlobalOperationResult($"Employee upsert Failed. { ex.Message } ");
+             }
+        }
+      
+      public async Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs) {
             try {
-               _execute(
+               await _execute(
                   sqlQuery: DBCommands.SQLQueries.EmployeeQueries.DeleteEmployees,
                   parameters: new { EMPLOYEE_UIDs = employeeUIDs });
                
@@ -51,31 +49,35 @@ namespace Persistence.Employees.Implementations {
             } catch ( Exception ex ) {
                return new GlobalOperationResult($"Employee deletion Failed. {ex.Message}");
             }
-         });
+      }
 
 
-      private IEnumerable<IEmployeeRecord> _read(
+      private async Task<IEnumerable<IEmployeeRecord>> _read(
             string sqlQuery,
-            object? parameters = null) =>
-        dataAccessor
-        .InternalStorageCaller().QueryExecutor()
-        .QueryProcedure<EmployeeRecord_DbModel>(
-          sqlQuery: sqlQuery,
-          parameters: parameters,
-          connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection())
-        .Select(model => new EmployeeRecord(dbModel: model))
-        .ToList();
-
-        private void _execute(
-           string sqlQuery,
             object? parameters = null) {
-         var connection = dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection();
-         dataAccessor
-        .InternalStorageCaller().QueryExecutor()
-        .NonQueryProcedure(
-          sqlQuery: sqlQuery,
-          parameters: parameters,
-          connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+
+         IEnumerable<EmployeeRecord_DbModel> records = 
+            await dataAccessor
+            .InternalStorageCaller().QueryExecutor()
+            .QueryProcedure<EmployeeRecord_DbModel>(
+              sqlQuery: sqlQuery,
+              parameters: parameters,
+              connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+
+            return records
+                   .Select(model => new EmployeeRecord(dbModel: model))
+                   .ToList();
+      }
+
+        private async Task _execute(
+           string sqlQuery,
+           object? parameters = null) {
+           await dataAccessor
+           .InternalStorageCaller().QueryExecutor()
+           .NonQueryProcedure(
+             sqlQuery: sqlQuery,
+             parameters: parameters,
+             connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
       }
    }
 }

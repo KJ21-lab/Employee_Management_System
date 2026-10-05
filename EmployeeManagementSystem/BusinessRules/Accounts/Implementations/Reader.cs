@@ -5,16 +5,14 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 
 namespace BusinessRules.Accounts.Implementations {
    public class AccountReader(IAccountFactory accountFactory) : IAccountEntityReader {
-      public Task<IEnumerable<IAccountEntity>> ReadAll() =>
-            Task.Run(() => {
-               IEnumerable<IAccountEntity> entities =
-                   accountFactory
-                       .ReadAccounts()
-                       .Result
-                       .Select(r => new AccountEntity(r))
-                       .ToList();
+      public async Task<IEnumerable<IAccountEntity>> ReadAll() {
+         IEnumerable<IAccountRecord> accounts =
+             await accountFactory
+                 .ReadAccounts();
 
-               return entities;
-            });
+         return accounts
+               .Select(r => new AccountEntity(r))
+               .ToList(); ;
+      }
    }
 }

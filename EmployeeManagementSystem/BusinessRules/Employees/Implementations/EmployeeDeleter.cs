@@ -7,17 +7,16 @@ using Miscellaneous.OperationResult;
 namespace BusinessRules.Employees.Implementations {
    internal class EmployeeDeleter(IEmployeeFactory employeeFactory) : IEmployeeEntityDeleter {
 
-      public Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeGuids) => 
-         Task.Run<OperationResult>(() => {
+      public async Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeGuids) {
             try {
 
-               employeeFactory.
-               DeleteEmployees(employeeGuids);
+               await employeeFactory
+                     .DeleteEmployees(employeeGuids);
 
                return new GlobalOperationResult();
             } catch (Exception ex) { 
                return new GlobalOperationResult($"Failed to delete employee {ex.Message}");
             }
-         });
+      }
    }
 }

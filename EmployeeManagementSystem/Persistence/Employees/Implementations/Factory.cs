@@ -5,6 +5,7 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 using Miscellaneous.DBCommands;
 using Miscellaneous.OperationResult;
 
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace Persistence.Employees.Implementations {
@@ -20,9 +21,17 @@ namespace Persistence.Employees.Implementations {
         public async Task<IEnumerable<IEmployeeRecord>> ReadEmployees() =>
             await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployees);
 
+        public async Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID) {
+
+           IEnumerable<IEmployeeRecord> records = 
+               await ReadEmployeesByUIDs([employeeUID]);
+
+            return records.FirstOrDefault();
+        }
+        
         public async Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs) =>
-            await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
-                        parameters: new { EMPLOYEE_UIDs = employeeUIDs });
+              await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
+                          parameters: new { EMPLOYEE_UIDs = employeeUIDs });
 
         public async Task<OperationResult> Upsert(IEmployeeRecord record) {
              try {

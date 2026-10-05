@@ -7,8 +7,7 @@ namespace EmployeeManagementSystem.Server.Models.Interfaces {
          Action<IEmployeeRecordProperties> configure);
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployees();
-        Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID) =>
-            Task.Run(() => ReadEmployeesByUIDs([employeeUID]).Result.FirstOrDefault());
+        Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID);
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 

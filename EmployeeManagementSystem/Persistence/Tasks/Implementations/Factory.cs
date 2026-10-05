@@ -6,11 +6,11 @@ using Persistence.Tasks.Interfaces;
 
 namespace Persistence.Tasks.Implementations {
    public class TaskFactory (IDataAccessor dataAccessor): ITaskFactory {
-      public Task<IEnumerable<ITaskRecord>> ReadAll() => 
-         Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.TaskQueries.ReadTasks));
-      public Task<IEnumerable<ITaskRecord>> ReadTaskByUIDs(IEnumerable<Guid> taskUIDs) => 
-         Task.Run(() => _read(sqlQuery: DBCommands.SQLQueries.TaskQueries.ReadAccountsByUIDs,
-                              parameters: new { TaskUIDs = taskUIDs }));
+      public async Task<IEnumerable<ITaskRecord>> ReadAll() => 
+         await _read(sqlQuery: DBCommands.SQLQueries.TaskQueries.ReadTasks);
+      public async Task<IEnumerable<ITaskRecord>> ReadTaskByUIDs(IEnumerable<Guid> taskUIDs) => 
+         await _read(sqlQuery: DBCommands.SQLQueries.TaskQueries.ReadAccountsByUIDs,
+                              parameters: new { TaskUIDs = taskUIDs });
       public Task<IEnumerable<ITaskRecord>> Upsert(Guid taskUID) => Task.Run(() => Upsert([taskUID]));
       public Task<IEnumerable<ITaskRecord>> Upsert(IEnumerable<Guid> taskUID) => throw new NotImplementedException();
 

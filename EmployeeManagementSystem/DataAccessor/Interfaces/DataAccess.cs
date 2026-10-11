@@ -1,12 +1,7 @@
 ﻿namespace DataAccess.Interfaces {
-    using System.Data;
-    using System.Data.Common;
+   using System.Data;
 
-    public interface IDataAccessor {
-        IInternalStorageCaller InternalStorageCaller();
-    }
-
-    public interface IInternalStorageCaller {
+   public interface IInternalStorageCaller {
         IDbConnectionProvider DbConnectionProvider();
         IQueryExecutor QueryExecutor();
     }

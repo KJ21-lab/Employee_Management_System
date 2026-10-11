@@ -1,13 +1,9 @@
-using DataAccess.Implementations;
-using DataAccess.Interfaces;
-
-using DependencyInjectors;
-using DependencyInjectors.BusinessRules;
-using DependencyInjectors.PersistenceInjector;
-
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
+using EmployeeMangementSystem.Server;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 using Microsoft.IdentityModel.Tokens;
@@ -31,18 +27,11 @@ builder.Services.AddSwaggerGen();
 // Register the SQLite provider factory once at startup.
 DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", SqliteFactory.Instance);
 
-builder.Services.AddSingleton<DataAcessConfigSettings>();
 
-builder.Services.AddSingleton<IBusinessRulesInjector, BusinessRulesInjector>();
+// Register all dependenciy injections
+builder.Services.AddAllDependencies();
 
-// Register your main DataAccessor to its interface.
-builder.Services.AddSingleton<IDataAccessor, DataAccessor>();
-
-// Register the dependency that was missing.
-builder.Services.AddSingleton<IPersistenceFactoriesInjector, PersistenceFactoriesInjector>();
 builder.Services.AddSingleton<IPasswordHasher<IAccountRecord>, PasswordHasher<IAccountRecord>>();
-
-// --- END: Corrected Service Registration ---
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options => {
@@ -60,12 +49,12 @@ var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException(
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
        options.TokenValidationParameters = new TokenValidationParameters {
-          ValidateIssuer = false,   // Turned off for minimal setup
-          ValidateAudience = false, // Turned off for minimal setup
+          ValidateIssuer = false,   
+          ValidateAudience = false,
           ValidateLifetime = true,
           ValidateIssuerSigningKey = true,
           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
-          ClockSkew = TimeSpan.Zero // Forces exact expiration times
+          ClockSkew = TimeSpan.Zero 
        };
     });
 
@@ -86,7 +75,24 @@ app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseExceptionHandler(exceptionApp => {
+   exceptionApp.Run(async context =>
+   {
+      context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+      context.Response.ContentType = "application/json";
 
+      var specificError = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+      if (specificError != null)
+         Console.WriteLine($"CRITICAL ERROR: {specificError?.Message}");
+
+      var errorResponse = new {
+         Message = "An unexpected internal server error occurred."
+      };
+
+      await context.Response.WriteAsJsonAsync(errorResponse);
+   });
+});
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");

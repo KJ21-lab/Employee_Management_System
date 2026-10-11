@@ -37,9 +37,9 @@ namespace BusinessRules.Employees.Implementations {
             config(props);
 
             IEmployeeRecord record = 
-               employeeFactory
+               await employeeFactory
                .ReadEmployeeByUID(employeeUID)
-               .Result ?? throw new Exception($"Employee record {employeeUID} was not found.");
+                ?? throw new Exception($"Employee record {employeeUID} was not found.");
 
             record.EmployeeID = props.EmployeeID;
             record.Name       = props.Name;

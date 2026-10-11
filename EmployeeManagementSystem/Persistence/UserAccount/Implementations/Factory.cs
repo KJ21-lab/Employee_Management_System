@@ -6,7 +6,7 @@ using Miscellaneous.DBCommands;
 using Miscellaneous.OperationResult;
 
 namespace Persistence.UserAccount.Implementations {
-    public class AccountFactory(IDataAccessor dataAccessor) : IAccountFactory {
+    public class AccountFactory(IInternalStorageCaller internalStorageCaller) : IAccountFactory {
 
         public IAccountRecord Build(
             Action<IAccountRecordProperties> configure) {
@@ -30,12 +30,12 @@ namespace Persistence.UserAccount.Implementations {
             object? parameters = null) {
       
             IEnumerable<AccountRecord_DbModel> model =  
-                await dataAccessor
-                .InternalStorageCaller().QueryExecutor()
+                await internalStorageCaller
+                .QueryExecutor()
                 .QueryProcedure<AccountRecord_DbModel>(
                     sqlQuery: sqlQuery,
                     parameters: parameters,
-                    connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+                    connection: internalStorageCaller.DbConnectionProvider().DbConnection());
 
 
             return model

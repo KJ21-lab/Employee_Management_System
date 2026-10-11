@@ -1,13 +1,13 @@
 ﻿using DataAccess.Interfaces;
 
 namespace DataAccess.Implementations {
-    internal class InternalStorageCaller(DataAcessConfigSettings config) : IInternalStorageCaller {
+    public class InternalStorageCaller(DataAcessConfigSettings config) : IInternalStorageCaller {
 
-        public IDbConnectionProvider DbConnectionProvider() =>
+      public IDbConnectionProvider DbConnectionProvider() =>
             new DbConnectionProvider(config);
 
         public IQueryExecutor QueryExecutor() =>
-            new QueryExecutor(defaultConnection: DbConnectionProvider().DbConnection());
+            new QueryExecutor(connectionProvider: DbConnectionProvider());
     }
     //"C:\Program Files\DB Browser for SQLite\TestDatabase.db"
 }

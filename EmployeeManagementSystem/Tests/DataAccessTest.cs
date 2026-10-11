@@ -15,7 +15,7 @@ public class DataAccessTest {
     [Fact]
     public async Task Test1() {
      
-        var dataAccesor = new TestDataAccesor().DataAccessorGenerator();
+        var dataAccesor = new TestDataAccesor().InternalStorageGenerator();
         
         IEmployeeFactory factory =  new EmployeeFactory(dataAccesor);
 

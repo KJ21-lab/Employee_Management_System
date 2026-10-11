@@ -9,7 +9,7 @@ using SQLitePCL;
 namespace Tests {
    internal class TestDataAccesor {
 
-      public IDataAccessor DataAccessorGenerator() {
+      public IInternalStorageCaller InternalStorageGenerator() {
          Batteries.Init();
 
          var configuration = new ConfigurationBuilder()
@@ -24,12 +24,12 @@ namespace Tests {
          services.AddSingleton<DataAcessConfigSettings>();
 
          // This is where you register all the services
-         services.AddSingleton<IDataAccessor, DataAccessor>();
+         services.AddSingleton<IInternalStorageCaller, InternalStorageCaller>();
 
          // Build the service provider.
          var serviceProvider = services.BuildServiceProvider();
 
-         var dataAccessor = serviceProvider.GetRequiredService<IDataAccessor>();
+         var dataAccessor = serviceProvider.GetRequiredService<IInternalStorageCaller>();
 
          return dataAccessor;
       }

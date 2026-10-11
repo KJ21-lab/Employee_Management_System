@@ -11,28 +11,20 @@ public class EmployeeController : BaseApiController {
         : base(businessRulesInjector, configuration) {
    }
 
-   [HttpGet]
-   [Route("api/Employee/GetEmployees")]
+   [HttpGet("api/Employee/GetEmployees")]
    public async Task<IActionResult> GetEmployees() {
-      try {
 
-         IEnumerable<IEmployeeEntity> employees =
-             await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Reader()
-             .ReadAll();
-             
+      IEnumerable<IEmployeeEntity> employees =
+          await _businessRulesInjector
+          .EmployeeBusinessRules()
+          .Reader()
+          .ReadAll();
 
-         return Ok(employees);
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
+      return Ok(employees);
    }
 
-   [HttpGet]
-   [Route("api/Employee/GetEmployee/{employee_uid}")]
+   [HttpGet("api/Employee/GetEmployee/{employee_uid}")]
    public async Task<IActionResult> GetEmployees(string employee_uid) {
-      try {
 
          IEmployeeEntity employees =
               await _businessRulesInjector
@@ -41,53 +33,40 @@ public class EmployeeController : BaseApiController {
              .Read(Guid.Parse(employee_uid));
 
          return Ok(employees);
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
    }
 
-   [HttpPost]
-   [Route("api/Employee/CreateEmployee")]
+   [HttpPost("api/Employee/CreateEmployee")]
    public async Task<IActionResult> CreateEmployee([FromBody] UpsertEmployeeRequestModel model) {
-      try {
 
-         await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Writer()
-             .UpsertEmployee((config) => {
-                config.Name       = model.employee_name;
-                config.JobTitle   = model.employee_job_title;
-                config.HireDate   = DateTime.Parse(model.employee_hire_date);
-                config.EmployeeID = int.Parse(model.employee_id);
-             });
+      await _businessRulesInjector
+          .EmployeeBusinessRules()
+          .Writer()
+          .UpsertEmployee((config) => {
+             config.Name       = model.employee_name;
+             config.JobTitle   = model.employee_job_title;
+             config.HireDate   = DateTime.Parse(model.employee_hire_date);
+             config.EmployeeID = int.Parse(model.employee_id);
+          });
 
-         return Ok();
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
+      return Ok();
    }
 
-   [HttpPut]
-   [Route("api/Employee/UpdateEmployee")]
+   [HttpPut("api/Employee/UpdateEmployee")]
    public async Task<IActionResult> UpdateEmployee([FromBody] UpsertEmployeeRequestModel model) {
-      try {
 
-         await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Writer()
-             .UpsertEmployee(
-                 employeeUID: Guid.Parse(model.employee_uid),
-                 (config) => {
-                     config.Name       = model.employee_name;
-                     config.JobTitle   = model.employee_job_title;
-                     config.HireDate   = DateTime.Parse(model.employee_hire_date);
-                     config.EmployeeID = int.Parse(model.employee_id);
-             });
+      await _businessRulesInjector
+          .EmployeeBusinessRules()
+          .Writer()
+          .UpsertEmployee(
+              employeeUID: Guid.Parse(model.employee_uid),
+              (config) => {
+                  config.Name       = model.employee_name;
+                  config.JobTitle   = model.employee_job_title;
+                  config.HireDate   = DateTime.Parse(model.employee_hire_date);
+                  config.EmployeeID = int.Parse(model.employee_id);
+          });
 
-         return Ok();
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
+      return Ok();
    }
    public class UpsertEmployeeRequestModel {
       public string employee_uid { get; set; } = string.Empty;
@@ -100,26 +79,18 @@ public class EmployeeController : BaseApiController {
       public string employee_id { get; set; } = string.Empty;
    }
 
-   [HttpDelete]
-   [Route("api/Employee/DeleteEmployee/{employee_uid}")]
+   [HttpDelete("api/Employee/DeleteEmployee/{employee_uid}")]
    public async Task<IActionResult> DeleteEmployee([FromRoute] string employee_uid) {
-      try {
 
-         await _businessRulesInjector
-             .EmployeeBusinessRules()
-             .Deleter()
-             .DeleteEmployee(Guid.Parse(employee_uid));
+      await _businessRulesInjector
+          .EmployeeBusinessRules()
+          .Deleter()
+          .DeleteEmployee(Guid.Parse(employee_uid));
 
-         return Ok();
-      } catch (Exception ex) {
-         return ServerError(ex.Message);
-      }
+      return Ok();
    }
 
    public class DeleteEmployeeRequestModel {
       public string employee_uid { get; set; } = string.Empty;
    }
-
-
-
 }

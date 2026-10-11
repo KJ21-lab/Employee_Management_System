@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DataAccess.Implementations {
     internal class QueryExecutor : IQueryExecutor {
 
-        private readonly IDbConnection defaultConnection;
+        private readonly IDbConnectionProvider connectionProvider;
 
         public async Task<IEnumerable<DatabaseField>> QueryProcedure<DatabaseField>(
             string sqlQuery,
@@ -44,7 +44,7 @@ namespace DataAccess.Implementations {
             string consoleOutput,
             object? parameters = null) {
                 
-            connection ??= defaultConnection;
+            connection ??= connectionProvider.DbConnection();
             IEnumerable<DatabaseFields> databaseRecords;
 
             using (connection) {
@@ -66,7 +66,7 @@ namespace DataAccess.Implementations {
             string consoleOutput,
             object? parameters = null) {
 
-            connection ??= defaultConnection;
+            connection ??= connectionProvider.DbConnection();
             using (connection) {
                 connection.Open();
                 await connection.ExecuteAsync(
@@ -77,13 +77,13 @@ namespace DataAccess.Implementations {
             }
         }
 
-        public QueryExecutor(IDbConnection defaultConnection) {
+        public QueryExecutor(IDbConnectionProvider connectionProvider) {
             // Register your new type handler here
             SqlMapper.AddTypeHandler(new GuidTypeHandler());
 
             // Your existing code
             SqlMapper.AddTypeMap(typeof(string), DbType.AnsiString);
-            this.defaultConnection = defaultConnection;
+            this.connectionProvider = connectionProvider;
         }
     }
 }

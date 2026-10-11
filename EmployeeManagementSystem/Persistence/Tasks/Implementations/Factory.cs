@@ -5,7 +5,7 @@ using Miscellaneous.DBCommands;
 using Persistence.Tasks.Interfaces;
 
 namespace Persistence.Tasks.Implementations {
-   public class TaskFactory (IDataAccessor dataAccessor): ITaskFactory {
+   public class TaskFactory (IInternalStorageCaller internalStorageCaller) : ITaskFactory {
       public async Task<IEnumerable<ITaskRecord>> ReadAll() => 
          await _read(sqlQuery: DBCommands.SQLQueries.TaskQueries.ReadTasks);
       public async Task<IEnumerable<ITaskRecord>> ReadTaskByUIDs(IEnumerable<Guid> taskUIDs) => 
@@ -19,12 +19,12 @@ namespace Persistence.Tasks.Implementations {
             object? parameters = null) {
       
          IEnumerable<TaskRecord_DBModel> models = 
-            await dataAccessor
-            .InternalStorageCaller().QueryExecutor()
+            await internalStorageCaller
+            .QueryExecutor()
             .QueryProcedure<TaskRecord_DBModel>(
                sqlQuery: sqlQuery,
                parameters: parameters,
-               connection: dataAccessor.InternalStorageCaller().DbConnectionProvider().DbConnection());
+               connection: internalStorageCaller.DbConnectionProvider().DbConnection());
         
          return models
                   .Select(model => new TaskRecord(dbModel: model))

@@ -17,7 +17,7 @@ public class PersistenceTest()
        int test_id)
    {
 
-      var dataAccesor = new TestDataAccesor().DataAccessorGenerator();
+      var dataAccesor = new TestDataAccesor().InternalStorageGenerator();
 
       IEmployeeFactory factory = new EmployeeFactory(dataAccesor);
 
@@ -40,7 +40,7 @@ public class PersistenceTest()
    public async void DeleteEmployee()
    {
 
-      var dataAccesor = new TestDataAccesor().DataAccessorGenerator();
+      var dataAccesor = new TestDataAccesor().InternalStorageGenerator();
 
       IEmployeeFactory factory = new EmployeeFactory(dataAccesor);
 

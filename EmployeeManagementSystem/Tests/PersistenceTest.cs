@@ -32,21 +32,19 @@ public class PersistenceTest()
 
        await factory.Upsert(record);
 
-        
        return; 
    }
 
    [Fact]
    public async void DeleteEmployee()
    {
-
       var dataAccesor = new TestDataAccesor().InternalStorageGenerator();
 
       IEmployeeFactory factory = new EmployeeFactory(dataAccesor);
 
-      await 
+      await
          factory.
-         DeleteEmployee(Guid.Parse("2F7264CB-7701-40DE-B368-5EDF01E73167"));
+         DeleteEmployees([Guid.Parse("2F7264CB-7701-40DE-B368-5EDF01E73167")]);
         
        return; 
    }

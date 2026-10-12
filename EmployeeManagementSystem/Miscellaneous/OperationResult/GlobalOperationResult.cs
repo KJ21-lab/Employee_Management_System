@@ -4,7 +4,6 @@
         public GlobalOperationResult(string message) {
             IsSuccess = false;
             Message = message;
-
         }
         public GlobalOperationResult() {
             IsSuccess = true;

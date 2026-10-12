@@ -24,7 +24,7 @@ public class EmployeeController : BaseApiController {
    }
 
    [HttpGet("api/Employee/GetEmployee/{employee_uid}")]
-   public async Task<IActionResult> GetEmployees(string employee_uid) {
+   public async Task<IActionResult> GetEmployees([FromRoute] string employee_uid) {
 
          IEmployeeEntity employees =
               await _businessRulesInjector

@@ -5,9 +5,6 @@ using EmployeeManagementSystem.Server.Models.Interfaces;
 using Miscellaneous.DBCommands;
 using Miscellaneous.OperationResult;
 
-using System.Collections.Generic;
-using System.Text.Json;
-
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IInternalStorageCaller internalStorageCaller) : IEmployeeFactory {
 
@@ -59,7 +56,6 @@ namespace Persistence.Employees.Implementations {
                 return new GlobalOperationResult($"Employee deletion Failed. {ex.Message}");
              }
        }
-
 
        private async Task<IEnumerable<IEmployeeRecord>> _read(
              string sqlQuery,

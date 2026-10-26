@@ -3,16 +3,18 @@
 namespace EmployeeManagementSystem.Server.Models.Interfaces {
     public interface IEmployeeFactory {
 
-      public IEmployeeRecord Build(
-         Action<IEmployeeRecordProperties> configure);
+         IEmployeeRecord Build(
+            Action<IEmployeeRecordProperties> configure);
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployees();
         Task<IEmployeeRecord?> ReadEmployeeByUID(Guid employeeUID);
 
         Task<IEnumerable<IEmployeeRecord>> ReadEmployeesByUIDs(IEnumerable<Guid> employeeUIDs);
 
-        Task<OperationResult> Upsert(IEmployeeRecord record);
-        Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs);
+        Task<int> Upsert(IEmployeeRecord record);
+        Task<int> DeleteEmployees(IEnumerable<Guid> employeeUIDs);
+
+        Task<bool> Exists(IEnumerable<Guid> employeeUID);
     }
 
    public interface IEmployeeRecord : IEmployeeRecordProperties {

@@ -13,6 +13,7 @@
                "EMPLOYEE_HireDate = @EMPLOYEE_HireDate, " +
                "EMPLOYEE_ID       = @EMPLOYEE_ID;";
             public const string DeleteEmployees = @"DELETE FROM EmployeeRecord WHERE EMPLOYEE_UID IN @EMPLOYEE_UIDs";
+            public const string EmployeeExists = @"SELECT COUNT(1) FROM Employees WHERE EMPLOYEE_UID IN @UIDs";
 
          }
 

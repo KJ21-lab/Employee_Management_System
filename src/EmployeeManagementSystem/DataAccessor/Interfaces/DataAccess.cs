@@ -11,13 +11,13 @@
     }
 
     public interface IQueryExecutor {
-      public Task<IEnumerable<DatabaseField>> QueryProcedure<DatabaseField>(
+      Task<IEnumerable<T>> QueryProcedure<T>(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "");
 
-        Task NonQueryProcedure(
+        Task<int> NonQueryProcedure(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,

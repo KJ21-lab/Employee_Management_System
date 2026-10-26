@@ -35,7 +35,7 @@ namespace BusinessRules.Employees.Implementations {
                .ReadEmployeeByUID(employeeUID);
                
             if(record is null)
-               return new GlobalOperationResult($"The employee record was not found.", ResultTypes.NotFound);
+               return new GlobalOperationResult($"Employee record was not found.", ResultTypes.NotFound);
 
             record.EmployeeID = props.EmployeeID;
             record.Name       = props.Name;

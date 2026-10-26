@@ -23,5 +23,6 @@
 }
 
 public enum ResultTypes {
-   NotFound
+   NotFound,
+   ServerError
 }

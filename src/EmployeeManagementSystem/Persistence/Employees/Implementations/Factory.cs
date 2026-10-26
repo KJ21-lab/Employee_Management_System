@@ -2,8 +2,13 @@ using DataAccess.Interfaces;
 
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
+using Microsoft.AspNetCore.Components;
+
 using Miscellaneous.DBCommands;
 using Miscellaneous.OperationResult;
+
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IInternalStorageCaller internalStorageCaller) : IEmployeeFactory {
@@ -30,26 +35,40 @@ namespace Persistence.Employees.Implementations {
              await _read(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.ReadEmployeesByUIDs,
                          parameters: new { EMPLOYEE_UIDs = employeeUIDs.Select(uid => uid.ToString())});
 
-       public async Task<OperationResult> Upsert(IEmployeeRecord record) {
-               await _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.UpsertEmployees,
+       public async Task<int> Upsert(IEmployeeRecord record) {
+               int recordsAffected = await _execute(sqlQuery: DBCommands.SQLQueries.EmployeeQueries.UpsertEmployees,
                         parameters: new 
                         { EMPLOYEE_UID      = record.EmployeeUID.ToString(),
                           EMPLOYEE_Name     = record.Name,
                           EMPLOYEE_JobTitle = record.JobTitle,
                           EMPLOYEE_HireDate = record.HireDate,
                           EMPLOYEE_ID       = record.EmployeeID });
-               return new GlobalOperationResult();
+
+               return recordsAffected;
        }
       
-       public async Task<OperationResult> DeleteEmployees(IEnumerable<Guid> employeeUIDs) {
-           await _execute(
+       public async Task<int> DeleteEmployees(IEnumerable<Guid> employeeUIDs) {
+           int recordsAffected = await _execute(
               sqlQuery: DBCommands.SQLQueries.EmployeeQueries.DeleteEmployees,
               parameters: new { EMPLOYEE_UIDs = employeeUIDs.Select(uid => uid.ToString()) });
            
-           return new GlobalOperationResult();
-       }
+           return recordsAffected;
+      }
+      public async Task<bool> Exists(IEnumerable<Guid> employeeUIDs) {
 
-       private async Task<IEnumerable<IEmployeeRecord>> _read(
+         var epmloyeeUids = employeeUIDs.Select(uid => uid.ToString()).ToList();
+
+         IEnumerable<int> result = await internalStorageCaller
+             .QueryExecutor()
+             .QueryProcedure<int>(
+                sqlQuery: DBCommands.SQLQueries.EmployeeQueries.EmployeeExists,
+                parameters: new { UIDs = epmloyeeUids },
+                connection: internalStorageCaller.DbConnectionProvider().DbConnection());
+
+         return (result.FirstOrDefault() == epmloyeeUids.Count);
+      }
+
+      private async Task<IEnumerable<IEmployeeRecord>> _read(
              string sqlQuery,
              object? parameters = null) {
        
@@ -66,16 +85,15 @@ namespace Persistence.Employees.Implementations {
                     .ToList();
        }
 
-       private async Task _execute(
+       private async Task<int> _execute(
           string sqlQuery,
-          object? parameters = null) {
+          object? parameters = null) =>
           await internalStorageCaller
             .QueryExecutor()
-          .NonQueryProcedure(
-            sqlQuery: sqlQuery,
-            parameters: parameters,
-            connection: internalStorageCaller.DbConnectionProvider().DbConnection());
-       }
+            .NonQueryProcedure(
+              sqlQuery: sqlQuery,
+              parameters: parameters,
+              connection: internalStorageCaller.DbConnectionProvider().DbConnection());
    }
 }
 

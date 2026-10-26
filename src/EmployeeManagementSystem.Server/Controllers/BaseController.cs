@@ -14,7 +14,7 @@ public abstract class BaseApiController : ControllerBase {
 
    protected IActionResult MapError(ResultTypes resultType, string message) {
       return resultType switch {
-         ResultTypes.NotFound => NotFound(message),
+         ResultTypes.NotFound    => NotFound(message),
          _ => ServerError()
       };
    }

@@ -81,11 +81,6 @@ app.UseExceptionHandler(exceptionApp => {
       context.Response.StatusCode = StatusCodes.Status500InternalServerError;
       context.Response.ContentType = "application/json";
 
-      var specificError = context.Features.Get<IExceptionHandlerFeature>()?.Error;
-
-      if (specificError != null)
-         Console.WriteLine($"CRITICAL ERROR: {specificError?.Message}");
-
       var errorResponse = new {
          Message = "An unexpected internal server error occurred."
       };

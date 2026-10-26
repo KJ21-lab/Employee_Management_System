@@ -4,21 +4,20 @@ using DataAccess.Interfaces;
 
 using System.Data;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace DataAccess.Implementations {
     internal class QueryExecutor : IQueryExecutor {
 
         private readonly IDbConnectionProvider connectionProvider;
 
-        public async Task<IEnumerable<DatabaseField>> QueryProcedure<DatabaseField>(
+        public async Task<IEnumerable<T>> QueryProcedure<T>(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
             string consoleOutput = "") {
-            IEnumerable<DatabaseField> records =
+            IEnumerable<T> records =
             
-            await _executeQueryProcedure<DatabaseField>(
+            await _executeQueryProcedure<T>(
                 sqlQuery: sqlQuery,
                 parameters: parameters,
                 connection:  connection,
@@ -26,8 +25,8 @@ namespace DataAccess.Implementations {
             
             return records.ToList();
         }
-
-        public async Task NonQueryProcedure(
+        
+        public async Task<int> NonQueryProcedure(
             string sqlQuery,
             IDbConnection connection,
             object? parameters = null,
@@ -38,18 +37,20 @@ namespace DataAccess.Implementations {
                 connection: connection,
                 consoleOutput: consoleOutput);
 
-        private async Task<IEnumerable<DatabaseFields>> _executeQueryProcedure<DatabaseFields>(
+        private async Task<IEnumerable<T>> _executeQueryProcedure<T>(
             string sqlQuery,
             IDbConnection connection,
             string consoleOutput,
             object? parameters = null) {
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
                 
             connection ??= connectionProvider.DbConnection();
-            IEnumerable<DatabaseFields> databaseRecords;
+            IEnumerable<T> databaseRecords;
 
             using (connection) {
                 connection.Open();
-                databaseRecords =  await connection.QueryAsync<DatabaseFields>(
+                databaseRecords =  await connection.QueryAsync<T>(
                     sql: sqlQuery,
                     param: parameters,
                     commandType: CommandType.Text,
@@ -57,24 +58,32 @@ namespace DataAccess.Implementations {
                 connection.Close();
             }
 
+            stopwatch.Stop();
+
             return databaseRecords;
         }
 
-        private async Task _executeNonQueryProcedure(
+        private async Task<int> _executeNonQueryProcedure(
             string sqlQuery,
             IDbConnection connection,
             string consoleOutput,
             object? parameters = null) {
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            int recordsAffected;
+
             connection ??= connectionProvider.DbConnection();
             using (connection) {
                 connection.Open();
-                await connection.ExecuteAsync(
+                recordsAffected = await connection.ExecuteAsync(
                     sql: sqlQuery,
                     param: parameters,
                     commandType: CommandType.Text,
                     commandTimeout: 0);
             }
+            stopwatch.Stop();
+
+            return recordsAffected;
         }
 
         public QueryExecutor(IDbConnectionProvider connectionProvider) {

@@ -2,13 +2,7 @@ using DataAccess.Interfaces;
 
 using EmployeeManagementSystem.Server.Models.Interfaces;
 
-using Microsoft.AspNetCore.Components;
-
 using Miscellaneous.DBCommands;
-using Miscellaneous.OperationResult;
-
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Persistence.Employees.Implementations {
     public class EmployeeFactory(IInternalStorageCaller internalStorageCaller) : IEmployeeFactory {

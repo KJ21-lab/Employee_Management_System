@@ -44,7 +44,10 @@ builder.Services.AddCors(options => {
 });
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var secretKey = jwtSettings["SecretKey"] ?? throw new InvalidOperationException("SecretKey missing");
+var secretKey = jwtSettings["SecretKey"];
+
+if (string.IsNullOrWhiteSpace(secretKey)) 
+   throw new InvalidOperationException("JWT SecretKey is missing or empty in configuration.");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {

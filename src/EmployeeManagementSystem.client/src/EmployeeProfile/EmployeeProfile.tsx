@@ -1,12 +1,12 @@
-import { Box, Card, CardActions, CardContent } from '@mui/material';
+import { Box, Card } from '@mui/material';
+import { Button } from 'devextreme-react/button';
+import DataGrid, { Editing, FilterRow } from 'devextreme-react/cjs/data-grid';
+import { Form, SimpleItem } from 'devextreme-react/form';
+import type { ILookupOptions } from 'devextreme-react/lookup';
 import { useParams } from 'react-router-dom';
 import { useGetEmployeeQuery } from '../Employees/routes';
 import myImage from '../assets/myImage.jpeg';
-import { Form, SimpleItem } from 'devextreme-react/form';
-import DataGrid, { Editing, FilterRow } from 'devextreme-react/cjs/data-grid';
 import { positions } from './positions';
-import type { ILookupOptions } from 'devextreme-react/lookup';
-import { Button } from 'devextreme-react/button';
 //import DataGrid, { Column, Editing, FilterRow, Lookup } from 'devextreme-react/data-grid';
 
 export const EmployeeProfile = () => {
@@ -110,7 +110,7 @@ export const EmployeeProfile = () => {
                   display: 'flex',
                   justifyContent: 'flex-end'
                }}>
-               <Button width="30%" text="Click me"/>
+               <Button width="30%" text="3Click me"/>
             </Box>
 
             <Box

@@ -19,7 +19,7 @@ namespace DataAccess.Implementations {
         }
 
         private void _Validate() {
-            if (InternalStorage?.ConnectionString is null)
+            if (string.IsNullOrWhiteSpace(InternalStorage?.ConnectionString))
                 ErrorMessages.Add("InternalStorage:ConnectionString is missing.");
 
             IsValid = ErrorMessages.Count == 0;

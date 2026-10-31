@@ -84,10 +84,11 @@ public class EmployeeController : BaseApiController {
    [HttpDelete("api/Employee/DeleteEmployee/{employee_uid}")]
    public async Task<IActionResult> DeleteEmployee([FromRoute] string employee_uid) {
 
-      OperationResult result = await _businessRulesInjector
-          .EmployeeBusinessRules()
-          .Deleter()
-          .DeleteEmployee(Guid.Parse(employee_uid));
+      OperationResult result = 
+         await _businessRulesInjector
+            .EmployeeBusinessRules()
+            .Deleter()
+            .DeleteEmployee(Guid.Parse(employee_uid));
 
       return result.IsSuccess ? Ok() : MapError(result.ResultType, result.Message);
    }

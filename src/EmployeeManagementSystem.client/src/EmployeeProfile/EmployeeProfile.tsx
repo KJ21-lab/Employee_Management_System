@@ -7,11 +7,14 @@ import { useParams } from 'react-router-dom';
 import { useGetEmployeeQuery } from '../Employees/routes';
 import myImage from '../assets/myImage.jpeg';
 import { positions } from './positions';
+import './EmployeeProfile.css'
+import { useState } from 'react';
 //import DataGrid, { Column, Editing, FilterRow, Lookup } from 'devextreme-react/data-grid';
 
 export const EmployeeProfile = () => {
    const currentUID = useParams().uid;
    const { data: employee } = useGetEmployeeQuery(currentUID ?? "");
+   const [isEditing, setEditing] = useState<boolean>(true);
 
    console.log(employee)
 
@@ -74,18 +77,17 @@ export const EmployeeProfile = () => {
          justifyContent="space-between"
          alignItems="flex-end">
 
+         {/* ==============
+             DATA GRID CARD 
+             ============== */}
          <Card
             elevation={10}
-            sx={{
-               height: "95%",
-               width: "63%",
-               borderRadius: '0 1.5vw  1.5vw 0',
-            }}>
+            className="data-grid-card"
+            sx={{ borderRadius: "0 1.5vw  1.5vw 0" }}>
             <DataGrid
                dataSource={mockEmployees}
-               showBorders
-            >
-            <FilterRow visible={true} />
+               showBorders>
+            <FilterRow visible/>
             <Editing
                mode="row"
                allowUpdating
@@ -94,15 +96,15 @@ export const EmployeeProfile = () => {
             </DataGrid>
          </Card>
 
+         {/* ==============
+              PROFILE CARD
+             ============== */}
          <Card
             elevation={10}
+            className="profile-card"
             sx={{
-               height: "95%",
-               width: "35%",
-               borderRadius: '1.5vw 0 0 1.5vw',
-               display: 'flex',
-               flexDirection: 'column',
-               gap: 2
+               gap: 2,
+               borderRadius: "1.5vw 0 0 1.5vw"
             }}>
 
             <Box
@@ -110,14 +112,19 @@ export const EmployeeProfile = () => {
                   display: 'flex',
                   justifyContent: 'flex-end'
                }}>
-               <Button width="30%" text="3Click me"/>
+               <Button
+                  width="20%"
+                  text="Edit"
+                  stylingMode="contained"
+                  icon="edit"
+                  style={{ marginTop: 5, marginRight: 5 }}
+                  onClick={() => setEditing(!isEditing)}
+                  />
             </Box>
 
             <Box
+               className="profile-box"
                sx={{
-                  display: 'flex',
-                  flexDirection: "row",
-                  justifyContent: 'flex-end',
                   gap: 5
                }}>
                <img
@@ -134,7 +141,7 @@ export const EmployeeProfile = () => {
                   formData={employee}
                   height="100%"
                   width="100%"
-                  //disabled
+                  disabled={isEditing}
                   style={{
                      //border: "8px solid black",
                      marginTop: 15

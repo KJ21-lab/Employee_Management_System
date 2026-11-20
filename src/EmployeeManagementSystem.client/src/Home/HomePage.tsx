@@ -171,7 +171,6 @@ const HomePage = () => {
                         sx={{
                            backgroundImage: `url(${meshBackground})`,
                            borderRadius: '1.5vw',
-
                         }}>
 
                         <CardContent sx={{ height: '100%', width: '100%' }}>
